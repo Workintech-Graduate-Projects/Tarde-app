@@ -5,12 +5,28 @@ import Login from "@/components/Login";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
-import { useRouter } from 'next/router';
-
+import { useRouter } from "next/router";
+import dummyData from "./dummy-data";
+import { Dropdown, Grid } from "@nextui-org/react";
+import React from "react";
 
 export default function Home() {
-  const router= useRouter()
+  const router = useRouter();
   const [toggle, setToggle] = useState(true);
+  const [selectedColor, setSelectedColor] = React.useState("default");
+  const colors = [
+    "default",
+    "primary",
+    "secondary",
+    "success",
+    "warning",
+    "error",
+  ];
+
+  const capitalize = (str) => {
+    const lower = str.toLowerCase();
+    return str.charAt(0).toUpperCase() + lower.slice(1);
+  };
 
   return (
     <>
@@ -19,18 +35,46 @@ export default function Home() {
           <img src="./img/logo.jpg" alt="h-logo"></img>
         </div>
         <nav className="flex flex-1 justify-end text-xs sm:text-lg xl:text-xl items-center">
-          <button className="p-2 hover:bg-slate-50" onClick={toggle==false? ()=>{setToggle(!toggle)}:()=>{router.push("/")} }>
+          <button
+            className="p-2 hover:bg-slate-50"
+            onClick={
+              toggle == false
+                ? () => {
+                    setToggle(!toggle);
+                  }
+                : () => {
+                    router.push("/");
+                  }
+            }>
             Anasayfa
           </button>
-          <Link className="p-2 hover:bg-slate-50" href={"/"}>
-            Şehirler
-          </Link>
+          <Grid.Container gap={1.5}>
+            <Grid xs={12}>
+              <Grid>
+                <Dropdown>
+                  <Dropdown.Button size={10} color={selectedColor} light>
+                    Light
+                  </Dropdown.Button>
+                  <Dropdown.Menu
+                    color={selectedColor}
+                    variant="light"
+                    aria-label="Actions">
+                    <Dropdown.Item key="new">New file</Dropdown.Item>
+                    <Dropdown.Item key="copy">Copy link</Dropdown.Item>
+                    <Dropdown.Item key="edit">Edit file</Dropdown.Item>
+                    <Dropdown.Item key="delete" color="error" withDivider>
+                      Delete file
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </Grid>
+            </Grid>
+          </Grid.Container>
           <button
             className="p-2 hover:bg-slate-50"
             onClick={() => {
               setToggle(!toggle);
-            }}
-          >
+            }}>
             Giriş
           </button>
         </nav>
@@ -47,9 +91,9 @@ export default function Home() {
           </div>
         </main>
       ) : (
-        <Login className=""/>
+        <Login className="" />
       )}
-      <Footer className=""/>
+      <Footer className="" />
     </>
   );
 }
