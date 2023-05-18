@@ -5,7 +5,10 @@ const dummyData = [
     personelAdi: ["Sümeyra Al", "Canan Tütünen"],
     telefonNumaralari: ["0532 330 16 33", "0539 774 35 75"],
     ulasilanKisi: 1000,
-    aracSayisi: ["1"],
+    aracSayisi: {
+      binekArac: 1,
+      geziciKaravan: 0,
+    },
     merkezler: [
       "Nurdağı 1 Konteyner Kenti - Görüşme konteynerı",
       "Mobil Ekip (Nurdağı B-1 C1, TOKİ Konteyner Eğitim Kampüsü, Ahbap Okulları, Nurdağı 2, Fatih Mah. Yeni Mah. Kurudere Mah. )",
@@ -39,7 +42,10 @@ const dummyData = [
     ],
     telefonNumaralari: [""],
     ulasilanKisi: 236,
-    aracSayisi: [],
+    aracSayisi: {
+      binekArac: 0,
+      geziciKaravan: 0,
+    },
     merkezler: [
       "Mersin Büyükşehir Belediyesi'nin Konteyner Kenti'nde K12 çalışma ve yaşam ofisi bulunmakta. Alt yapı çalışmalarının bitmesi bekleniyor.",
     ],
@@ -55,7 +61,10 @@ const dummyData = [
     personelAdi: ["Yarencan Çingir", "Ayça Dağılan", "Gözde Murt"],
     telefonNumaralari: ["0549 553 21 00"],
     ulasilanKisi: 24,
-    aracSayisi: [],
+    aracSayisi: {
+      binekArac: 0,
+      geziciKaravan: 0,
+    },
     merkezler: [
       "İzmit & Nilüfer Belediyesi Çadırkent - Kahramanmaraş, Onikişubat",
       "Doğa Koleji - Kahramanmaraş, Onikişubat",
@@ -78,7 +87,10 @@ const dummyData = [
     ],
     telefonNumaralari: ["0533 289 00 61", "0535 628 90 52"],
     ulasilanKisi: 524,
-    aracSayisi: ["1 binek araç", "2 gezici karavan"],
+    aracSayisi: {
+      binekArac: 1,
+      geziciKaravan: 2,
+    },
     merkezler: [
       "İBB Afet Koordinasyon Merkezi",
       "Harbiye/Hidropark Çadırkent",
@@ -105,7 +117,10 @@ const dummyData = [
     personelAdi: ["Sümeyra Sülü", "Derya Genç", "Sevgi Tarhan"],
     telefonNumaralari: [""],
     ulasilanKisi: 200,
-    aracSayisi: [],
+    aracSayisi: {
+      binekArac: 0,
+      geziciKaravan: 0,
+    },
     merkezler: [],
     isbirlikciKurumlar: [],
   },
@@ -115,7 +130,10 @@ const dummyData = [
     personelAdi: [""],
     telefonNumaralari: [""],
     ulasilanKisi: 200,
-    aracSayisi: [],
+    aracSayisi: {
+      binekArac: 0,
+      geziciKaravan: 0,
+    },
     merkezler: [],
     isbirlikciKurumlar: [],
   },
@@ -125,7 +143,10 @@ const dummyData = [
     personelAdi: ["Şevval Çoban"],
     telefonNumaralari: [""],
     ulasilanKisi: 200,
-    aracSayisi: [],
+    aracSayisi: {
+      binekArac: 0,
+      geziciKaravan: 0,
+    },
     merkezler: [],
     isbirlikciKurumlar: [],
   },

@@ -5,11 +5,12 @@ import Login from "@/components/Login";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
-import { useRouter } from 'next/router';
-
+import { useRouter } from "next/router";
+import dummyData from "./dummy-data";
+import { Dropdown } from "@nextui-org/react";
 
 export default function Home() {
-  const router= useRouter()
+  const router = useRouter();
   const [toggle, setToggle] = useState(true);
 
   return (
@@ -19,18 +20,36 @@ export default function Home() {
           <img src="./img/logo.jpg" alt="h-logo"></img>
         </div>
         <nav className="flex flex-1 justify-end text-xs sm:text-lg xl:text-xl items-center">
-          <button className="p-2 hover:bg-slate-50" onClick={toggle==false? ()=>{setToggle(!toggle)}:()=>{router.push("/")} }>
+          <button
+            className="p-2 hover:bg-slate-50"
+            onClick={
+              toggle == false
+                ? () => {
+                    setToggle(!toggle);
+                  }
+                : () => {
+                    router.push("/");
+                  }
+            }>
             Anasayfa
           </button>
-          <Link className="p-2 hover:bg-slate-50" href={"/"}>
-            Şehirler
-          </Link>
+          <Dropdown>
+            <Dropdown.Button flat>Şehirler</Dropdown.Button>
+            <Dropdown.Menu aria-label="Static Actions">
+              <Dropdown.Item key="new">Kahramanmaraş</Dropdown.Item>
+              <Dropdown.Item key="copy">Hatay</Dropdown.Item>
+              <Dropdown.Item key="edit">Adıyaman</Dropdown.Item>
+              <Dropdown.Item key="as">Gaziantep</Dropdown.Item>
+              <Dropdown.Item key="asdf">Osmaniye</Dropdown.Item>
+              <Dropdown.Item key="wer">Malatya</Dropdown.Item>
+              <Dropdown.Item key="af">Diyarbakır</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
           <button
             className="p-2 hover:bg-slate-50"
             onClick={() => {
               setToggle(!toggle);
-            }}
-          >
+            }}>
             Giriş
           </button>
         </nav>
@@ -47,9 +66,9 @@ export default function Home() {
           </div>
         </main>
       ) : (
-        <Login className=""/>
+        <Login className="" />
       )}
-      <Footer className=""/>
+      <Footer className="" />
     </>
   );
 }
