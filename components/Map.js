@@ -24,18 +24,41 @@ function Maps() {
             coordinates: [37.19, 38.2],
           },
         },
+        {
+          type: "Feature",
+          properties: {
+            name: "Mauna Kea",
+            height: 4205,
+          },
+          geometry: {
+            type: "Point",
+            coordinates: [36.19, 38.2],
+          },
+        },
+        {
+          type: "Feature",
+          properties: {
+            name: "Mauna Kea",
+            height: 4205,
+          },
+          geometry: {
+            type: "Point",
+            coordinates: [36.69, 37.2],
+          },
+        },
         
       ],
     };
-
+    // const bounds=[[38.05, 35.82],[38.22, 40.1]]
     const map = new mapboxgl.Map({
       container: "map",
       // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
       style: "mapbox://styles/eskisarkisi/clhrhwtt501zx01pga4vadfqs",
-    
-      center: [37.19, 38.2],
-      zoom: 7.5,
+      center: [37.15, 37.2],
+      zoom: 7.1,
+      // maxBounds: bounds
     });
+    //  map.scrollZoom.disable();
     map.on("style.load", () => {
       map.setFog({}); // Set the default atmosphere style
     });
@@ -68,7 +91,7 @@ function Maps() {
   });
 
   return (
-       <div id="map" style={{ height: '70vh',width:"100%" }}></div>
+       <div id="map" className="h-[65vh] md:h-[70vh] w-[100%]" ></div>
   );
 }
 

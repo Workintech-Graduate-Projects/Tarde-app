@@ -26,8 +26,16 @@ body {
     )
     rgb(var(--background-start-rgb)); */
     font-family: 'Wix Madefor Display', sans-serif;
+   
 }
+.mapboxgl-ctrl-bottom-right{
 
+  transform: translate(0px,30px);
+}
+.mapboxgl-ctrl-logo{
+
+  transform: translate(0px,30px);
+}
 .marker {
   background-image: url('https://docs.mapbox.com/mapbox-gl-js/assets/pin.svg');
   background-size: cover;
