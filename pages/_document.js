@@ -5,7 +5,7 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <meta charset="utf-8" />
-        <title>Add a marker using a place name</title>
+        <title>Relax Native</title>
         <link
           href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css"
           rel="stylesheet"

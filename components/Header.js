@@ -4,13 +4,13 @@ import React from 'react'
 function Header() {
   return (
     <div className='flex flex-2 justify-around '>
-      <div className='flex flex-1 pl-4 h-28 w-28' >
+      <div className='flex flex-1 pl-2 md:pl-4  w-28' >
       <img src='./img/logo.jpg' alt='h-logo'></img>
       </div>
-      <nav className='flex flex-1 justify-end items-center'>
-        <Link className='p-2 hover:bg-slate-50' href={"/"}>Anasayfa</Link>
-        <Link className='p-2 hover:bg-slate-50' href={"/"}>Şehirler</Link>
-        <Link className='p-2 hover:bg-slate-50' href={"/"}>Giriş</Link>
+      <nav className='flex flex-1 xl:text-2xl justify-end items-center'>
+        <Link className='p-2 xl:text-2xl hover:bg-slate-50' href={"/"}>Anasayfa</Link>
+        <Link className='p-2  hover:bg-slate-50' href={"/"}>Şehirler</Link>
+        <Link className='p-2  hover:bg-slate-50' href={"/"}>Giriş</Link>
   
      
       
