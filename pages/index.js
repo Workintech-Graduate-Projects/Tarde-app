@@ -7,11 +7,26 @@ import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 import { useRouter } from "next/router";
 import dummyData from "./dummy-data";
-import { Dropdown } from "@nextui-org/react";
+import { Dropdown, Grid } from "@nextui-org/react";
+import React from "react";
 
 export default function Home() {
   const router = useRouter();
   const [toggle, setToggle] = useState(true);
+  const [selectedColor, setSelectedColor] = React.useState("default");
+  const colors = [
+    "default",
+    "primary",
+    "secondary",
+    "success",
+    "warning",
+    "error",
+  ];
+
+  const capitalize = (str) => {
+    const lower = str.toLowerCase();
+    return str.charAt(0).toUpperCase() + lower.slice(1);
+  };
 
   return (
     <>
@@ -33,18 +48,28 @@ export default function Home() {
             }>
             Anasayfa
           </button>
-          <Dropdown>
-            <Dropdown.Button flat>Şehirler</Dropdown.Button>
-            <Dropdown.Menu aria-label="Static Actions">
-              <Dropdown.Item key="new">Kahramanmaraş</Dropdown.Item>
-              <Dropdown.Item key="copy">Hatay</Dropdown.Item>
-              <Dropdown.Item key="edit">Adıyaman</Dropdown.Item>
-              <Dropdown.Item key="as">Gaziantep</Dropdown.Item>
-              <Dropdown.Item key="asdf">Osmaniye</Dropdown.Item>
-              <Dropdown.Item key="wer">Malatya</Dropdown.Item>
-              <Dropdown.Item key="af">Diyarbakır</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+          <Grid.Container gap={1.5}>
+            <Grid xs={12}>
+              <Grid>
+                <Dropdown>
+                  <Dropdown.Button size={10} color={selectedColor} light>
+                    Light
+                  </Dropdown.Button>
+                  <Dropdown.Menu
+                    color={selectedColor}
+                    variant="light"
+                    aria-label="Actions">
+                    <Dropdown.Item key="new">New file</Dropdown.Item>
+                    <Dropdown.Item key="copy">Copy link</Dropdown.Item>
+                    <Dropdown.Item key="edit">Edit file</Dropdown.Item>
+                    <Dropdown.Item key="delete" color="error" withDivider>
+                      Delete file
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </Grid>
+            </Grid>
+          </Grid.Container>
           <button
             className="p-2 hover:bg-slate-50"
             onClick={() => {
