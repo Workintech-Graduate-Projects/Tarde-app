@@ -2,13 +2,11 @@ import { Inter } from "next/font/google";
 import Maps from "@/components/Map";
 import { useState } from "react";
 import Login from "@/components/Login";
-import Link from "next/link";
 import Footer from "@/components/Footer";
-const inter = Inter({ subsets: ["latin"] });
 import { useRouter } from "next/router";
-import dummyData from "./dummy-data";
 import { Dropdown, Grid } from "@nextui-org/react";
 import React from "react";
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const router = useRouter();
@@ -45,36 +43,40 @@ export default function Home() {
                 : () => {
                     router.push("/");
                   }
-            }>
+            }
+          >
             Anasayfa
           </button>
-          <Grid.Container gap={1.5}>
-            <Grid xs={12}>
-              <Grid>
-                <Dropdown>
-                  <Dropdown.Button size={10} color={selectedColor} light>
-                    Light
-                  </Dropdown.Button>
-                  <Dropdown.Menu
-                    color={selectedColor}
-                    variant="light"
-                    aria-label="Actions">
-                    <Dropdown.Item key="new">New file</Dropdown.Item>
-                    <Dropdown.Item key="copy">Copy link</Dropdown.Item>
-                    <Dropdown.Item key="edit">Edit file</Dropdown.Item>
-                    <Dropdown.Item key="delete" color="error" withDivider>
-                      Delete file
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
+          <div>
+            <Grid.Container gap={1.5}>
+              <Grid xs={12}>
+                <Grid>
+                  <Dropdown>
+                    <Dropdown.Button id="arial-2" size={10} color={selectedColor} light>
+                      Şehirler
+                    </Dropdown.Button>
+                    <Dropdown.Menu 
+                      color={selectedColor}
+                      variant="light"
+                      aria-label="Actions"
+                    >
+                      <Dropdown.Item key="gaziantep">Gaziantep</Dropdown.Item>
+                      <Dropdown.Item key="adıyaman">Adıyaman</Dropdown.Item>
+                      <Dropdown.Item key="malatya">Malatya</Dropdown.Item>
+                      <Dropdown.Item key="kahramanmaras">Kahramanmaraş</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </Grid>
               </Grid>
-            </Grid>
-          </Grid.Container>
+            </Grid.Container>
+          </div>
+
           <button
             className="p-2 hover:bg-slate-50"
             onClick={() => {
               setToggle(!toggle);
-            }}>
+            }}
+          >
             Giriş
           </button>
         </nav>
