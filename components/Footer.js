@@ -4,8 +4,8 @@ function Footer() {
   return (
     <div className="flex flex-col h-[19.8vh] bg-black">
       <div className='flex justify-around bg-slate-100 p-4'>
-      <h2 className=''>Footer Burası</h2>
-      <button className='px-5 py-1 border-black border'>Bize Ulaş</button>
+      <h2 className=' w-[20vw]'>Footer</h2>
+      <button className='px-5 py-1 w-[20vw] border-stone-400 border'>Bize Ulaş</button>
       </div>
       <div className=' flex justify-around'>
         <div className="flex ">

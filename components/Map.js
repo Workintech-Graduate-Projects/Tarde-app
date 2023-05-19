@@ -91,7 +91,7 @@ function Maps() {
   });
 
   return (
-       <div id="map" className="h-[65vh] md:h-[70vh] w-[100%]" ></div>
+       <div id="map" className="h-[60vh] md:h-[70vh] w-[100%]" ></div>
   );
 }
 

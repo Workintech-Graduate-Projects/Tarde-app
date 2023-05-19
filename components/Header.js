@@ -11,8 +11,7 @@ function Header() {
         <Link className='p-2 xl:text-2xl hover:bg-slate-50' href={"/"}>Anasayfa</Link>
         <Link className='p-2  hover:bg-slate-50' href={"/"}>Şehirler</Link>
         <Link className='p-2  hover:bg-slate-50' href={"/"}>Giriş</Link>
-  
-     
+       
       
       </nav>
     </div>

@@ -1,4 +1,4 @@
-const dummyData = [
+export const dummyData = [
   {
     id: 1,
     sehir: "Gaziantep",
@@ -152,4 +152,3 @@ const dummyData = [
   },
 ];
 
-export default dummyData;

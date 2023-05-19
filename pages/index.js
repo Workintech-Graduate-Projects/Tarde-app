@@ -6,11 +6,14 @@ import Footer from "@/components/Footer";
 import { useRouter } from "next/router";
 import { Dropdown, Grid } from "@nextui-org/react";
 import React from "react";
+import { dummyData } from "../components/dummy-data";
+dummyData
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const router = useRouter();
   const [toggle, setToggle] = useState(true);
+  const [toggleMap, setToggleMap] = useState(true);
   const [selectedColor, setSelectedColor] = React.useState("default");
   const colors = [
     "default",
@@ -25,6 +28,7 @@ export default function Home() {
     const lower = str.toLowerCase();
     return str.charAt(0).toUpperCase() + lower.slice(1);
   };
+
 
   return (
     <>
@@ -52,25 +56,33 @@ export default function Home() {
               <Grid xs={12}>
                 <Grid>
                   <Dropdown>
-                    <Dropdown.Button id="arial-2" size={10} color={selectedColor} light>
+                    <Dropdown.Button
+                      id="arial-2"
+                      size={10}
+                      color={selectedColor}
+                      light
+                    >
                       Şehirler
                     </Dropdown.Button>
-                    <Dropdown.Menu 
+                    <Dropdown.Menu
                       color={selectedColor}
                       variant="light"
                       aria-label="Actions"
                     >
-                      <Dropdown.Item key="gaziantep">Gaziantep</Dropdown.Item>
-                      <Dropdown.Item key="adıyaman">Adıyaman</Dropdown.Item>
-                      <Dropdown.Item key="malatya">Malatya</Dropdown.Item>
-                      <Dropdown.Item key="kahramanmaras">Kahramanmaraş</Dropdown.Item>
+                      {dummyData.map((item) => ( 
+                        <Dropdown.Item key={item.id}>
+                        {item.sehir}
+                        </Dropdown.Item>
+                      
+                      ))}
+                 
                     </Dropdown.Menu>
                   </Dropdown>
                 </Grid>
               </Grid>
             </Grid.Container>
           </div>
-
+    
           <button
             className="p-2 hover:bg-slate-50"
             onClick={() => {
@@ -84,11 +96,28 @@ export default function Home() {
       {toggle ? (
         <main className="">
           <div className="flex-3 flex-col md:flex-row flex border-gray-600 border-y">
-            <div className="p-4 bg-gray-300 w-full md:h-auto h-[5vh] font-bold md:w-60 flex justify-center flex-2 items-center">
-              Merhaba Dünya !!
+            <div className="p-4 bg-gray-300 w-full md:h-auto h-[10vh] flex-col font-bold md:w-60 flex justify-center flex-2 items-center">
+              <h4>Merhaba Dünya</h4>
+              <button
+                className="bg-red-300"
+                onClick={() => {
+                  setToggleMap(!toggleMap);
+                }}
+              >
+                {!toggleMap ? "Map" : "Svg"}
+              </button>
             </div>
             <div className=" flex justify-center flex-1 ">
-              <Maps className="" />
+              {toggleMap ? (
+                <Maps className="" />
+              ) : (
+                <div className="py-[5vh]">
+                  {" "}
+                  <img className="h-[50vh] " src="./img/deprem-map.svg"></img>
+                </div>
+
+              )}
+              
             </div>
           </div>
         </main>
