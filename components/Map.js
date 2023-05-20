@@ -39,7 +39,7 @@ function Maps() {
           type: "Feature",
           properties: {
             name: "Mauna Kea",
-            height: 4205,
+            height: 0,
           },
           geometry: {
             type: "Point",

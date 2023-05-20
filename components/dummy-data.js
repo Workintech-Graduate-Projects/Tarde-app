@@ -150,5 +150,18 @@ export const dummyData = [
     merkezler: [],
     isbirlikciKurumlar: [],
   },
+  {
+    id: 9,
+    sehir: "Şanlıurfa",
+    personelAdi: ["Şevval Çoban"],
+    telefonNumaralari: [""],
+    ulasilanKisi: 200,
+    aracSayisi: {
+      binekArac: 0,
+      geziciKaravan: 0,
+    },
+    merkezler: [],
+    isbirlikciKurumlar: [],
+  },
 ];
 
