@@ -27,6 +27,7 @@ export const dummyData = [
       "Diyanet",
       "Yöret-Roman Diyalog Ağı - Sıfır Ayrımcılık Derneği( işbirliği için iletişime geçildi).",
     ],
+    coordinates: [37.38, 37.06],
   },
   {
     id: 2,
@@ -54,6 +55,7 @@ export const dummyData = [
       "AÇEV",
       "UNICEF",
     ],
+    coordinates: [38.28, 37.75],
   },
   {
     id: 3,
@@ -70,6 +72,7 @@ export const dummyData = [
       "Doğa Koleji - Kahramanmaraş, Onikişubat",
     ],
     isbirlikciKurumlar: ["İzmit Belediyesi"],
+    coordinates: [36.93, 37.58],
   },
   {
     id: 4,
@@ -110,6 +113,7 @@ export const dummyData = [
       "Hayata Destek Derneği",
       "World Human Relief",
     ],
+    coordinates: [36.18, 36.58],
   },
   {
     id: 6,
@@ -123,6 +127,7 @@ export const dummyData = [
     },
     merkezler: [],
     isbirlikciKurumlar: [],
+    coordinates: [36.25, 37.06],
   },
   {
     id: 7,
@@ -136,6 +141,7 @@ export const dummyData = [
     },
     merkezler: [],
     isbirlikciKurumlar: [],
+    coordinates: [38.31, 38.34],
   },
   {
     id: 8,
@@ -149,6 +155,6 @@ export const dummyData = [
     },
     merkezler: [],
     isbirlikciKurumlar: [],
+    coordinates: [40.24, 37.9],
   },
 ];
-
