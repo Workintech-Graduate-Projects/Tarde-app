@@ -92,8 +92,6 @@ function Maps() {
         {
           type: "Feature",
           properties: {
-            name: dummyData[6].sehir,
-            ulasilan: dummyData[6].ulasilanKisi,
           },
           geometry: {
             type: "Point",

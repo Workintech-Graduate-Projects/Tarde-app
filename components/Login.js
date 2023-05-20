@@ -1,8 +1,8 @@
 import React from 'react'
 import { useForm } from "react-hook-form";
-
+import { useRouter } from "next/router";
 function Login() {
-
+const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -11,7 +11,9 @@ function Login() {
 
 const onLogin=((item)=>{
   if(item.password=="1234" && item.username=="admin"){
-    localStorage.setItem("token","1234567")
+    localStorage.setItem("token","1234567");
+    router.push("/dashboard")
+
   }
   else{
     alert("Kullanıcı Bilgileri Yanlış")
