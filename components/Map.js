@@ -17,6 +17,8 @@ function Maps() {
           properties: {
             name: dummyData[0].sehir,
             ulasilan: dummyData[0].ulasilanKisi,
+            telefon: dummyData[0].telefonNumaralari[0],
+            yetkili: dummyData[0].personelAdi[0],
           },
           geometry: {
             type: "Point",
@@ -39,6 +41,8 @@ function Maps() {
           properties: {
             name: dummyData[4].sehir,
             ulasilan: dummyData[4].ulasilanKisi,
+            telefon: dummyData[4].telefonNumaralari[0],
+            yetkili: dummyData[4].personelAdi[0],
           },
           geometry: {
             type: "Point",
@@ -50,6 +54,8 @@ function Maps() {
           properties: {
             name: dummyData[2].sehir,
             ulasilan: dummyData[2].ulasilanKisi,
+            telefon: dummyData[2].telefonNumaralari[0],
+            yetkili: dummyData[2].personelAdi[0],
           },
           geometry: {
             type: "Point",
@@ -61,6 +67,8 @@ function Maps() {
           properties: {
             name: dummyData[3].sehir,
             ulasilan: dummyData[3].ulasilanKisi,
+            telefon: dummyData[3].telefonNumaralari[0],
+            yetkili: dummyData[3].personelAdi[0],
           },
           geometry: {
             type: "Point",
@@ -72,6 +80,8 @@ function Maps() {
           properties: {
             name: dummyData[1].sehir,
             ulasilan: dummyData[1].ulasilanKisi,
+            telefon: dummyData[1].telefonNumaralari[0],
+            yetkili: dummyData[1].personelAdi[0],
           },
           geometry: {
             type: "Point",
@@ -83,6 +93,8 @@ function Maps() {
           properties: {
             name: dummyData[5].sehir,
             ulasilan: dummyData[5].ulasilanKisi,
+            telefon: dummyData[5].telefonNumaralari[0],
+            yetkili: dummyData[5].personelAdi[0],
           },
           geometry: {
             type: "Point",
@@ -92,6 +104,7 @@ function Maps() {
         {
           type: "Feature",
           properties: {
+
           },
           geometry: {
             type: "Point",
@@ -125,7 +138,7 @@ function Maps() {
       // Add a popup displayed on click for each marker
       const popup = new mapboxgl.Popup({ offset: 25 });
       popup.setHTML(
-        `<h5>${marker.properties.name}</h5>Ulaşılan toplam kişi sayısı: ${marker.properties.ulasilan}<br/>`
+        `<h5>${marker.properties.name}</h5><h7>Yetkili Adı: ${marker.properties.yetkili}</h7></br><h7>Yetkili Telefonu: ${marker.properties.telefon}</h7></br>Ulaşılan toplam kişi sayısı: ${marker.properties.ulasilan}<br/>`
       );
 
       // Add markers to the map.
