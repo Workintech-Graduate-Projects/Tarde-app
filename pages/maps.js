@@ -1,10 +1,10 @@
 import { MapMouseEvent } from 'mapbox-gl'
 import React from 'react'
 
-function maps() {
+function Maps() {
   return (
     <div>map-sv</div>
   )
 }
 
-export default maps
+export default Maps

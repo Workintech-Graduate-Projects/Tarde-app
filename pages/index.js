@@ -1,20 +1,21 @@
 import { Inter } from "next/font/google";
 import Maps from "@/components/Map";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Login from "@/components/Login";
 import Footer from "@/components/Footer";
 import { useRouter } from "next/router";
 import { Dropdown, Grid } from "@nextui-org/react";
 import React from "react";
 import { dummyData } from "../components/dummy-data";
-dummyData
+dummyData;
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const router = useRouter();
   const [toggle, setToggle] = useState(true);
+  const [login, setLogin] = useState(false);
   const [toggleMap, setToggleMap] = useState(true);
-  const [selectedColor, setSelectedColor] = React.useState("default");
+  const [selectedColor, setSelectedColor] = useState("default");
   const colors = [
     "default",
     "primary",
@@ -28,8 +29,10 @@ export default function Home() {
     const lower = str.toLowerCase();
     return str.charAt(0).toUpperCase() + lower.slice(1);
   };
-
-
+  useEffect(() => {
+    setLogin(localStorage.getItem("token") == "1234567" );
+  }, []);
+  console.log(toggle);
   return (
     <>
       <div className="flex flex-2 justify-around h-[10vh]">
@@ -69,28 +72,39 @@ export default function Home() {
                       variant="light"
                       aria-label="Actions"
                     >
-                      {dummyData.map((item) => ( 
-                        <Dropdown.Item key={item.id}>
-                        {item.sehir}
+                      {dummyData.map((item) => (
+                        <Dropdown.Item
+                          onClick={() => history.push(`/${item.sehir}`)}
+                          key={item.id}
+                        >
+                          {item.sehir}
                         </Dropdown.Item>
-                      
                       ))}
-                 
                     </Dropdown.Menu>
                   </Dropdown>
                 </Grid>
               </Grid>
             </Grid.Container>
           </div>
-    
-          <button
-            className="p-2 hover:bg-slate-50"
-            onClick={() => {
-              setToggle(!toggle);
-            }}
-          >
-            Giriş
-          </button>
+          {login ? (
+            <button
+              className="p-2 hover:bg-slate-50"
+              onClick={() => {
+                router.push("/dashboard");
+              }}
+            >
+              Dashboard
+            </button>
+          ) : (
+            <button
+              className="p-2 hover:bg-slate-50"
+              onClick={() => {
+                setToggle(!toggle);
+              }}
+            >
+              Giriş
+            </button>
+          )}
         </nav>
       </div>
       {toggle ? (
@@ -115,9 +129,7 @@ export default function Home() {
                   {" "}
                   <img className="h-[50vh] " src="./img/deprem-map.svg"></img>
                 </div>
-
               )}
-              
             </div>
           </div>
         </main>
