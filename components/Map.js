@@ -112,9 +112,7 @@ function Maps() {
         },
         {
           type: "Feature",
-          properties: {
-
-          },
+          properties: {},
           geometry: {
             type: "Point",
             coordinates: dummyData[6].coordinates,
