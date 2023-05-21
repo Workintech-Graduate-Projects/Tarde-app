@@ -6,6 +6,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,55 +25,23 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb)); */
-  font-family: "Wix Madefor Display", sans-serif;
+    font-family: 'Wix Madefor Display', sans-serif;
+   
 }
-.mapboxgl-ctrl-bottom-right {
-  transform: translate(0px, 30px);
+.mapboxgl-ctrl-bottom-right{
+
+  transform: translate(0px,30px);
 }
-.mapboxgl-ctrl-logo {
-  transform: translate(0px, 30px);
+.mapboxgl-ctrl-logo{
+
+  transform: translate(0px,30px);
 }
 .marker {
-  background-image: url("https://docs.mapbox.com/mapbox-gl-js/assets/pin.svg");
+  background-image: url('https://docs.mapbox.com/mapbox-gl-js/assets/pin.svg');
   background-size: cover;
   cursor: pointer;
-}
-#arial-2 {
+  }
+#arial-2{
   font-style: normal;
   font-weight: 400;
-}
-#mapButton {
-  padding: 0.5px 9px;
-  background-color: rgb(255, 255, 255);
-  border-radius: 3px;
-  margin-top: 7px;
-  border: 1px solid rgb(63, 63, 63);
-  font-size: 10px;
-}
-#mapButton:hover {
-  background-color: rgb(47, 47, 47);
-  border-radius: 3px;
-  border: 1px solid rgb(219, 219, 219);
-  color: #ffff;
-}
-#mapSehir {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-}
-#mapYetkili,
-#mapTelefon,
-#mapKisi {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-}
-#mapDiv {
-  border: 2px solid rgb(67, 66, 66);
-  padding: 15px;
-  border-radius: 3px;
-  display: block;
-  margin: auto;
-  color: rgb(92, 91, 91);
-}
-#map {
-  border-radius: 3px;
-  display: flex;
-  border: 3px solid rgb(67, 66, 66);
 }
