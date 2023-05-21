@@ -32,7 +32,7 @@ export default function Home() {
   useEffect(() => {
     setLogin(localStorage.getItem("token") == "1234567" );
   }, []);
-  console.log(toggle);
+  
   return (
     <>
       <div className="flex flex-2 justify-around h-[10vh]">

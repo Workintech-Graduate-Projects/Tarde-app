@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { Dropdown, Grid, Table } from "@nextui-org/react";
+import { Dropdown, Grid, } from "@nextui-org/react";
 import { dummyData } from "../components/dummy-data";
 import PTable from "@/components/Table";
+import Table from 'react-bootstrap/Table';
 function dashboard() {
   const [isValid, setIsValid] = useState(false);
 
@@ -23,7 +24,18 @@ function dashboard() {
     <div className="">
       <header className="flex justify-center items-center flex-col">
         <h2>Dashboard</h2>
-        <div>
+        
+        <div className="flex">
+        <button
+            className="p-2 hover:bg-slate-50"
+            onClick={
+              () => {
+                    router.push("/");
+                  }
+            }
+          >
+            Anasayfa
+          </button>
           <Grid.Container gap={1.5}>
             <Grid xs={12}>
               <Grid>
@@ -49,10 +61,11 @@ function dashboard() {
               </Grid>
             </Grid>
           </Grid.Container>
+         
         </div>
       </header>
-      <main>
-        <Table
+      <main  className="flex justify-center mt-10">
+        {/* <Table
           selectionMode="multiple"
           key={"sdasd"}
           css={{
@@ -87,7 +100,36 @@ function dashboard() {
               <Table.Cell>Vacation</Table.Cell>
             </Table.Row>
           </Table.Body>
-        </Table>
+        </Table> */}
+        <Table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th className="hover:bg-red-300">First Name</th>
+          <th className="hover:bg-red-300">Last Name</th>
+          <th className="hover:bg-red-300"> Username</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr>
+          <td>2</td>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td colSpan={2}>Larry the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </Table>
       </main>
     </div>
   ) : (
