@@ -112,7 +112,12 @@ function Maps() {
         },
         {
           type: "Feature",
-          properties: {},
+          properties: {
+            name: dummyData[6].sehir,
+            ulasilan: dummyData[6].ulasilanKisi,
+            telefon: dummyData[6].telefonNumaralari[0],
+            yetkili: dummyData[6].personelAdi[0],
+          },
           geometry: {
             type: "Point",
             coordinates: dummyData[6].coordinates,
