@@ -2,12 +2,21 @@
 import mapboxgl from "mapbox-gl";
 import { useEffect } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
+import { useState } from "react";
+import { useRouter } from "next/router";
 import { dummyData } from "./dummy-data";
+import detaylar from "@/pages/detaylar";
+
 dummyData;
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZXNraXNhcmtpc2kiLCJhIjoiY2xocmhxNjdrMHF5ZzNlbnZ2dDNobzhvbiJ9.SuA_p6UCk5NACNs1kz31eQ";
 
 function Maps() {
+  const router = useRouter();
+
+  const handleButtonClick = () => {
+    router.push("/detaylar");
+  };
   useEffect(() => {
     const geojson = {
       type: "FeatureCollection",
@@ -108,7 +117,6 @@ function Maps() {
             ulasilan: dummyData[6].ulasilanKisi,
             telefon: dummyData[6].telefonNumaralari[0],
             yetkili: dummyData[6].personelAdi[0],
-
           },
           geometry: {
             type: "Point",
@@ -142,14 +150,19 @@ function Maps() {
       // Add a popup displayed on click for each marker
       const popup = new mapboxgl.Popup({ offset: 25 });
       popup.setHTML(
-        `<h5>${marker.properties.name}</h5><h7>Yetkili Adı: ${marker.properties.yetkili}</h7></br><h7>Yetkili Telefonu: ${marker.properties.telefon}</h7></br>Ulaşılan toplam kişi sayısı: ${marker.properties.ulasilan}<br/>`
+        `<div id="mapDiv"><h5 id="mapSehir">${marker.properties.name}</h5>
+        <h7 id="mapYetkili">Yetkili Adı: ${marker.properties.yetkili}</h7></br>
+        <h7 id="mapTelefon">Yetkili Telefonu: ${marker.properties.telefon}</h7></br>
+        <h7 id="mapKisi">Ulaşılan toplam kişi sayısı: ${marker.properties.ulasilan}</h7><br/>
+        <button id="mapButton" 
+        >Detaylar</button></div>`
       );
 
       // Add markers to the map.
       new mapboxgl.Marker({
         element: el,
         // Point markers toward the nearest horizon
-        rotationAlignment: "",
+        rotationAlignment: "horizon",
         offset: [0, -size / 2],
       })
         .setLngLat(marker.geometry.coordinates)
@@ -158,14 +171,7 @@ function Maps() {
     }
   });
 
-  return (
-    <div id="map" className=" h-[60vh] md:h-[70vh] w-[100%]">
-      {dummyData.map((item) => (
-        <h2 key={item.id}>{item.sehir}</h2>
-      ))}
-      ;
-    </div>
-  );
+  return <div id="map" className=" h-[60vh] md:h-[70vh] w-[100%]"></div>;
 }
 
 export default Maps;
