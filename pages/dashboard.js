@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Dropdown, Grid, } from "@nextui-org/react";
 import { dummyData } from "../components/dummy-data";
-import PTable from "@/components/Table";
 import Table from 'react-bootstrap/Table';
 function dashboard() {
   const [isValid, setIsValid] = useState(false);
