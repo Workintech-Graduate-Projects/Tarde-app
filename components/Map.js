@@ -6,6 +6,8 @@ import { useRouter } from "next/router";
 import { dummyData } from "./dummy-data";
 import detaylar from "@/pages/detaylar";
 import Header from "./Header";
+import Link from "next/link";
+
 
 dummyData;
 mapboxgl.accessToken =
@@ -14,9 +16,6 @@ mapboxgl.accessToken =
 function Maps() {
   const router = useRouter();
 
-  const handleButtonClick = () => {
-    router.push("/detaylar");
-  };
   useEffect(() => {
     const geojson = {
       type: "FeatureCollection",
@@ -125,14 +124,19 @@ function Maps() {
         },
       ],
     };
-    // const bounds=[[38.05, 35.82],[38.22, 40.1]]
+    /*    const bounds = [
+      [36.05, 40.82],
+      [43.22, 36.1],
+    ]; */
     const map = new mapboxgl.Map({
       container: "map",
       // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
       style: "mapbox://styles/eskisarkisi/clhrhwtt501zx01pga4vadfqs",
       center: [38.05, 37.6],
       zoom: 6.61,
-      // maxBounds: bounds
+      minZoom: 5.61,
+      maxZoom: 10,
+      /*   maxBounds: bounds, */
     });
     //  map.scrollZoom.disable();
     map.on("style.load", () => {
@@ -155,8 +159,8 @@ function Maps() {
         <h7 id="mapYetkili">Yetkili Adı: ${marker.properties.yetkili}</h7></br>
         <h7 id="mapTelefon">Yetkili Telefonu: ${marker.properties.telefon}</h7></br>
         <h7 id="mapKisi">Ulaşılan toplam kişi sayısı: ${marker.properties.ulasilan}</h7><br/>
-        <button type='button' id="mapButton" 
-        >Detaylar</button></div>`
+        <a href="http://localhost:3000/sehir" id="mapButton">Detaylar</a></div>`
+
       );
 
       // Add markers to the map.

@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { dummyData } from "../components/dummy-data";
 import {  useState } from "react";
@@ -97,6 +98,7 @@ function Header(props) {
     </nav>
   </div>
   )
+
 }
 
-export default Header
+export default Header;
