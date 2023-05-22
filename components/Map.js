@@ -4,7 +4,10 @@ import { useEffect } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useRouter } from "next/router";
 import { dummyData } from "./dummy-data";
+import detaylar from "@/pages/detaylar";
+import Header from "./Header";
 import Link from "next/link";
+
 
 dummyData;
 mapboxgl.accessToken =
@@ -140,6 +143,7 @@ function Maps() {
       map.setFog({}); // Set the default atmosphere style
     });
 
+
     for (const marker of geojson.features) {
       // Create a DOM element for each marker.
       const el = document.createElement("div");
@@ -156,6 +160,7 @@ function Maps() {
         <h7 id="mapTelefon">Yetkili Telefonu: ${marker.properties.telefon}</h7></br>
         <h7 id="mapKisi">Ulaşılan toplam kişi sayısı: ${marker.properties.ulasilan}</h7><br/>
         <a href="http://localhost:3000/sehir" id="mapButton">Detaylar</a></div>`
+
       );
 
       // Add markers to the map.
@@ -171,7 +176,11 @@ function Maps() {
     }
   });
 
-  return <div id="map" className=" h-[60vh] md:h-[70vh] w-[100%]"></div>;
+  return (<>
+    <Header/>
+  <div id="map" className=" h-[60vh] md:h-[70vh] w-[100%]"></div>
+  </>
+  )
 }
 
 export default Maps;
