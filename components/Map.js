@@ -5,7 +5,6 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { useRouter } from "next/router";
 import { dummyData } from "./dummy-data";
 import Link from "next/link";
-import detaylar from "@/pages/detaylar";
 
 dummyData;
 mapboxgl.accessToken =
@@ -13,10 +12,6 @@ mapboxgl.accessToken =
 
 function Maps() {
   const router = useRouter();
-
-  const handleButtonClick = () => {
-    router.push("/detaylar");
-  };
 
   useEffect(() => {
     const geojson = {
@@ -160,7 +155,7 @@ function Maps() {
         <h7 id="mapYetkili">Yetkili Adı: ${marker.properties.yetkili}</h7></br>
         <h7 id="mapTelefon">Yetkili Telefonu: ${marker.properties.telefon}</h7></br>
         <h7 id="mapKisi">Ulaşılan toplam kişi sayısı: ${marker.properties.ulasilan}</h7><br/>
-        <a href="http://localhost:3000/detaylar" id="mapButton">Detaylar</a></div>`
+        <a href="http://localhost:3000/sehir" id="mapButton">Detaylar</a></div>`
       );
 
       // Add markers to the map.
