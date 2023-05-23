@@ -6,15 +6,14 @@ import { useRouter } from "next/router";
 import React from "react";
 import Banner from "@/components/Banner";
 import Header from "@/components/Header";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const router = useRouter();
 
-  const toggle=useSelector((state)=> state.toggle);
-
+  const toggle = useSelector((state) => state.toggle);
 
   const [login, setLogin] = useState(false);
   const [toggleMap, setToggleMap] = useState(true);
@@ -38,7 +37,7 @@ export default function Home() {
 
   return (
     <>
-     <Header login={login} /> 
+      <Header login={login} />
       {toggle ? (
         <main className="">
           <div className="flex-3 flex-col md:flex-row flex border-gray-600 border-y">
@@ -48,21 +47,15 @@ export default function Home() {
                 className="bg-red-300 ml-5 md:ml-0 md:mt-5"
                 onClick={() => {
                   router.push("/maps");
-                }}>
-         
-       
+                }}
+              >
                 Biz Neredeyiz
               </button>
             </div>
             <div className=" flex-1">
-              {toggleMap ? (
-                <Banner/>
-              ) : (
-                <div className="py-[5vh]">
-                  {" "}
-                  <img className="h-[50vh] " src="./img/deprem-map.svg"></img>
-                </div>
-              )}
+             
+                <Banner />
+             
             </div>
           </div>
         </main>
