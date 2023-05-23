@@ -5,7 +5,8 @@ import {  useState,useEffect  } from "react";
 import { useRouter } from "next/router";
 import { Dropdown, Grid } from "@nextui-org/react";
 import { useDispatch, useSelector } from 'react-redux';
-import { handleSehir } from '@/redux/actions';
+import Link from 'next/link';
+import Image from 'next/image';
 
 
 
@@ -28,13 +29,11 @@ function Header(props) {
     "error",
   ];
   const onCity=(item)=>{
-    dispatch(handleSehir(item));
+    // router.push("/sehir")
+    // dispatch(handleSehir(item));
+    sessionStorage.setItem("sehir",item)
   }
   
-
-//  useEffect(() => {
-//  router.push("/sehir");
-//  }, [])
  
 
 
@@ -43,7 +42,7 @@ console.log(sehir)
   return (
     <div className="flex flex-2 justify-around h-[10vh]">
     <div className="flex flex-1 pl-4 h-[10vh] w-[10vh]">
-      <img src="./img/logo.jpg" alt="h-logo"></img>
+      <img src="/img/logo.jpg" alt="h-logo"></img>
     </div>
     <nav className="flex flex-1 justify-end text-xs sm:text-lg xl:text-xl items-center">
       <button
@@ -83,7 +82,7 @@ console.log(sehir)
                     key={item.id}
                     textValue="sehirler_table" 
                       >
-                     <button onClick={()=>onCity(item.sehir)} >{item.sehir}</button>
+                     <Link onClick={()=>onCity(item.sehir)} href={`/sehir/${item.id}`} >{item.sehir}</Link>
                     </Dropdown.Item>
                       ))}
                       </Dropdown.Menu>
