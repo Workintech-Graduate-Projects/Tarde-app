@@ -4,9 +4,7 @@ import { useEffect } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useRouter } from "next/router";
 import { dummyData } from "./dummy-data";
-import detaylar from "@/pages/detaylar";
 import Header from "./Header";
-import Link from "next/link";
 
 
 dummyData;

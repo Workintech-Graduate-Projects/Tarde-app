@@ -81,3 +81,7 @@ body {
 
   border: 3px solid rgb(55, 185, 211);
 }
+.carousel div {
+  display: flex;
+  justify-content: center;
+}

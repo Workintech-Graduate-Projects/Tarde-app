@@ -1,18 +1,24 @@
 
 import React from 'react'
 import { dummyData } from "../components/dummy-data";
-import {  useState } from "react";
+import {  useState,useEffect  } from "react";
 import { useRouter } from "next/router";
 import { Dropdown, Grid } from "@nextui-org/react";
 import { useDispatch, useSelector } from 'react-redux';
+import { handleSehir } from '@/redux/actions';
+
+
+
 
 function Header(props) {
   const toggle=useSelector((state)=> state.toggle);
+  const sehir=useSelector((state)=> state.sehir);
   const dispatch=useDispatch();
  
   const {login}=props;
   const [selectedColor, setSelectedColor] = useState("default");
-
+  
+  const router= useRouter();
   const colors = [
     "default",
     "primary",
@@ -21,8 +27,19 @@ function Header(props) {
     "warning",
     "error",
   ];
+  const onCity=(item)=>{
+    dispatch(handleSehir(item));
+  }
+  
 
-  const router= useRouter();
+//  useEffect(() => {
+//  router.push("/sehir");
+//  }, [])
+ 
+
+
+console.log(sehir)
+
   return (
     <div className="flex flex-2 justify-around h-[10vh]">
     <div className="flex flex-1 pl-4 h-[10vh] w-[10vh]">
@@ -53,23 +70,23 @@ function Header(props) {
                   size={10}
                   color={selectedColor}
                   light
-                >
+                  >
                   Şehirler
                 </Dropdown.Button>
                 <Dropdown.Menu
                   color={selectedColor}
                   variant="light"
                   aria-label="Actions"
-                >
+                  >
                   {dummyData.map((item) => (
                     <Dropdown.Item
-                      onClick={() => history.push(`/${item.sehir}`)}
-                      key={item.id}
-                    >
-                      {item.sehir}
+                    key={item.id}
+                    textValue="sehirler_table" 
+                      >
+                     <button onClick={()=>onCity(item.sehir)} >{item.sehir}</button>
                     </Dropdown.Item>
-                  ))}
-                </Dropdown.Menu>
+                      ))}
+                      </Dropdown.Menu>
               </Dropdown>
             </Grid>
           </Grid>
