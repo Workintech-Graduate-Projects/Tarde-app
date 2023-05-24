@@ -1,14 +1,11 @@
 
 import React from 'react'
 import { dummyData } from "../components/dummy-data";
-import {  useState,useEffect  } from "react";
+import {  useState } from "react";
 import { useRouter } from "next/router";
 import { Dropdown, Grid } from "@nextui-org/react";
 import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
-import Image from 'next/image';
-
-
 
 
 function Header(props) {
@@ -33,12 +30,6 @@ function Header(props) {
     // dispatch(handleSehir(item));
     sessionStorage.setItem("sehir",item)
   }
-  
- 
-
-
-console.log(sehir)
-
   return (
     <div className="flex flex-2 justify-around h-[10vh]">
     <div className="flex flex-1 pl-4 h-[10vh] w-[10vh]">

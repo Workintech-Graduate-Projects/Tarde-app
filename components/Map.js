@@ -1,6 +1,6 @@
 "use client";
 import mapboxgl from "mapbox-gl";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useRouter } from "next/router";
 import { dummyData } from "./dummy-data";
@@ -13,7 +13,7 @@ mapboxgl.accessToken =
 
 function Maps() {
   const router = useRouter();
-
+const [toggle,setToggle]=useState(false);
   useEffect(() => {
     const geojson = {
       type: "FeatureCollection",
@@ -111,6 +111,7 @@ function Maps() {
           type: "Feature",
           properties: {
             name: dummyData[6].sehir,
+            merkez: dummyData[5].merkezler,
             ulasilan: dummyData[6].ulasilanKisi,
             telefon: dummyData[6].telefonNumaralari[0],
             yetkili: dummyData[6].personelAdi[0],
@@ -140,7 +141,10 @@ function Maps() {
     map.on("style.load", () => {
       map.setFog({}); // Set the default atmosphere style
     });
-
+   
+    map.on("zoom",function(){
+      var currentZoom=map.getZoom();
+      currentZoom>7 ? setToggle(true):setToggle(false)  });
 
     for (const marker of geojson.features) {
       // Create a DOM element for each marker.
@@ -152,8 +156,18 @@ function Maps() {
 
       // Add a popup displayed on click for each marker
       const popup = new mapboxgl.Popup({ offset: 25 });
+      toggle==true ?
       popup.setHTML(
         `<div id="mapDiv"><h5 id="mapSehir">${marker.properties.name}</h5>
+        <h7 id="mapYetkili">Yetkili Adı: ${marker.properties.yetkili}</h7></br>
+        <h7 id="mapTelefon">Yetkili Telefonu: ${marker.properties.telefon}</h7></br>
+        <h7 id="mapKisi">Ulaşılan toplam kişi sayısı: ${marker.properties.ulasilan}</h7><br/>
+        <a href="http://localhost:3000/sehir" id="mapButton">Detaylar</a></div>`
+
+      ):
+      popup.setHTML(
+        `<div id="mapDiv">
+        <h5 id="mapMerkez">${marker.properties.merkez}</h5>
         <h7 id="mapYetkili">Yetkili Adı: ${marker.properties.yetkili}</h7></br>
         <h7 id="mapTelefon">Yetkili Telefonu: ${marker.properties.telefon}</h7></br>
         <h7 id="mapKisi">Ulaşılan toplam kişi sayısı: ${marker.properties.ulasilan}</h7><br/>
@@ -172,8 +186,10 @@ function Maps() {
         .setPopup(popup)
         .addTo(map);
     }
-  });
 
+  
+
+})
   return (<>
     <Header/>
   <div id="map" className=" h-[60vh] md:h-[70vh] w-[100%]"></div>
