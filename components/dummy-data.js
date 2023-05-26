@@ -75,7 +75,7 @@ export const dummyData = [
     coordinates: [36.93, 37.58],
   },
   {
-    id: 4,
+    id: 56,
     sehir: "Hatay/İskenderun",
     personelAdi: [
       "Sergen Tut",
