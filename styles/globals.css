@@ -85,3 +85,7 @@ body {
   display: flex;
   justify-content: center;
 }
+
+#row-1 {
+  flex-flow: wrap;
+}
