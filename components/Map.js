@@ -6,14 +6,13 @@ import { useRouter } from "next/router";
 import { dummyData } from "./dummy-data";
 import Header from "./Header";
 
-
 dummyData;
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZXNraXNhcmtpc2kiLCJhIjoiY2xocmhxNjdrMHF5ZzNlbnZ2dDNobzhvbiJ9.SuA_p6UCk5NACNs1kz31eQ";
 
 function Maps() {
   const router = useRouter();
-const [toggle,setToggle]=useState(false);
+  const [toggle, setToggle] = useState(false);
   useEffect(() => {
     const geojson = {
       type: "FeatureCollection",
@@ -127,6 +126,24 @@ const [toggle,setToggle]=useState(false);
       [36.05, 40.82],
       [43.22, 36.1],
     ]; */
+    /* 
+    const [data, setData] = useState();
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(
+            `https://tade-be.herokuapp.com/api/table/coordinate/${2}`
+          );
+          console.log(response.data);
+          setData(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+
+      fetchData();
+    }, [id]); */
     const map = new mapboxgl.Map({
       container: "map",
       // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
@@ -141,10 +158,11 @@ const [toggle,setToggle]=useState(false);
     map.on("style.load", () => {
       map.setFog({}); // Set the default atmosphere style
     });
-   
-    map.on("zoom",function(){
-      var currentZoom=map.getZoom();
-      currentZoom>7 ? setToggle(true):setToggle(false)  });
+
+    map.on("zoom", function () {
+      var currentZoom = map.getZoom();
+      currentZoom > 7 ? setToggle(true) : setToggle(false);
+    });
 
     for (const marker of geojson.features) {
       // Create a DOM element for each marker.
@@ -156,24 +174,22 @@ const [toggle,setToggle]=useState(false);
 
       // Add a popup displayed on click for each marker
       const popup = new mapboxgl.Popup({ offset: 25 });
-      toggle==true ?
-      popup.setHTML(
-        `<div id="mapDiv"><h5 id="mapSehir">${marker.properties.name}</h5>
+      toggle == true
+        ? popup.setHTML(
+            `<div id="mapDiv"><h5 id="mapSehir">${marker.properties.name}</h5>
         <h7 id="mapYetkili">Yetkili Adı: ${marker.properties.yetkili}</h7></br>
         <h7 id="mapTelefon">Yetkili Telefonu: ${marker.properties.telefon}</h7></br>
         <h7 id="mapKisi">Ulaşılan toplam kişi sayısı: ${marker.properties.ulasilan}</h7><br/>
-        <a href="http://localhost:3000/sehir" id="mapButton">Detaylar</a></div>`
-
-      ):
-      popup.setHTML(
-        `<div id="mapDiv">
+        <a href="http://localhost:3000/table" id="mapButton">Detaylar</a></div>`
+          )
+        : popup.setHTML(
+            `<div id="mapDiv">
         <h5 id="mapMerkez">${marker.properties.merkez}</h5>
         <h7 id="mapYetkili">Yetkili Adı: ${marker.properties.yetkili}</h7></br>
         <h7 id="mapTelefon">Yetkili Telefonu: ${marker.properties.telefon}</h7></br>
         <h7 id="mapKisi">Ulaşılan toplam kişi sayısı: ${marker.properties.ulasilan}</h7><br/>
-        <a href="http://localhost:3000/sehir" id="mapButton">Detaylar</a></div>`
-
-      );
+        <a href="http://localhost:3000/sehir/1" id="mapButton">Detaylar</a></div>`
+          );
 
       // Add markers to the map.
       new mapboxgl.Marker({
@@ -186,15 +202,13 @@ const [toggle,setToggle]=useState(false);
         .setPopup(popup)
         .addTo(map);
     }
-
-  
-
-})
-  return (<>
-    <Header/>
-  <div id="map" className=" h-[60vh] md:h-[70vh] w-[100%]"></div>
-  </>
-  )
+  });
+  return (
+    <>
+      <Header />
+      <div id="map" className=" h-[60vh] md:h-[70vh] w-[100%]"></div>
+    </>
+  );
 }
 
 export default Maps;
