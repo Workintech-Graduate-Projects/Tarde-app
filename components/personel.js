@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import { dummyData } from "@/components/dummy-data";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 // A super simple expandable component.
 const ExpandedComponent = ({ data }) => (
@@ -106,14 +107,15 @@ const columns = [
 
 const personel = ({ id }) => {
   const [data, setData] = useState();
+  console.log("id-data sonrası personel", id);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://tade-be.herokuapp.com/api/table/personel/${2}`
+          `https://tade-be.herokuapp.com/api/table/personel/${id}`
         );
-        console.log(response.data);
+        console.log("id res-data oncesi personel", id);
         setData(response.data);
       } catch (error) {
         console.error(error);
