@@ -14,7 +14,8 @@ const customStyles = {
   },
   rows: {
     style: {
-      minHeight: "72px", // override the row height
+      minHeight: "72px",
+      flexWrap: "wrap", // override the row height
     },
   },
   headCells: {
@@ -23,19 +24,21 @@ const customStyles = {
       paddingRight: "8px",
       fontWeight: "600",
       textTransform: "uppercase",
+      flexWrap: "wrap",
     },
   },
   cells: {
     style: {
       paddingLeft: "8px", // override the cell padding for data cells
       paddingRight: "8px",
+      flexWrap: "wrap",
     },
   },
 };
 const columns = [
   {
-    name: "Adres",
-    selector: (row) => row.adres,
+    name: "Sıra",
+    selector: (row) => row.sehir_id,
     sortable: true,
   },
   {
@@ -44,26 +47,43 @@ const columns = [
     sortable: true,
   },
   {
-    name: "Telefon Numarası 1",
+    name: "Merkez Adı",
+    selector: (row) => row.merkez_adi,
+    sortable: true,
+  },
+
+  {
+    name: "Telefon 1",
     selector: (row) => row.merkez_telefon_1,
     sortable: true,
   },
   {
-    name: "Telefon Numarası 2",
+    name: "Telefon 2",
     selector: (row) => row.merkez_telefon_1,
+    sortable: true,
+  },
+  {
+    name: "Adres",
+    selector: (row) => row.adres,
+    sortable: true,
+  },
+  {
+    name: "Ulaşılan Kişi",
+    selector: (row) => row.total,
     sortable: true,
   },
 ];
 
 const Merkez = ({ id }) => {
   const [data, setData] = useState();
-
+  console.log("id-data sonrası merkez", id);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://tade-be.herokuapp.com/api/table/merkez/${2}`
+          `https://tade-be.herokuapp.com/api/table/sehir/${id}`
         );
+        console.log("id-resçdata oncesi merkez", id);
         console.log(response.data);
         setData(response.data);
       } catch (error) {

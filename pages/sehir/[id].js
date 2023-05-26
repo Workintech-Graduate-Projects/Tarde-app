@@ -17,8 +17,8 @@ function sehir() {
       <main className="flex justify-center">
         <h1>{sehir}</h1>
       </main>
-      <Personel />
-      <Merkez />
+      <Personel id={id} />
+      <Merkez id={id} />
     </>
   );
 }
