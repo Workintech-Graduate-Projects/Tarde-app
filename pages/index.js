@@ -7,7 +7,6 @@ import React from "react";
 import Banner from "@/components/Banner";
 import Header from "@/components/Header";
 import { useSelector } from "react-redux";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -53,9 +52,7 @@ export default function Home() {
               </button>
             </div>
             <div className=" flex-1">
-             
                 <Banner />
-             
             </div>
           </div>
         </main>
