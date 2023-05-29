@@ -1,22 +1,111 @@
-import Link from 'next/link'
-import React from 'react'
 
-function Header() {
-  return (
-    <div className='flex flex-2 justify-around '>
-      <div className='flex flex-1 pl-2 md:pl-4  w-28' >
-      <img src='./img/logo.jpg' alt='h-logo'></img>
-      </div>
-      <nav className='flex flex-1 xl:text-2xl justify-end items-center'>
-        <Link className='p-2 xl:text-2xl hover:bg-slate-50' href={"/"}>Anasayfa</Link>
-        <Link className='p-2  hover:bg-slate-50' href={"/"}>Şehirler</Link>
-        <Link className='p-2  hover:bg-slate-50' href={"/"}>Giriş</Link>
+import React from 'react'
+import { dummyData } from "../components/dummy-data";
+import {  useState } from "react";
+import { useRouter } from "next/router";
+import { Dropdown, Grid } from "@nextui-org/react";
+import { useDispatch, useSelector } from 'react-redux';
+import Link from 'next/link';
+
+
+function Header(props) {
+  const toggle=useSelector((state)=> state.toggle);
+  const sehir=useSelector((state)=> state.sehir);
+  const dispatch=useDispatch();
+ 
+  const {login}=props;
+  const [selectedColor, setSelectedColor] = useState("default");
   
-     
-      
-      </nav>
+  const router= useRouter();
+  const colors = [
+    "default",
+    "primary",
+    "secondary",
+    "success",
+    "warning",
+    "error",
+  ];
+  const onCity=(item)=>{
+    // router.push("/sehir")
+    // dispatch(handleSehir(item));
+    sessionStorage.setItem("sehir",item)
+  }
+  return (
+    <div className="flex flex-2 justify-around h-[10vh]">
+    <div className="flex flex-1 pl-4 h-[10vh] w-[10vh]">
+      <img src="/img/logo.jpg" alt="h-logo"></img>
     </div>
+    <nav className="flex flex-1 justify-end text-xs sm:text-lg xl:text-xl items-center">
+      <button
+        className="p-2 hover:bg-slate-50"
+        onClick={
+          toggle == false
+            ? () => {
+              dispatch({type:"TOGGLE"})
+              }
+            : () => {
+                router.push("/");
+              }
+        }
+      >
+        Anasayfa
+      </button>
+      <div>
+        <Grid.Container gap={1.5}>
+          <Grid xs={12}>
+            <Grid>
+              <Dropdown>
+                <Dropdown.Button
+                  id="arial-2"
+                  size={10}
+                  color={selectedColor}
+                  light
+                  >
+                  Şehirler
+                </Dropdown.Button>
+                <Dropdown.Menu
+                  color={selectedColor}
+                  variant="light"
+                  aria-label="Actions"
+                  >
+                  {dummyData.map((item) => (
+                    <Dropdown.Item
+                    key={item.id}
+                    textValue="sehirler_table" 
+                      >
+                     <Link onClick={()=>onCity(item.sehir)} href={`/sehir/${item.id}`} >{item.sehir}</Link>
+                    </Dropdown.Item>
+                      ))}
+                      </Dropdown.Menu>
+              </Dropdown>
+            </Grid>
+          </Grid>
+        </Grid.Container>
+      </div>
+      {login ? (
+        <button
+          className="p-2 hover:bg-slate-50"
+          onClick={() => {
+            router.push("/dashboard");
+          }}
+        >
+          Dashboard
+        </button>
+      ) : (
+        <button
+          className="p-2 hover:bg-slate-50"
+          onClick={()=>{
+            dispatch({type:"TOGGLE"})
+          }
+          }
+        >
+          Giriş
+        </button>
+      )}
+    </nav>
+  </div>
   )
+
 }
 
-export default Header
+export default Header;
