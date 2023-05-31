@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useCallback, useState } from "react";
 import MaterialReactTable from "material-react-table";
 import {
   Box,
@@ -71,14 +71,13 @@ function Tables_Merkez() {
   const [columns, setColumns] = useState([]);
   const [validationErrors, setValidationErrors] = useState({});
   const [tableData, setTableData] = useState();
-
-  const [createMoDalOpen, setCreateModalOpen] = useState(false);
-
   const veriler = useSelector((state) => state.adminMerkez);
 
+  const [createModalOpen, setCreateModalOpen] = useState(false);
   const dispatch = useDispatch();
   const selectedId = sessionStorage.getItem("id");
   const selectedTable = sessionStorage.getItem("table");
+
   useEffect(() => {
     dispatch(getMerkezAPI(selectedId, selectedTable));
   }, [selectedId, selectedTable]);
@@ -112,28 +111,48 @@ function Tables_Merkez() {
   }, [selectedId, selectedTable]);
 
   const handleSaveRowEdits = async ({ exitEditingMode, values }) => {
-    // dispatch(editPersonelAPI(selectedId,selectedTable,values));
-   
     await axios
       .put(
-        `http://localhost:9000/api/table/admin/merkez/2`,
-values
-
+        `http://localhost:9000/api/table/admin/${selectedTable}/${values.merkez_id}`,
+        values
       )
       .then((res) => {
         return console.log(res.data);
       })
-
       .catch((error) => console.log(error));
-console.log(selectedId);
-    console.log(values);
     exitEditingMode();
+    window.location.reload();
   };
 
-  const handleCreateNewRow = (values) => {
-    tableData.push(values);
-    setTableData([...tableData]);
+  const handleCreateNewRow = async (values) => {
+    await axios
+    .post(
+      `http://localhost:9000/api/table/admin/${selectedTable}`,
+      values
+    )
+    .then((res) => {
+      return console.log(res.data);
+    })
+    .catch((error) => console.log(error));
   };
+
+  const handleDeleteRow = useCallback(
+    async (row) => {
+      if (!confirm(`Silme konusunda mütabık mıyız ?`)) {
+        return;
+      }
+      await axios
+        .delete(
+          `http://localhost:9000/api/table/admin/${selectedTable}/${row.original.merkez_id}`
+        )
+        .then((res) => {
+          return console.log(res.data);
+        })
+        .catch((error) => console.log(error));
+      window.location.reload();
+    },
+    [tableData]
+  );
 
   return (
     <div className="w-[90%] m-auto">
@@ -183,11 +202,17 @@ console.log(selectedId);
               onClick={() => setCreateModalOpen(true)}
               variant="contained"
             >
-              Create New Account
+              Ekle
             </Button>
           )}
         />
       )}
+      <CreateNewAccountModal
+        columns={columns}
+        open={createModalOpen}
+        onClose={() => setCreateModalOpen(false)}
+        onSubmit={handleCreateNewRow}
+      />
     </div>
   );
 }
