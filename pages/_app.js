@@ -8,6 +8,7 @@ import thunk from "redux-thunk";
 import { useSSR } from '@nextui-org/react'
 
 export default function App({ Component, pageProps }) {
+ 
   const store = createStore(mainReducer, applyMiddleware(thunk));
   const { isBrowser } = useSSR();
 

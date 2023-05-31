@@ -113,7 +113,7 @@ const personel = ({ id }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://tade-be.herokuapp.com/api/table/personel/${id}`
+          `https://tade-be.herokuapp.com/api/table/sehir/${id}`
         );
         console.log("id res-data oncesi personel", id);
         setData(response.data);
