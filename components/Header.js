@@ -11,7 +11,7 @@ function Header(props) {
   const toggle = useSelector((state) => state.toggle);
   const sehir = useSelector((state) => state.sehir);
   const dispatch = useDispatch();
-  console.log(sehir);
+  // console.log(sehir);
   const { login } = props;
   const [selectedColor, setSelectedColor] = useState("default");
 
