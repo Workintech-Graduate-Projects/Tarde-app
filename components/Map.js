@@ -205,8 +205,8 @@ function Maps() {
   });
   return (
     <>
-      <Header />
-      <div id="map" className=" h-[60vh] md:h-[70vh] w-[100%]"></div>
+      {/* <Header /> */}
+      <div id="map" className="rounded-xl  h-[60vh] md:h-[90vh] w-[100%]"></div>
     </>
   );
 }
