@@ -106,6 +106,7 @@ function Tables_Merkez() {
         minSize: 120,
       });
     }
+    console.log(newColumns);
     setColumns(newColumns);
     // console.log(newColumns);
   }, [selectedId, selectedTable]);
@@ -126,14 +127,11 @@ function Tables_Merkez() {
 
   const handleCreateNewRow = async (values) => {
     await axios
-    .post(
-      `http://localhost:9000/api/table/admin/${selectedTable}`,
-      values
-    )
-    .then((res) => {
-      return console.log(res.data);
-    })
-    .catch((error) => console.log(error));
+      .post(`http://localhost:9000/api/table/admin/${selectedTable}`, values)
+      .then((res) => {
+        return console.log(res.data);
+      })
+      .catch((error) => console.log(error));
   };
 
   const handleDeleteRow = useCallback(
@@ -153,6 +151,14 @@ function Tables_Merkez() {
     },
     [tableData]
   );
+  const modalStyles = {
+    modalContainer: {
+      backgroundColor: "#F8CB4E",
+    },
+    modalContent: {
+      backgroundColor: "#F8CB4E",
+    },
+  };
 
   return (
     <div className="w-[90%] m-auto">
@@ -208,6 +214,7 @@ function Tables_Merkez() {
         />
       )}
       <CreateNewAccountModal
+        style={modalStyles}
         columns={columns}
         open={createModalOpen}
         onClose={() => setCreateModalOpen(false)}

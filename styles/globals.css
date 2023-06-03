@@ -24,7 +24,7 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb)); */
-  font-family: "Wix Madefor Display", sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 .mapboxgl-ctrl-bottom-right {
   transform: translate(0px, 30px);
