@@ -5,6 +5,9 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { useRouter } from "next/router";
 import { dummyData } from "./dummy-data";
 import Header from "./Header";
+import axios from "axios";
+import maps from "@/pages/maps";
+import { RedirectType } from "next/dist/client/components/redirect";
 
 dummyData;
 mapboxgl.accessToken =
@@ -13,145 +16,35 @@ mapboxgl.accessToken =
 function Maps() {
   const router = useRouter();
   const [toggle, setToggle] = useState(false);
+  const [data, setData] = useState([]);
+  const [markerData, setMarkerData] = useState([]);
+  //const [hede, setHede] = useState();
+  const [konum, setKonum] = useState([
+    {
+      type: "Feature",
+      properties: {
+        no: 1,
+        sehir: "Gaziantep",
+        telefon1: "02337768478",
+        telefon2: "03748204828",
+      },
+      geometry: {
+        type: "Point",
+        coordinates: { lng: 36.7, lat: 37.6 },
+      },
+    },
+  ]);
+
   useEffect(() => {
-    const geojson = {
-      type: "FeatureCollection",
-      features: [
-        {
-          type: "Feature",
-          properties: {
-            name: dummyData[0].sehir,
-            ulasilan: dummyData[0].ulasilanKisi,
-            telefon: dummyData[0].telefonNumaralari[0],
-            yetkili: dummyData[0].personelAdi[0],
-          },
-          geometry: {
-            type: "Point",
-            coordinates: dummyData[0].coordinates,
-          },
-        },
-        /*       {
-          type: "Feature",
-          properties: {
-            name: "Şanlıurfa",
-            ulasilan: 4205,
-          },
-          geometry: {
-            type: "Point",
-            coordinates: [38.79, 37.16],
-          },
-        }, */
-        {
-          type: "Feature",
-          properties: {
-            name: dummyData[4].sehir,
-            ulasilan: dummyData[4].ulasilanKisi,
-            telefon: dummyData[4].telefonNumaralari[0],
-            yetkili: dummyData[4].personelAdi[0],
-          },
-          geometry: {
-            type: "Point",
-            coordinates: dummyData[4].coordinates,
-          },
-        },
-        {
-          type: "Feature",
-          properties: {
-            name: dummyData[2].sehir,
-            ulasilan: dummyData[2].ulasilanKisi,
-            telefon: dummyData[2].telefonNumaralari[0],
-            yetkili: dummyData[2].personelAdi[0],
-          },
-          geometry: {
-            type: "Point",
-            coordinates: dummyData[2].coordinates,
-          },
-        },
-        {
-          type: "Feature",
-          properties: {
-            name: dummyData[3].sehir,
-            ulasilan: dummyData[3].ulasilanKisi,
-            telefon: dummyData[3].telefonNumaralari[0],
-            yetkili: dummyData[3].personelAdi[0],
-          },
-          geometry: {
-            type: "Point",
-            coordinates: dummyData[3].coordinates,
-          },
-        },
-        {
-          type: "Feature",
-          properties: {
-            name: dummyData[1].sehir,
-            ulasilan: dummyData[1].ulasilanKisi,
-            telefon: dummyData[1].telefonNumaralari[0],
-            yetkili: dummyData[1].personelAdi[0],
-          },
-          geometry: {
-            type: "Point",
-            coordinates: dummyData[1].coordinates,
-          },
-        },
-        {
-          type: "Feature",
-          properties: {
-            name: dummyData[5].sehir,
-            ulasilan: dummyData[5].ulasilanKisi,
-            telefon: dummyData[5].telefonNumaralari[0],
-            yetkili: dummyData[5].personelAdi[0],
-          },
-          geometry: {
-            type: "Point",
-            coordinates: dummyData[5].coordinates,
-          },
-        },
-        {
-          type: "Feature",
-          properties: {
-            name: dummyData[6].sehir,
-            merkez: dummyData[5].merkezler,
-            ulasilan: dummyData[6].ulasilanKisi,
-            telefon: dummyData[6].telefonNumaralari[0],
-            yetkili: dummyData[6].personelAdi[0],
-          },
-          geometry: {
-            type: "Point",
-            coordinates: dummyData[6].coordinates,
-          },
-        },
-      ],
-    };
-    /*    const bounds = [
-      [36.05, 40.82],
-      [43.22, 36.1],
-    ]; */
-    /* 
-    const [data, setData] = useState();
+    console.log(markerData, "markerdata güncellendi");
 
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await axios.get(
-            `https://tade-be.herokuapp.com/api/table/coordinate/${2}`
-          );
-          console.log(response.data);
-          setData(response.data);
-        } catch (error) {
-          console.error(error);
-        }
-      };
-
-      fetchData();
-    }, [id]); */
     const map = new mapboxgl.Map({
       container: "map",
       // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
       style: "mapbox://styles/eskisarkisi/clhrhwtt501zx01pga4vadfqs",
       center: [38.05, 37.6],
-      zoom: 6.61,
-      minZoom: 5.61,
-      maxZoom: 10,
+      zoom: 5.8,
+      minZoom: 5,
       /*   maxBounds: bounds, */
     });
     //  map.scrollZoom.disable();
@@ -161,48 +54,170 @@ function Maps() {
 
     map.on("zoom", function () {
       var currentZoom = map.getZoom();
-      currentZoom > 7 ? setToggle(true) : setToggle(false);
+      currentZoom > 5 ? setToggle(true) : setToggle(false);
     });
+    console.log(markerData, "geojson");
 
-    for (const marker of geojson.features) {
-      // Create a DOM element for each marker.
-      const el = document.createElement("div");
-      el.className = "marker";
-      const size = 50;
-      el.style.width = `${size}px`;
-      el.style.height = `${size}px`;
+    if (markerData.length !== 0) {
+      for (const marker of markerData.features) {
+        // Create a DOM element for each marker.
+        const el = document.createElement("div");
+        el.className = "marker";
+        const size = 50;
+        el.style.width = `${size}px`;
+        el.style.height = `${size}px`;
 
-      // Add a popup displayed on click for each marker
-      const popup = new mapboxgl.Popup({ offset: 25 });
-      toggle == true
-        ? popup.setHTML(
-            `<div id="mapDiv"><h5 id="mapSehir">${marker.properties.name}</h5>
-        <h7 id="mapYetkili">Yetkili Adı: ${marker.properties.yetkili}</h7></br>
-        <h7 id="mapTelefon">Yetkili Telefonu: ${marker.properties.telefon}</h7></br>
-        <h7 id="mapKisi">Ulaşılan toplam kişi sayısı: ${marker.properties.ulasilan}</h7><br/>
-        <a href="http://localhost:3000/table" id="mapButton">Detaylar</a></div>`
-          )
-        : popup.setHTML(
-            `<div id="mapDiv">
-        <h5 id="mapMerkez">${marker.properties.merkez}</h5>
-        <h7 id="mapYetkili">Yetkili Adı: ${marker.properties.yetkili}</h7></br>
-        <h7 id="mapTelefon">Yetkili Telefonu: ${marker.properties.telefon}</h7></br>
-        <h7 id="mapKisi">Ulaşılan toplam kişi sayısı: ${marker.properties.ulasilan}</h7><br/>
-        <a href="http://localhost:3000/sehir/1" id="mapButton">Detaylar</a></div>`
-          );
-
-      // Add markers to the map.
-      new mapboxgl.Marker({
-        element: el,
-        // Point markers toward the nearest horizon
-        rotationAlignment: "horizon",
-        offset: [0, -size / 2],
-      })
-        .setLngLat(marker.geometry.coordinates)
-        .setPopup(popup)
-        .addTo(map);
+        const popup = new mapboxgl.Popup({ offset: 25 });
+        popup.setHTML(
+          `
+          <div id="mapDiv"> 
+          <h7 id="mapBaslik">MERKEZ TELEFON NUMARALARI</h7></br>
+              <a href:tel:${marker.properties.telefon1} id="mapTel">${marker.properties.telefon1}</a></br>
+              <a href:"tel:${marker.properties.telefon2}" id="mapTel">${marker.properties.telefon2}</a></br>
+              <h7 id="mapNote">7 GÜN 24 SAAT</h7></br>
+              <a href="http://localhost:3000/table" id="mapButton">Detaylar</a></div>`
+        ),
+          new mapboxgl.Marker({
+            element: el,
+            // Point markers toward the nearest horizon
+            rotationAlignment: "horizon",
+            offset: [0, -size / 2],
+          })
+            .setLngLat(marker.geometry.coordinates)
+            .setPopup(popup)
+            .addTo(map);
+      }
     }
-  });
+    /*    const bounds = [
+      [36.05, 40.82],
+      [43.22, 36.1],
+    ]; */
+  }, [markerData]);
+
+  /*   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:9000/api/table/coordinate/`
+        );
+        console.log(response.data);
+        response.data;
+        await setData(response.data);
+        setKonum({ ...konum, coordinates: koordinat[1] });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, []); */
+  useEffect(() => {
+    axios
+      .get("http://localhost:9000/api/table/coordinate/")
+      .then(function (response) {
+        // handle success
+        setData(response.data);
+        console.log(response.data);
+        const a = response.data;
+        return a;
+      })
+      /*  .catch(function (error) {
+        // handle error
+        console.log(error);
+      }) */
+      .then((a) => {
+        // always executed
+        console.log(a, "a");
+        const sehirArray = a.map((item) => item.sehir_adi);
+        const enlem = a.map((item) => item.enlem);
+        const boylam = a.map((item) => item.boylam);
+        const telefon1Arr = a.map((item) => item.merkez_telefon_1);
+        const telefon2Arr = a.map((item) => item.merkez_telefon_2);
+        const coordArray = enlem.map((element, index) => [
+          element,
+          boylam[index],
+        ]);
+
+        const id = a.map((item) => item.sehir_id);
+        const tasari = {
+          type: "Feature",
+          properties: {
+            no: id,
+            sehir: sehirArray,
+            telefon1: telefon1Arr,
+            telefon2: telefon2Arr,
+          },
+          geometry: {
+            type: "Point",
+            coordinates: coordArray,
+          },
+        };
+
+        console.log(
+          "koordinat",
+          `{lon: ${enlem[0]}, lat: ${boylam[0]}}`,
+          coordArray,
+          sehirArray
+        );
+        //  koordinat.map((row, rowIndex) => row.join(", "));
+
+        setKonum(
+          [
+            {
+              ...konum,
+              tasari,
+            },
+          ] /* , `{lon: ${enlem[0]}, lat: ${boylam[0]}}` */
+        );
+        console.log("konum arrayi", konum);
+        return tasari;
+      })
+      .then((tasari) => {
+        console.log("finally");
+        console.log("tasari", tasari);
+
+        function calculateResult(a) {
+          for (let i = 0; i < a.length; i++) {
+            if (a[i] == tasari.properties.id) return a[i];
+          }
+        }
+        const myResult = calculateResult(tasari.properties.sehir);
+        console.log("myResult", myResult);
+        return {
+          type: "FeatureCollection",
+          features: [
+            {
+              type: "Feature",
+              properties: {
+                no: tasari.properties.no[0],
+                sehir: myResult,
+                telefon1: tasari.properties.telefon1[0],
+                telefon2: tasari.properties.telefon2[0],
+              },
+              geometry: {
+                type: "Point",
+                coordinates: tasari.geometry.coordinates[0],
+              },
+            },
+            {
+              type: "Feature",
+              properties: {
+                sehir: myResult,
+                telefon1: tasari.properties.telefon1[1],
+                telefon2: tasari.properties.telefon2[1],
+              },
+              geometry: {
+                type: "Point",
+                coordinates: tasari.geometry.coordinates[1],
+              },
+            },
+          ],
+        };
+      })
+      .then((geojson) => {
+        setMarkerData(geojson);
+      });
+  }, []);
+
   return (
     <>
       {/* <Header /> */}

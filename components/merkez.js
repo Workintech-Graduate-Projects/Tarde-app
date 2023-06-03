@@ -24,7 +24,7 @@ const customStyles = {
       paddingRight: "8px",
       fontWeight: "600",
       textTransform: "uppercase",
-      flexWrap: "wrap",
+      display: "flex",
     },
   },
   cells: {
@@ -32,15 +32,11 @@ const customStyles = {
       paddingLeft: "8px", // override the cell padding for data cells
       paddingRight: "8px",
       flexWrap: "wrap",
+      alignItems: "center",
     },
   },
 };
 const columns = [
-  {
-    name: "Sıra",
-    selector: (row) => row.sehir_id,
-    sortable: true,
-  },
   {
     name: "Sehir Adı",
     selector: (row) => row.sehir_adi,
@@ -111,9 +107,13 @@ const Merkez = ({ id }) => {
   return (
     <div style={{ padding: "50px 10%", backgroundColor: "rgb(55, 185, 211)" }}>
       <DataTable
+        title="Merkezlere Göre Sehir Tablosu"
         columns={columns}
         data={data}
         customStyles={customStyles}
+        dense
+        highlightOnHover
+        pointerOnHover
         pagination></DataTable>
     </div>
   );
