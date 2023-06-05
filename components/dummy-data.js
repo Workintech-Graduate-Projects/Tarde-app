@@ -27,7 +27,7 @@ export const dummyData = [
       "Diyanet",
       "Yöret-Roman Diyalog Ağı - Sıfır Ayrımcılık Derneği( işbirliği için iletişime geçildi).",
     ],
-    coordinates: [37.38, 37.06],
+    coordinates: [37.38000011, 37.0600001],
   },
   {
     id: 2,
@@ -169,5 +169,6 @@ export const dummyData = [
     },
     merkezler: ["Mobil Ekip"],
     isbirlikciKurumlar: [],
+    coordinates: [40.24, 37.9],
   },
 ];

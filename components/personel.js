@@ -40,11 +40,6 @@ const customStyles = {
 
 const columns = [
   {
-    name: "Sıra No",
-    selector: (row) => row.id,
-    sortable: true,
-  },
-  {
     name: "Personel Adı",
     selector: (row) => row.personel_adi,
     sortable: true,
@@ -127,6 +122,7 @@ const personel = ({ id }) => {
   return (
     <div style={{ padding: "50px 10%", backgroundColor: "rgb(55, 185, 211)" }}>
       <DataTable
+        title="Merkezlere Göre Personel Tablosu"
         className=" flex flex-wrap "
         columns={columns}
         data={data}
