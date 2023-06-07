@@ -34,11 +34,11 @@ function Header(props) {
     sessionStorage.setItem("sehir", item);
   };
   return (
-    <div className="flex flex-2 justify-around h-[10vh]">
+    <div className="flex flex-2 justify-around h-[10vh] ">
       <div className="flex flex-1 pl-4 h-[10vh] w-[10vh]">
         <img src="/img/logo.jpg" alt="h-logo"></img>
       </div>
-      <nav className="flex flex-1 justify-end text-xs sm:text-lg xl:text-xl items-center">
+      <nav className="flex flex-1 justify-end text-xs sm:text-lg flex-col  xl:text-xl  items-center">
         <button
           className="p-2 hover:bg-slate-50"
           onClick={
