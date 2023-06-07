@@ -19,7 +19,7 @@ function dashboard() {
 
   useEffect(() => {
     dispatch(getSehirAPI());
-    if (localStorage.getItem("token") === "1234567" ? false : true) {
+    if (localStorage.getItem("token") ? false : true) {
       routeToHome();
     } else {
       setIsValid(true);
@@ -59,7 +59,7 @@ function dashboard() {
                   </button>
                 </div>
                 <div className="flex hover:bg-[rgba(248,203,79,0.50)] py-2  px-6  rounded-xl">
-                  <img  src="./img/button/sun.svg" />
+                  <img src="./img/button/sun.svg" />
                   <button
                     onClick={() => {
                       setSiteMap("about");

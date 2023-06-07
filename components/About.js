@@ -2,8 +2,8 @@ import React from "react";
 
 function About() {
   return (
-    <div className="flex mt-9 justify-between ">
-      <div className="flex flex-col w-[60%]  ">
+    <div className="flex mt-9 justify-between lg:flex-row flex-col-reverse place-self-center">
+      <div className="flex flex-col w-[60%] ">
         <h1 className="text-[#030E5E] text-[75px] font-extrabold">
           hakkımızda
         </h1>
