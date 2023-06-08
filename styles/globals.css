@@ -131,3 +131,6 @@ body {
 #row-1 {
   flex-flow: wrap;
 }
+#MuiTableCell-root MuiTableCell-head MuiTableCell-alignLeft MuiTableCell-sizeMedium css-1mhqkkv-MuiTableCell-root{
+ font-size: xx-large;
+}

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { dummyData } from "../components/dummy-data";
 import Tables_Merkez from "@/components/Tables_Merkez";
 import { useDispatch, useSelector } from "react-redux";
 import { getSehirAPI } from "@/redux/actions";
 
 function dashboard() {
   const [isValid, setIsValid] = useState(false);
-  const [selectedSehir, setSelectedSehir] = useState("");
+  const [selectedSehir, setSelectedSehir] = useState("1");
+  const [selectedtab, setSelectedtab] = useState("merkez");
   const sehir = useSelector((state) => state.sehir);
   const apiMerkez = useSelector((state) => state.merkez);
   const dispatch = useDispatch();
@@ -19,23 +19,18 @@ function dashboard() {
 
   useEffect(() => {
     dispatch(getSehirAPI());
-    if (localStorage.getItem("token") === "1234567" ? false : true) {
+    if (localStorage.getItem("token") ? false : true) {
       routeToHome();
     } else {
       setIsValid(true);
     }
   }, []);
   const onCity = (item) => {
-    // sessionStorage.setItem("sehirler", item);
-    sessionStorage.setItem("id", item);
     setSelectedSehir(item);
   };
   const onTable = (item) => {
-    sessionStorage.setItem("table", item);
+    setSelectedtab(item);
   };
-  const selectSehir = sessionStorage.getItem("sehirler");
-  const selectId = sessionStorage.getItem("id");
-  const selectedTable = sessionStorage.getItem("table");
 
   return isValid ? (
     <main className="flex min-h-screen bg-[url('/img/Desktop-Landing.svg')] justify-center items-center bg-cover ">
@@ -59,7 +54,7 @@ function dashboard() {
                   </button>
                 </div>
                 <div className="flex hover:bg-[rgba(248,203,79,0.50)] py-2  px-6  rounded-xl">
-                  <img  src="./img/button/sun.svg" />
+                  <img src="./img/button/sun.svg" />
                   <button
                     onClick={() => {
                       setSiteMap("about");
@@ -106,36 +101,48 @@ function dashboard() {
             </div> */}
             </header>
             <main className="flex justify-center items-center flex-col  ">
-              <div className="flex justify-around border border-solid-gray my-8 w-[70%]">
+              <div className="flex justify-around bg-[#000C5C] mt-8 w-[95%]">
                 <select
+                  className="bg-[#000C5C] text-white"
                   onClick={(event) => {
                     onTable(event.target.value);
                   }}
                   name="table"
                 >
                   <option key={2} value="merkez">
-                    Merkez
+                    Merkezler
                   </option>
-                  <option key={1} value="personel">
-                    Personel
+                  <option key={1} value="merkezpersonel">
+                    Personeller
+                  </option>
+                  <option key={3} value="isbirligi">
+                    İş Birligi Kurumlar
+                  </option>
+                  <option key={4} value="aracsayisi">
+                   Araç Sayısı
                   </option>
                 </select>
-                {selectedTable == "merkez" ? (
+                {selectedtab == "merkez" || selectedtab == "isbirligi" ? (
                   <select
+                    className="bg-[#000C5C] text-white"
                     onChange={(event) => {
                       onCity(event.target.value);
                     }}
                     name="sehir"
                   >
                     {sehir.map((item) => (
-                      <option key={item.sehir_id} value={item.sehir_id}>
+                      <option
+                        className="bg-[#000C5C] "
+                        key={item.sehir_id}
+                        value={item.sehir_id}
+                      >
                         {item.sehir_adi}
                       </option>
                     ))}
                   </select>
                 ) : (
                   <select
-                    className="w-[170px]"
+                    className="w-[170px] bg-[#000C5C] text-white"
                     onChange={(event) => {
                       onCity(event.target.value);
                     }}
@@ -149,7 +156,12 @@ function dashboard() {
                   </select>
                 )}
               </div>
-              <Tables_Merkez />
+              <Tables_Merkez
+
+                apiMerkez={apiMerkez}
+                selectedId={selectedSehir}
+                selectedTable={selectedtab}
+              />
             </main>
           </div>
         </div>
