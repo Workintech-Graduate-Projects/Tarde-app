@@ -36,8 +36,6 @@ function Maps() {
   ]);
 
   useEffect(() => {
-    console.log(markerData, "markerdata güncellendi");
-
     const map = new mapboxgl.Map({
       container: "map",
       // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
@@ -56,8 +54,7 @@ function Maps() {
       var currentZoom = map.getZoom();
       currentZoom > 5 ? setToggle(true) : setToggle(false);
     });
-    console.log(markerData, "geojson");
-
+  
     if (markerData.length !== 0) {
       for (const marker of markerData.features) {
         // Create a DOM element for each marker.
@@ -116,17 +113,13 @@ function Maps() {
       .then(function (response) {
         // handle success
         setData(response.data);
-        console.log(response.data);
         const a = response.data;
         return a;
       })
-      /*  .catch(function (error) {
-        // handle error
-        console.log(error);
-      }) */
+
       .then((a) => {
-        // always executed
-        console.log(a, "a");
+
+
         const sehirArray = a.map((item) => item.sehir_adi);
         const enlem = a.map((item) => item.enlem);
         const boylam = a.map((item) => item.boylam);
@@ -152,13 +145,6 @@ function Maps() {
           },
         };
 
-        console.log(
-          "koordinat",
-          `{lon: ${enlem[0]}, lat: ${boylam[0]}}`,
-          coordArray,
-          sehirArray
-        );
-        //  koordinat.map((row, rowIndex) => row.join(", "));
 
         setKonum(
           [
@@ -168,12 +154,10 @@ function Maps() {
             },
           ] /* , `{lon: ${enlem[0]}, lat: ${boylam[0]}}` */
         );
-        console.log("konum arrayi", konum);
+
         return tasari;
       })
       .then((tasari) => {
-        console.log("finally");
-        console.log("tasari", tasari);
 
         function calculateResult(a) {
           for (let i = 0; i < a.length; i++) {
@@ -181,7 +165,7 @@ function Maps() {
           }
         }
         const myResult = calculateResult(tasari.properties.sehir);
-        console.log("myResult", myResult);
+
         return {
           type: "FeatureCollection",
           features: [
