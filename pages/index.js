@@ -9,6 +9,7 @@ import About from "@/components/About";
 import Contact from "@/components/Contact";
 
 import MobilFooter from "@/components/MobilFooter";
+import CardSayi from "@/components/CardSayi";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -24,7 +25,8 @@ export default function Home() {
         id="mainRes"
       >
         <div className="bg-[#D9E8E7] md: mx-20 rounded-xl md:mt-[5px] p-5  w-[100%] md:mb-[5px] resBgDiv ">
-          <div className="bg-white  p-[20px] rounded-xl  lg:flex-row flex flex-col ">
+
+          <div className="bg-white  p-[20px] rounded-xl lg:flex-row flex flex-col ">
 
             <Footer setSiteMap={setSiteMap} />
             {siteMap == "main" ? (
