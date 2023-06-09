@@ -19,7 +19,7 @@ import {
 } from "@mui/material";
 import { Delete, Edit, SaveIcon } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
-import { getMerkezAPI, editPersonelAPI } from "@/redux/actions";
+import { getMerkezAPI, personelAPI } from "@/redux/actions";
 import axios from "axios";
 
 export const CreateNewAccountModal = ({
@@ -31,6 +31,7 @@ export const CreateNewAccountModal = ({
   selectedId,
   sehir,
   apiMerkez,
+  personel,
 }) => {
   const [values, setValues] = useState(() =>
     columns.reduce((acc, column) => {
@@ -48,14 +49,11 @@ export const CreateNewAccountModal = ({
     <Dialog open={open}>
       {selectedTable == "merkez" ? (
         <DialogTitle textAlign="center">Yeni Merkez Ekle</DialogTitle>
-      ) : selectedTable == "aracsayisi" ?
-      (
+      ) : selectedTable == "aracsayisi" ? (
         <DialogTitle textAlign="center">Yeni Merkez Ekle</DialogTitle>
-      ):
-      (
+      ) : (
         <DialogTitle textAlign="center">Yeni Personel Ekle</DialogTitle>
-      )
-      }
+      )}
       <DialogContent>
         <form onSubmit={(e) => e.preventDefault()}>
           <Stack
@@ -160,9 +158,9 @@ export const CreateNewAccountModal = ({
                   }
                 />
               </>
-            ) : selectedTable == "aracsayisi" ?(
-            <>
-             <label htmlFor="merkez_id">Merkez</label>
+            ) : selectedTable == "aracsayisi" ? (
+              <>
+                <label htmlFor="merkez_id">Merkez</label>
                 <select
                   name="merkez_id"
                   key="merkez_id"
@@ -176,15 +174,76 @@ export const CreateNewAccountModal = ({
                     </option>
                   ))}
                 </select>
-                <label for="quantity">Gezici Araç Sayısı:</label>
-            <input type="number" id="binekarac_sayisi" name="binekarac_sayisi"></input>
+                <label htmlFor="quantity">Gezici Araç Sayısı:</label>
+                <input
+                  type="number"
+                  onChange={(e) =>
+                    setValues({ ...values, [e.target.name]: e.target.value })
+                  }
+                  id="binekarac_sayisi"
+                  name="binekarac_sayisi"
+                ></input>
 
-                <label for="quantity">Karavan Araç Sayısı:</label>
-            <input type="number" id="gezicikaravan_sayisi" name="gezicikaravan_sayisi"></input>
-
-            </>)
-            
-            : (
+                <label htmlFor="quantity">Karavan Araç Sayısı:</label>
+                <input
+                  type="number"
+                  onChange={(e) =>
+                    setValues({ ...values, [e.target.name]: e.target.value })
+                  }
+                  id="gezicikaravan_sayisi"
+                  name="gezicikaravan_sayisi"
+                ></input>
+              </>
+            ) : selectedTable == "hizmet" ? (
+              <>
+                <label htmlFor="merkez_id">Merkez Adı</label>
+                <select
+                  name="merkez_id"
+                  key="merkez_id"
+                  onChange={(e) =>
+                    setValues({ ...values, [e.target.name]: e.target.value })
+                  }
+                >
+                  {apiMerkez.map((item) => (
+                    <option key={item.merkez_id} value={item.merkez_id}>
+                      {item.merkez_adi}
+                    </option>
+                  ))}
+                </select>
+                <TextField
+                  key="etkinlik_adi"
+                  label="Etkinlik Adı"
+                  name="etkinlik_adi"
+                  onChange={(e) =>
+                    setValues({ ...values, [e.target.name]: e.target.value })
+                  }
+                />
+                <label htmlFor="personel_id">Personel Adı</label>
+                <select
+                  name="personel_id"
+                  key="personel_id"
+                  onChange={(e) =>
+                    setValues({ ...values, [e.target.name]: e.target.value })
+                  }
+                >
+                  {personel.map((item) => (
+                    <option key={item.personel_id} value={item.personel_id}>
+                      {item.personel_adi} {item.personel_soyadi}
+                    </option>
+                  ))}
+                </select>
+                <label htmlFor="quantity">Danışan Sayısı:</label>
+                <input
+                className="border border-solid"
+                  type="number"
+                  onChange={(e) =>
+                    setValues({ ...values, [e.target.name]: e.target.value })
+                  }
+                  id="danisan_sayisi"
+                  name="danisan_sayisi"
+                ></input>
+              </>
+            ) : (
               <>
                 <TextField
                   key="personel_adi"
@@ -297,7 +356,7 @@ export const CreateNewAccountModal = ({
       </DialogContent>
       <DialogActions sx={{ p: "1.25rem" }}>
         <Button onClick={onClose}>İptal</Button>
-        <Button color="secondary" onClick={handleSubmit} variant="contained">
+        <Button color="primary" onClick={handleSubmit} variant="contained">
           {selectedTable} Ekle
         </Button>
       </DialogActions>
@@ -312,6 +371,7 @@ function Tables_Merkez(props) {
   const [tableData, setTableData] = useState();
   const veriler = useSelector((state) => state.adminMerkez);
   const sehir = useSelector((state) => state.sehir);
+  const personel = useSelector((state) => state.Personel);
   const [createModalOpen, setCreateModalOpen] = useState(false);
 
   // useEffect(() => {
@@ -325,6 +385,7 @@ function Tables_Merkez(props) {
   let n_Data = [];
   useEffect(() => {
     dispatch(getMerkezAPI(selectedId, selectedTable));
+    dispatch(personelAPI());
 
     if (veriler != null) {
       n_Data = veriler[0];
@@ -334,7 +395,6 @@ function Tables_Merkez(props) {
           accessorKey: "sehir_id",
           header: "Gezici Araç",
           Size: 100,
-          
         },
       ];
     }
@@ -344,7 +404,7 @@ function Tables_Merkez(props) {
       newColumns.push({
         accessorKey: key,
         header: key,
-       Size:100
+        Size: 100,
       });
     }
 
@@ -354,7 +414,10 @@ function Tables_Merkez(props) {
   }, [selectedId, selectedTable]);
 
   const handleSaveRowEdits = async ({ exitEditingMode, row, values }) => {
-    const { merkez_id, personel_id, sehir_id,arac_sayisi_id, ...nValues } = values;
+    const { merkez_id, personel_id, sehir_id, arac_sayisi_id, ...nValues } =
+      values;
+      const {merkez_adi,...mValues}= nValues
+      console.log(values);
     selectedTable == "isbirligi"
       ? await axios
           .put(
@@ -365,16 +428,25 @@ function Tables_Merkez(props) {
             return console.log(res.data);
           })
           .catch((error) => console.log(error))
-      : selectedTable == "aracsayisi" ? await axios
-      .put(
-        `http://localhost:9000/api/table/admin/aracsayisi/`,
-        nValues
-      )
-      .then((res) => {
-        return console.log(res.data);
-      })
-      .catch((error) => console.log(error)) 
-      :await axios
+      : selectedTable == "aracsayisi"
+      ? await axios
+          .put(`http://localhost:9000/api/table/admin/aracsayisi/`, nValues)
+          .then((res) => {
+            return console.log(res.data);
+          })
+          .catch((error) => console.log(error))
+      : selectedTable == "hizmet"
+      ? 
+       await axios
+          .put(
+            `http://localhost:9000/api/table/admin/hizmet/`,
+            mValues
+          )
+          .then((res) => {
+            return console.log(res.data);
+          })
+          .catch((error) => console.log(error)) :
+          await axios
           .put(
             `http://localhost:9000/api/table/admin/${selectedTable}/${row.original.merkez_id}`,
             nValues
@@ -422,18 +494,31 @@ function Tables_Merkez(props) {
         })
         .catch((error) => console.log(error));
 
-      dispatch(getMerkezAPI(selectedId, selectedTable))}
-      else if (selectedTable === "aracsayisi") {
-        await axios
-          .delete(
-            `http://localhost:9000/api/table/admin/aracsayisi/${row.original.arac_sayisi_id}`
-          )
-          .then((res) => {
-            return console.log(res.data, "Araç envanteri Silindi");
-          })
-          .catch((error) => console.log(error));
-  
-        dispatch(getMerkezAPI(selectedId, selectedTable));
+      dispatch(getMerkezAPI(selectedId, selectedTable));
+    }
+    else if (selectedTable === "hizmet") {
+      await axios
+        .delete(
+          `http://localhost:9000/api/table/admin/hizmet/${row.original.hizmet_id}`
+        )
+        .then((res) => {
+          return console.log(res.data, "Hizmet Silindi");
+        })
+        .catch((error) => console.log(error));
+
+      dispatch(getMerkezAPI(selectedId, selectedTable));
+    }
+     else if (selectedTable === "aracsayisi") {
+      await axios
+        .delete(
+          `http://localhost:9000/api/table/admin/aracsayisi/${row.original.arac_sayisi_id}`
+        )
+        .then((res) => {
+          return console.log(res.data, "Araç envanteri Silindi");
+        })
+        .catch((error) => console.log(error));
+
+      dispatch(getMerkezAPI(selectedId, selectedTable));
     } else if (selectedTable === "merkez") {
       await axios
         .delete(
@@ -474,12 +559,11 @@ function Tables_Merkez(props) {
               fontSize: 11,
               direction: "flex-column",
               display: "flex",
-          
             },
           }}
           displayColumnDefOptions={{
             "mrt-row-actions": { size: 100 },
-            "mrt-row-expand": { size: 0 }, 
+            "mrt-row-expand": { size: 0 },
           }}
           onEditingRowSave={handleSaveRowEdits}
           muiTableHeadCellProps={{
@@ -493,8 +577,6 @@ function Tables_Merkez(props) {
           muiTableBodyCellProps={{
             sx: {
               fontSize: 10,
-              maxWidth: "200px",
-              minWidth: "100px",
             },
           }}
           muiTableContainerProps={{ sx: { maxHeight: "800px" } }}
@@ -614,6 +696,7 @@ function Tables_Merkez(props) {
         selectedId={selectedId}
         apiMerkez={apiMerkez}
         sehir={sehir}
+        personel={personel}
         onSubmit={handleCreateNewRow}
       />
     </div>

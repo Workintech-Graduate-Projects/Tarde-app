@@ -83,7 +83,7 @@ function Footer(props) {
       </div>
       <div className={`w-[270px] mt-[10px]  ${isOpen ? "closed" : ""} `}>
         {" "}
-        <p>
+        <p className="block md:hidden">
           Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
           metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat
           numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı
