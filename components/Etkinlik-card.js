@@ -1,17 +1,20 @@
 import { etkinlikAPI } from '@/redux/actions';
 import React, { useEffect, useState } from 'react'
+
 import { useDispatch, useSelector } from 'react-redux'
 
 function EtkinlikCard() {
+ 
     const etkinlikler = useSelector((state) => state.etkinlik);
     const [kisi,setKisi]=useState(0);
     const [etkinlik,setEtkinlikler]=useState(0);
     const dispatch = useDispatch();
     let count=0;
-    dispatch(etkinlikAPI())
+  
     useEffect(() => {
-        etkinlikler.map((item)=> count)
+        etkinlikler.map((item)=> count+=Number(item.danisan_sayisi))
         setEtkinlikler(etkinlikler.length)
+        setKisi(count);
     }, [])
    
 
