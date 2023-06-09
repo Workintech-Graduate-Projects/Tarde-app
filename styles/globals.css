@@ -168,10 +168,6 @@ body {
     width: 100vw;
     background-position: center;
     background-size: cover;
-
-    /* background image değiştirilecek  */
-    /*
-    background: url('../images/'); */
   }
   .resBgDiv {
     width: 100vw;
