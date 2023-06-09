@@ -8,6 +8,7 @@ import Header from "./Header";
 import axios from "axios";
 import maps from "@/pages/maps";
 import { RedirectType } from "next/dist/client/components/redirect";
+import EtkinlikCard from "./Etkinlik-card";
 
 dummyData;
 mapboxgl.accessToken =
@@ -205,7 +206,9 @@ function Maps() {
   return (
     <>
       {/* <Header /> */}
-      <div id="map" className="rounded-xl  h-[60vh] md:h-[90vh] w-[100%]"></div>
+      <div id="map" className="rounded-xl  h-[60vh] md:h-[90vh] w-[100%]">
+       
+      </div>
     </>
   );
 }

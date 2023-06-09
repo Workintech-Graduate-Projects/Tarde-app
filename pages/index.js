@@ -10,7 +10,6 @@ import Contact from "@/components/Contact";
 
 import MobilFooter from "@/components/MobilFooter";
 import CardSayi from "@/components/CardSayi";
-import Form from "@/components/Form";
 
 const inter = Inter({ subsets: ["latin"] });
 

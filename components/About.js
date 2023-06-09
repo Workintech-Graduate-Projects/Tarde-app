@@ -1,5 +1,6 @@
 import React from "react";
 
+
 function About() {
   return (
     <div className="flex mt-9 justify-between md:flex-row flex-col-reverse place-self-center  ">
@@ -7,6 +8,7 @@ function About() {
         <h1 className="text-[#030E5E]  font-extrabold text-[75px]  ">
           hakkımızda
         </h1>
+      
         <p className="text-[14px] text-left text-[#4A4A4A]  mt-3 ml-[66px]">
           Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
           metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat
