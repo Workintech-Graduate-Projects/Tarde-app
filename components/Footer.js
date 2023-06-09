@@ -63,7 +63,7 @@ function Footer(props) {
             <img src="./img/button/Group-36.svg" />
             <button
               onClick={() => {
-                setSiteMap("volunteer");
+                setSiteMap("SahaForm");
               }}
               className="ml-[5px] font-[400] tracking-widest"
             >
@@ -100,7 +100,7 @@ function Footer(props) {
           alt="Picture of the author"
           onClick={() => setSiteMap("help")}
         />
-        <p className="bg-[rgba(0,12,92,0.06)] text-[12px]  p-5 rounded-3xl mt-[16px]">
+        <p className="bg-[rgba(0,12,92,0.06)] text-[12px] p-5 rounded-3xl mt-[16px]">
           {" "}
           İstanbul Bilgi Üniversitesi Travma ve Afet Ruh Sağlığı Programı
           işbirliği ile

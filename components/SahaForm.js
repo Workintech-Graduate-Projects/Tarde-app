@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const FormPage = () => {
+const SahaFormPage = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -63,13 +63,12 @@ const FormPage = () => {
     }
     console.log(formData);
   };
-
   return (
-    <div className="flex justify-self-center  ">
+    <div className="flex justify-self-center ">
       <div className="pt-16 rounded-lg ">
-        <h1 className="text-[#030E5E] font-extrabold text-5xl pt-8 mb-8 ">
+        <h1 className="text-[#030E5E] font-extrabold text-5xl pt-8 mb-8 mr-12">
           {" "}
-          Psikolojik Destek Almak İçin Başvurun
+          Sahada Destek Vermek için Gönüllü Ol
         </h1>
         <div className="block md:hidden ">
           <img className="" src="/img/Group.svg"></img>
@@ -124,6 +123,7 @@ const FormPage = () => {
                 padding: "10px",
                 borderRadius: "7px",
                 marginBottom: "10px",
+                width: "300px",
               }}
               className={formErrors.lastName ? "error" : ""}
             />
@@ -155,6 +155,7 @@ const FormPage = () => {
                 padding: "10px",
                 borderRadius: "7px",
                 marginBottom: "10px",
+                width: "300px",
               }}
               className={formErrors.phoneNumber ? "error" : ""}
             />
@@ -170,7 +171,7 @@ const FormPage = () => {
               </span>
             )}
 
-            <label htmlFor="city">Yaşadığınız İl*</label>
+            <label htmlFor="city">Çalışmak İstediğiniz İl*</label>
             <input
               type="text"
               id="city"
@@ -179,13 +180,14 @@ const FormPage = () => {
               onChange={handleChange}
               style={{
                 border: "1px solid black",
-                border: "1px solid black",
+
                 color: "#333",
                 fontFamily: "mono",
                 fontSize: "14px",
                 padding: "10px",
                 borderRadius: "7px",
                 marginBottom: "10px",
+                width: "300px ",
               }}
               className={formErrors.city ? "error" : ""}
             />
@@ -200,43 +202,10 @@ const FormPage = () => {
                 Bu alan boş bırakılamaz
               </span>
             )}
-            <div className="flex">
-              <label>
-                Destek Alacak Kişi:
-                <input
-                  type="radio"
-                  name="supportPerson"
-                  value="Ben"
-                  checked={formData.supportPerson === "Ben"}
-                  onChange={handleChange}
-                  style={{
-                    marginBottom: "3px",
-                    height: "16px",
-                    width: "22px",
-                    marginBottom: "10px",
-                  }}
-                />
-                Ben
-              </label>
 
-              <label>
-                <input
-                  type="radio"
-                  name="supportPerson"
-                  value="Yakınım"
-                  checked={formData.supportPerson === "Yakınım"}
-                  onChange={handleChange}
-                  style={{
-                    marginBottom: "3px",
-                    height: "16px",
-                    width: "22px",
-                    marginBottom: "10px",
-                  }}
-                />
-                Yakınım
-              </label>
-            </div>
-            <label htmlFor="relationship">Yakınlık Dereceniz</label>
+            <label htmlFor="relationship">
+              Çalışmak İstediğiniz tarih başlangıcı*{" "}
+            </label>
             <input
               type="text"
               id="relationship"
@@ -251,10 +220,33 @@ const FormPage = () => {
                 padding: "10px",
                 borderRadius: "7px",
                 marginBottom: "10px",
+                width: "300px",
+              }}
+            />
+            <label htmlFor="relationship">
+              Çalışmak istediğiniz tarih bitişi*{" "}
+            </label>
+            <input
+              type="text"
+              id="relationship"
+              name="relationship"
+              value={formData.relationship}
+              onChange={handleChange}
+              style={{
+                border: "1px solid black",
+                color: "#333",
+                fontFamily: "mono",
+                fontSize: "14px",
+                padding: "10px",
+                borderRadius: "7px",
+                marginBottom: "10px",
+                width: "300px",
               }}
             />
 
-            <label htmlFor="applicationReason">Başvuru Nedeniniz*</label>
+            <label htmlFor="applicationReason">
+              Kısaca sahada gönüllü çalışma motivasyonunuz*
+            </label>
             <input
               type="text"
               id="applicationReason"
@@ -269,6 +261,7 @@ const FormPage = () => {
                 padding: "25px",
                 borderRadius: "7px",
                 marginBottom: "10px",
+                width: "300px",
               }}
               className={formErrors.applicationReason ? "error" : ""}
             />
@@ -309,18 +302,17 @@ const FormPage = () => {
               className="bg-[#F8CB4E] block mt-[15px] h-12 w-22 
               rounded-lg"
             >
-              Gönder
+              Başvurumu Gönder
             </button>
           </form>
         </div>
       </div>
       <div className=" justify-self-center">
-        <img className="w-100 pt-32" src="/img/katman_1.svg"></img>
-        <img className="w-100 py-2" src="/img/Group.svg"></img>
-        <img className="w-100 py-2" src="/img/Clip path group.svg"></img>
+        <img className="w-80 h-80 pt-32" src="/img/katman_1.svg"></img>
+        <img className="w-80 h-80 pt-32" src="/img/Group 1.svg"></img>
       </div>
     </div>
   );
 };
 
-export default FormPage;
+export default SahaFormPage;
