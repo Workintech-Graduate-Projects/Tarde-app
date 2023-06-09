@@ -3,8 +3,6 @@ import { useRouter } from "next/router";
 import Login from "@/components/Login";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Header from "@/components/Header";
-import Banner from "@/components/Banner";
 
 function login() {
   const router = useRouter();
