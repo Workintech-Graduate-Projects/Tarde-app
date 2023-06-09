@@ -14,7 +14,6 @@ function Login() {
     formState: { errors, isValid },
   } = useForm({ mode: "onChange" });
   const handleLogin = async (e) => {
-    console.log(e);
     await axios
       .post(`http://localhost:9000/api/users/login`, e)
       .then((response) => {

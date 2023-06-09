@@ -34,7 +34,9 @@ function Footer(props) {
           </div>
         </div>
 
-        <div className={`mr-5 mt-[26px] landinghide ${isOpen ? "open" : ""} `}>
+        <div
+          className={`mr-5 mt-[26px] landinghide ${isOpen ? "open" : ""}   `}
+        >
           <div className="flex hover:bg-[rgba(248,203,79,0.50)] py-2 px-6  rounded-xl">
             <img src="./img/button/map-1.svg" />
             <button
@@ -83,7 +85,7 @@ function Footer(props) {
       </div>
       <div className={`w-[270px] mt-[10px]  ${isOpen ? "closed" : ""} `}>
         {" "}
-        <p>
+        <p className="block md:hidden">
           Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
           metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat
           numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı
@@ -96,6 +98,7 @@ function Footer(props) {
           width={300}
           height={300}
           alt="Picture of the author"
+          onClick={() => setSiteMap("help")}
         />
         <p className="bg-[rgba(0,12,92,0.06)] text-[12px]  p-5 rounded-3xl mt-[16px]">
           {" "}
