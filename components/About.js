@@ -3,9 +3,9 @@ import React from "react";
 
 function About() {
   return (
-    <div className="flex mt-9 justify-between lg:flex-row flex-col-reverse place-self-center">
+    <div className="flex mt-9 justify-between md:flex-row flex-col-reverse place-self-center  ">
       <div className="flex flex-col w-[60%] ">
-        <h1 className="text-[#030E5E] text-[75px] font-extrabold">
+        <h1 className="text-[#030E5E]  font-extrabold text-[75px]  ">
           hakkımızda
         </h1>
       
@@ -32,9 +32,9 @@ function About() {
           standardı sahte metinler olarak kullanıldı.
         </p>
       </div>
-      <div className="flex flex-col  mr-[30px] ml-32">
-        <img className="min-w-[200px]" src="/img/about/cry.png"></img>
-        <img className="min-w-[200px]" src="/img/about/thinking.png"></img>
+      <div className="flex flex-col  mr-[30px] ml-32 ">
+        <img className="min-w-[200px]  " src="/img/about/cry.png"></img>
+        <img className="min-w-[200px] " src="/img/about/thinking.png"></img>
       </div>
     </div>
   );
