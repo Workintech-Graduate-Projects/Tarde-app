@@ -1,4 +1,4 @@
-import { SEHIR,A_MERKEZ_EDİT,A_MERKEZ_GET,TOGGLE,MERKEZ,A_PERSONEL_EDİT } from "./actions";
+import { SEHIR,A_MERKEZ_EDİT,A_MERKEZ_GET,TOGGLE,MERKEZ,A_PERSONEL,ETKINLIK_GET } from "./actions";
 const initialState = {
     user: null,
     info: [],
@@ -6,7 +6,8 @@ const initialState = {
     toggle:true,
     sehir:[],
     merkez:[],
-    editPersonel:[],
+    etkinlik:[],
+    Personel:null,
     adminMerkez:null
   };
   
@@ -25,14 +26,18 @@ const initialState = {
         return{
             ...state, merkez: action.payload
         }
-    case A_PERSONEL_EDİT:
+    case A_PERSONEL:
         return{
-            ...state, editPersonel:action.payload
+            ...state, Personel:action.payload
         }
    
     case A_MERKEZ_GET:
         return{
           ...state, adminMerkez: action.payload}
+        
+    case ETKINLIK_GET:
+        return{
+          ...state, etkinlik: action.payload}
         
    
     default:
