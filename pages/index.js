@@ -1,21 +1,20 @@
 import { Inter } from "next/font/google";
 import { useEffect, useState } from "react";
-
 import Footer from "@/components/Footer";
-
 import React from "react";
 import Maps from "@/components/Map";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
-
 import MobilFooter from "@/components/MobilFooter";
-import CardSayi from "@/components/CardSayi";
-
+import FormPage from "@/components/Form";
+import { etkinlikAPI } from '@/redux/actions';
+import { useDispatch } from "react-redux";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const dispatch=useDispatch();
   const [siteMap, setSiteMap] = useState("main");
-
+  dispatch(etkinlikAPI())
   return (
     <>
       <main
@@ -40,7 +39,7 @@ export default function Home() {
             ) : siteMap == "help" ? (
               <div>
                 {" "}
-                <Form />
+                <FormPage />
               </div>
             ) : siteMap == "contact" ? (
               <div className=" w-[20%] md:w-[80%] flex ml-[20px] ">
