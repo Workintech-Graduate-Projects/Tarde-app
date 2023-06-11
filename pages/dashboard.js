@@ -118,9 +118,11 @@ function dashboard() {
                   <select
                     className="bg-[#000C5C] text-white text-center"
                     onChange={(event) => {
+                    
                       onCity(event.target.value);
                     }}
                     name="sehir"
+                    value={selectedSehir}
                   >
                     {sehir.map((item) => (
                       <option
@@ -134,8 +136,9 @@ function dashboard() {
                   </select>
                 ) : (
                   <select
+                  value={selectedSehir}
                     className="w-[170px] bg-[#000C5C] text-white"
-                    value={selectedSehir}
+                   
                     onChange={(event) => {
                       onCity(event.target.value);
                     }}

@@ -1,4 +1,7 @@
 import React from "react";
+
+import EtkinlikCard from "./Etkinlik-card";
+
 function About() {
   return (
     <div className="flex mt-9 justify-between md:flex-row flex-col-reverse place-self-center  ">
@@ -19,6 +22,7 @@ function About() {
           Travma ve Afet Ruh Sağlığı Çalışmaları Uygulamalı Ruh Sağlığı Programı
           tarafından desteklenen psikososyal destek hizmeti projesidir.
         </p>
+        <EtkinlikCard />
       </div>
       <div className="flex flex-col  mr-[30px] ml-32 ">
         <img className="min-w-[200px]  " src="/img/about/cry.png"></img>
