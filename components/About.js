@@ -1,5 +1,4 @@
 import React from "react";
-
 import EtkinlikCard from "./Etkinlik-card";
 
 function About() {

@@ -18,6 +18,9 @@ import FormPage from "@/components/Form";
 import { etkinlikAPI } from "@/redux/actions";
 import { useDispatch } from "react-redux";
 
+import { etkinlikAPI } from "@/redux/actions";
+import { useDispatch } from "react-redux";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
