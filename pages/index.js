@@ -14,6 +14,7 @@ import SahaFormPage from "@/components/SahaForm";
 import MobilFooter from "@/components/MobilFooter";
 
 import FormPage from "@/components/Form";
+/* import ListeGorunumu from "@/components/ListeGorunumu"; */
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -65,6 +66,7 @@ export default function Home() {
         </div>
       </main>
       <MobilFooter />
+      {/*   <ListeGorunumu /> */}
     </>
   );
 }
