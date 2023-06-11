@@ -24,7 +24,6 @@ function Maps() {
     {
       type: "Feature",
       properties: {
-        no: 1,
         sehir: "Gaziantep",
         telefon1: "02337768478",
         telefon2: "03748204828",
@@ -55,7 +54,7 @@ function Maps() {
       var currentZoom = map.getZoom();
       currentZoom > 5 ? setToggle(true) : setToggle(false);
     });
-  
+
     if (markerData.length !== 0) {
       for (const marker of markerData.features) {
         // Create a DOM element for each marker.
@@ -92,40 +91,23 @@ function Maps() {
     ]; */
   }, [markerData]);
 
-  /*   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:9000/api/table/coordinate/`
-        );
-        console.log(response.data);
-        response.data;
-        await setData(response.data);
-        setKonum({ ...konum, coordinates: koordinat[1] });
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, []); */
   useEffect(() => {
     axios
-      .get("http://localhost:9000/api/table/coordinate/")
+      .get("http://localhost:9000/api/table/admin/sehir")
       .then(function (response) {
         // handle success
         setData(response.data);
+        console.log(response.data);
         const a = response.data;
         return a;
       })
 
       .then((a) => {
-
-
         const sehirArray = a.map((item) => item.sehir_adi);
         const enlem = a.map((item) => item.enlem);
         const boylam = a.map((item) => item.boylam);
-        const telefon1Arr = a.map((item) => item.merkez_telefon_1);
-        const telefon2Arr = a.map((item) => item.merkez_telefon_2);
+        const telefon1Arr = a.map((item) => item.sehir_tel_1);
+        const telefon2Arr = a.map((item) => item.sehir_tel_2);
         const coordArray = enlem.map((element, index) => [
           element,
           boylam[index],
@@ -146,7 +128,6 @@ function Maps() {
           },
         };
 
-
         setKonum(
           [
             {
@@ -159,7 +140,6 @@ function Maps() {
         return tasari;
       })
       .then((tasari) => {
-
         function calculateResult(a) {
           for (let i = 0; i < a.length; i++) {
             if (a[i] == tasari.properties.id) return a[i];
@@ -195,6 +175,78 @@ function Maps() {
                 coordinates: tasari.geometry.coordinates[1],
               },
             },
+            {
+              type: "Feature",
+              properties: {
+                sehir: myResult,
+                telefon1: tasari.properties.telefon1[2],
+                telefon2: tasari.properties.telefon2[2],
+              },
+              geometry: {
+                type: "Point",
+                coordinates: tasari.geometry.coordinates[2],
+              },
+            },
+            {
+              type: "Feature",
+              properties: {
+                sehir: myResult,
+                telefon1: tasari.properties.telefon1[3],
+                telefon2: tasari.properties.telefon2[3],
+              },
+              geometry: {
+                type: "Point",
+                coordinates: tasari.geometry.coordinates[3],
+              },
+            },
+            {
+              type: "Feature",
+              properties: {
+                sehir: myResult,
+                telefon1: tasari.properties.telefon1[4],
+                telefon2: tasari.properties.telefon2[4],
+              },
+              geometry: {
+                type: "Point",
+                coordinates: tasari.geometry.coordinates[4],
+              },
+            },
+            {
+              type: "Feature",
+              properties: {
+                sehir: myResult,
+                telefon1: tasari.properties.telefon1[5],
+                telefon2: tasari.properties.telefon2[5],
+              },
+              geometry: {
+                type: "Point",
+                coordinates: tasari.geometry.coordinates[5],
+              },
+            },
+            {
+              type: "Feature",
+              properties: {
+                sehir: myResult,
+                telefon1: tasari.properties.telefon1[6],
+                telefon2: tasari.properties.telefon2[6],
+              },
+              geometry: {
+                type: "Point",
+                coordinates: tasari.geometry.coordinates[6],
+              },
+            },
+            {
+              type: "Feature",
+              properties: {
+                sehir: myResult,
+                telefon1: tasari.properties.telefon1[7],
+                telefon2: tasari.properties.telefon2[7],
+              },
+              geometry: {
+                type: "Point",
+                coordinates: tasari.geometry.coordinates[7],
+              },
+            },
           ],
         };
       })
@@ -206,9 +258,7 @@ function Maps() {
   return (
     <>
       {/* <Header /> */}
-      <div id="map" className="rounded-xl  h-[60vh] md:h-[90vh] w-[100%]">
-       
-      </div>
+      <div id="map" className="rounded-xl  h-[60vh] md:h-[90vh] w-[100%]"></div>
     </>
   );
 }
