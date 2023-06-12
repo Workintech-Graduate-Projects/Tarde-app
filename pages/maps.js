@@ -1,11 +1,8 @@
-import Maps from '@/components/Map'
-import React from 'react'
+import Maps from "@/components/Map";
+import React from "react";
 
 function maps() {
-  return (
-    
-   <Maps/>
-  )
+  return <Maps />;
 }
 
-export default maps
+export default maps;
