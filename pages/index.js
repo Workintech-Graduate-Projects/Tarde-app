@@ -1,13 +1,7 @@
 import { Inter } from "next/font/google";
 import { useEffect, useState } from "react";
-<<<<<<< HEAD
-
-=======
->>>>>>> 77c8937ff255dbbb24b730583e58ceb757ae7d7a
-
 import ReactDOM from "react-dom";
 import { useRouter } from "next/router";
-
 import Footer from "@/components/Footer";
 import React from "react";
 import Maps from "@/components/Map";
@@ -15,11 +9,11 @@ import About from "@/components/About";
 import Contact from "@/components/Contact";
 import MobilFooter from "@/components/MobilFooter";
 import FormPage from "@/components/Form";
+import SahaFormPage from "@/components/SahaForm";
 
-/* import ListeGorunumu from "@/components/ListeGorunumu"; */
-
-import { etkinlikAPI } from "@/redux/actions";
-import { useDispatch } from "react-redux";
+/* 
+import MobilFooter from "@/pages/MobilFooter";
+import ListeGorunumu from "@/components/listegorunumu"; */
 
 import { etkinlikAPI } from "@/redux/actions";
 import { useDispatch } from "react-redux";
@@ -75,8 +69,8 @@ export default function Home() {
           </div>
         </div>
       </main>
-      <MobilFooter />
-      {/*   <ListeGorunumu /> */}
+      {/*       <MobilFooter /> */}
+      {/*       <listegorunumu /> */}
     </>
   );
 }
