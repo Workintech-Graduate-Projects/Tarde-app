@@ -1,6 +1,9 @@
 import { Inter } from "next/font/google";
 import { useEffect, useState } from "react";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 77c8937ff255dbbb24b730583e58ceb757ae7d7a
 
 import ReactDOM from "react-dom";
 import { useRouter } from "next/router";
