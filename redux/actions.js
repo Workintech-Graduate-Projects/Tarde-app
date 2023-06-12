@@ -6,6 +6,7 @@ export const ETKINLIK_GET = "ETKINLIK_GET";
 export const A_MERKEZ_GET = "A_MERKEZ_GET";
 export const TOGGLE = "TOGGLE";
 export const MERKEZ = "MERKEZ";
+export const ARAC = "ARAC";
 
 export const handleSehir = (item) => ({
   type: SEHIR,
@@ -69,6 +70,15 @@ export const getSehirAPI = () => async (dispatch) => {
     .get(`http://localhost:9000/api/table/admin/merkez`)
     .then((res) => {
       return dispatch({ type: MERKEZ, payload: res.data });
+    })
+
+    .catch((error) => console.log(error));
+};
+export const aracSayisiApi = (id) => async (dispatch) => {
+  await axios
+    .get(`http://localhost:9000/api/table/admin/aracsayisi/${id}`)
+    .then((res) => {
+      return dispatch({ type: ARAC, payload: res.data });
     })
 
     .catch((error) => console.log(error));

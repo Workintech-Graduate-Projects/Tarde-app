@@ -1,46 +1,68 @@
-import { SEHIR,A_MERKEZ_EDİT,A_MERKEZ_GET,TOGGLE,MERKEZ,A_PERSONEL,ETKINLIK_GET } from "./actions";
+import {
+  SEHIR,
+  A_MERKEZ_EDİT,
+  A_MERKEZ_GET,
+  TOGGLE,
+  MERKEZ,
+  A_PERSONEL,
+  ETKINLIK_GET,
+  ARAC,
+} from "./actions";
 const initialState = {
-    user: null,
-    info: [],
-    token: null,
-    toggle:true,
-    sehir:[],
-    merkez:[],
-    etkinlik:[],
-    Personel:null,
-    adminMerkez:null
-  };
-  
-  export function mainReducer(state = initialState, action) {
-   switch (action.type) {
+  user: null,
+  info: [],
+  token: null,
+  toggle: true,
+  sehir: [],
+  merkez: [],
+  etkinlik: [],
+  Personel: null,
+  adminMerkez: null,
+  arac: [],
+};
+
+export function mainReducer(state = initialState, action) {
+  switch (action.type) {
     case TOGGLE:
-        console.log(state.toggle)
-        return{
-            ...state, toggle:!state.toggle 
-        }
+      console.log(state.toggle);
+      return {
+        ...state,
+        toggle: !state.toggle,
+      };
     case SEHIR:
-        return{
-            ...state, sehir: action.payload
-        }
+      return {
+        ...state,
+        sehir: action.payload,
+      };
     case MERKEZ:
-        return{
-            ...state, merkez: action.payload
-        }
+      return {
+        ...state,
+        merkez: action.payload,
+      };
+    case ARAC:
+      return {
+        ...state,
+        arac: action.payload,
+      };
     case A_PERSONEL:
-        return{
-            ...state, Personel:action.payload
-        }
-   
+      return {
+        ...state,
+        Personel: action.payload,
+      };
+
     case A_MERKEZ_GET:
-        return{
-          ...state, adminMerkez: action.payload}
-        
+      return {
+        ...state,
+        adminMerkez: action.payload,
+      };
+
     case ETKINLIK_GET:
-        return{
-          ...state, etkinlik: action.payload}
-        
-   
+      return {
+        ...state,
+        etkinlik: action.payload,
+      };
+
     default:
-       return state;
-   }
+      return state;
   }
+}
