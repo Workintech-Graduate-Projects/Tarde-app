@@ -72,26 +72,21 @@ function Footer(props) {
           </div>
           <div className="flex hover:bg-[rgba(248,203,79,0.50)] py-2 px-6 rounded-xl">
             <img src="./img/button/Group.svg" />
-            <button
-              onClick={() => {
-                setSiteMap("contact");
-              }}
-              className="ml-[5px] font-[400] tracking-widest"
-            >
-              İletişim
-            </button>
+            <p className="ml-[5px] font-[400] tracking-widest"><a href="mailto:someone@example.com">İletişim</a></p>
+          
           </div>
         </div>
       </div>
       <div className={`w-[270px] mt-[10px]  ${isOpen ? "closed" : ""} `}>
         {" "}
         <p className="block md:hidden">
-          Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-          metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat
-          numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı
-          1500'lerden beri endüstri standardı sahte metinler olarak
-          kullanılmıştır. Beşyüz yıl boyunca varlığını sürdürmekle kalmamış,
-          aynı zamanda pek değişmeden.
+          Affan, Travma ve Afet Ruh Sağlığı Çalışmaları Derneği (TARDE)
+          bünyesinde Kahramanmaraş Pazarcık merkezli deprem sonrası Maraş,
+          Hatay, Antep, İskenderun, Osmaniye, Diyarbakır, Urfa, Adıyaman,
+          Malatya’daki merkezlerde depremden etkilenen bireylere yönelik
+          ücretsiz psikolojik destek hizmeti sunan, İstanbul Bilgi Üniversitesi
+          Travma ve Afet Ruh Sağlığı Çalışmaları Uygulamalı Ruh Sağlığı Programı
+          tarafından desteklenen psikososyal destek hizmeti projesidir.
         </p>
         <Image
           src="./img/Volunteer-Card.svg"
