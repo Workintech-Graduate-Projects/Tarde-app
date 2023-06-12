@@ -4,8 +4,10 @@ export const SEHIR = "SEHIR";
 export const A_PERSONEL = "A_PERSONEL";
 export const ETKINLIK_GET = "ETKINLIK_GET";
 export const A_MERKEZ_GET = "A_MERKEZ_GET";
-export const TOGGLE = "TOGGLE";
 export const MERKEZ = "MERKEZ";
+export const TOGGLE = "TOGGLE";
+export const GONULLU = "GONULLU";
+export const DANISAN = "DANISAN";
 
 export const handleSehir = (item) => ({
   type: SEHIR,
@@ -27,49 +29,53 @@ export const editMerkezAPI = (item) => (dispatch) => {
         dispatch(editMerkez(res.data.json));
         console.log("Düzeltildi", res.data.json);
       }
-    })
-    .catch((error) => console.log(error));
+    }).catch((error) => console.log(error));
 };
 export const getMerkezAPI = (id, table) => async (dispatch) => {
   await axios
     .get(`http://localhost:9000/api/table/admin/${table}/${id}`)
     .then((res) => {
       return dispatch({ type: A_MERKEZ_GET, payload: res.data });
-    })
-
-    .catch((error) => console.log(error));
+    }).catch((error) => console.log(error));
 };
 export const personelAPI = () => async (dispatch) => {
   await axios
     .get(`http://localhost:9000/api/table/admin/personel`)
     .then((res) => {
       return dispatch({ type: A_PERSONEL, payload: res.data });
-    })
-
-    .catch((error) => console.log(error));
+    }).catch((error) => console.log(error));
 };
 export const etkinlikAPI = () => async (dispatch) => {
   await axios
     .get(`http://localhost:9000/api/table/admin/hizmet`)
     .then((res) => {
       return dispatch({ type: ETKINLIK_GET, payload: res.data });
-    })
-
-    .catch((error) => console.log(error));
+    }).catch((error) => console.log(error));
 };
 export const getSehirAPI = () => async (dispatch) => {
   await axios
     .get(`http://localhost:9000/api/table/admin/sehir`)
     .then((res) => {
       return dispatch({ type: SEHIR, payload: res.data });
-    })
-
-    .catch((error) => console.log(error));
+    }).catch((error) => console.log(error));
   await axios
     .get(`http://localhost:9000/api/table/admin/merkez`)
     .then((res) => {
       return dispatch({ type: MERKEZ, payload: res.data });
-    })
-
-    .catch((error) => console.log(error));
+    }).catch((error) => console.log(error));
 };
+export const getGonullu = () => async (dispatch) => {
+  await axios
+    .get(`http://localhost:9000/api/table/admin/gonullu`)
+    .then((res) => {
+      return dispatch({ type: GONULLU, payload: res.data });
+    })
+  .catch((error) => console.log(error));}
+export const getDanisan = () => async (dispatch) => {
+  await axios
+    .get(`http://localhost:9000/api/table/admin/danisan`)
+    .then((res) => {
+      return dispatch({ type: DANISAN, payload: res.data });
+    })
+  .catch((error) => console.log(error));}
+  

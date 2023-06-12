@@ -91,9 +91,11 @@ function Footer(props) {
           </div>
           <div className="flex hover:bg-[rgba(248,203,79,0.50)] py-2 px-6 rounded-xl">
             <img src="./img/button/Group.svg" />
+
             <p className="ml-[5px] font-[400] tracking-widest">
               <a href="mailto:tarde.2018@gmail.com">İletişim</a>
             </p>
+
           </div>
         </div>
       </div>

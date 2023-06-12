@@ -1,22 +1,25 @@
+import axios from "axios";
 import React, { useState } from "react";
 
 const SahaFormPage = () => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    phoneNumber: "",
-    city: "",
-    relationship: "",
-    applicationReason: "",
+    gonullu_adi: "",
+    gonullu_soyadi: "",
+    gonullu_numara: "",
+    gonullu_sehir: "",
+    gonullu_baslagıc: "",
+    gonullu_bitis: "",
+    gonullu_motivasyon: "",
     supportPerson: "",
     kvkkConfirmation: false,
   });
   const [formErrors, setFormErrors] = useState({
-    firstName: false,
-    lastName: false,
-    phoneNumber: false,
-    city: false,
-    applicationReason: false,
+    gonullu_adi: false,
+    gonullu_soyadi: false,
+    gonullu_numara: false,
+    gonullu_sehir: false,
+    gonullu_motivasyon: false,
+    kvkkConfirmation: false,
   });
 
   const handleChange = (e) => {
@@ -26,42 +29,56 @@ const SahaFormPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => {
     e.preventDefault();
 
     const errors = {};
     let hasErrors = false;
 
-    if (formData.firstName.trim() === "") {
-      errors.firstName = true;
+    if (formData.gonullu_adi.trim() === "") {
+      errors.gonullu_adi = true;
       hasErrors = true;
     }
 
-    if (formData.lastName.trim() === "") {
-      errors.lastName = true;
+    if (formData.gonullu_soyadi.trim() === "") {
+      errors.gonullu_soyadi = true;
       hasErrors = true;
     }
 
-    if (formData.phoneNumber.trim() === "") {
-      errors.phoneNumber = true;
+    if (formData.gonullu_numara.trim() === "") {
+      errors.gonullu_numara = true;
       hasErrors = true;
     }
 
-    if (formData.city.trim() === "") {
-      errors.city = true;
+    if (formData.gonullu_sehir.trim() === "") {
+      errors.gonullu_sehir = true;
       hasErrors = true;
     }
 
-    if (formData.applicationReason.trim() === "") {
-      errors.applicationReason = true;
+    if (formData.gonullu_motivasyon.trim() === "") {
+      errors.gonullu_motivasyon = true;
       hasErrors = true;
     }
-
+    if (
+      formData.kvkkConfirmation == false
+    ) {
+      errors.kvkkConfirmation = true;
+      hasErrors = true;
+    }
+    console.log(errors.kvkkConfirmation);
     if (hasErrors) {
       setFormErrors(errors);
       return;
     }
-    console.log(formData);
+    const {kvkkConfirmation,supportPerson,...nFormData}=formData;
+console.log(nFormData)
+   await axios
+   .post(`http://localhost:9000/api/table/admin/gonullu/`,nFormData)
+   .then((res) => {
+     return console.log(res.data);
+   })
+   .catch((error) => console.log(error));
+
   };
   return (
     <div className="flex justify-self-center ">
@@ -76,12 +93,12 @@ const SahaFormPage = () => {
 
         <div className="flex flex-col justify-center items-center">
           <form onSubmit={handleSubmit} className="flex flex-col ">
-            <label htmlFor="firstName">Adınız*</label>
+            <label htmlFor="gonullu_adi">Adınız*</label>
             <input
               type="text"
-              id="firstName"
-              name="firstName"
-              value={formData.firstName}
+              id="gonullu_adi"
+              name="gonullu_adi"
+              value={formData.gonullu_adi}
               onChange={handleChange}
               style={{
                 border: "1px solid black",
@@ -93,9 +110,9 @@ const SahaFormPage = () => {
                 width: "300px",
                 marginBottom: "10px",
               }}
-              className={formErrors.firstName ? "error" : ""}
+              className={formErrors.gonullu_adi ? "error" : ""}
             />
-            {formErrors.firstName && (
+            {formErrors.gonullu_adi && (
               <span
                 style={{
                   fontSize: "12px",
@@ -107,44 +124,12 @@ const SahaFormPage = () => {
               </span>
             )}
 
-            <label htmlFor="lastName">Soyadınız*</label>
+            <label htmlFor="gonullu_soyadi">Soyadınız*</label>
             <input
               type="text"
-              id="lastName"
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleChange}
-              style={{
-                border: "1px solid black",
-                border: "1px solid black",
-                color: "#333",
-                fontFamily: "mono",
-                fontSize: "14px",
-                padding: "10px",
-                borderRadius: "7px",
-                marginBottom: "10px",
-                width: "300px",
-              }}
-              className={formErrors.lastName ? "error" : ""}
-            />
-            {formErrors.lastName && (
-              <span
-                style={{
-                  fontSize: "12px",
-                  color: "red",
-                }}
-                className="error-message"
-              >
-                Bu alan boş bırakılamaz
-              </span>
-            )}
-
-            <label htmlFor="phoneNumber">İletişim Numaranız*</label>
-            <input
-              type="text"
-              id="phoneNumber"
-              name="phoneNumber"
-              value={formData.phoneNumber}
+              id="gonullu_soyadi"
+              name="gonullu_soyadi"
+              value={formData.gonullu_soyadi}
               onChange={handleChange}
               style={{
                 border: "1px solid black",
@@ -157,9 +142,9 @@ const SahaFormPage = () => {
                 marginBottom: "10px",
                 width: "300px",
               }}
-              className={formErrors.phoneNumber ? "error" : ""}
+              className={formErrors.gonullu_soyadi ? "error" : ""}
             />
-            {formErrors.phoneNumber && (
+            {formErrors.gonullu_soyadi && (
               <span
                 style={{
                   fontSize: "12px",
@@ -171,12 +156,44 @@ const SahaFormPage = () => {
               </span>
             )}
 
-            <label htmlFor="city">Çalışmak İstediğiniz İl*</label>
+            <label htmlFor="gonullu_numara">İletişim Numaranız*</label>
             <input
               type="text"
-              id="city"
-              name="city"
-              value={formData.city}
+              id="gonullu_numara"
+              name="gonullu_numara"
+              value={formData.gonullu_numara}
+              onChange={handleChange}
+              style={{
+                border: "1px solid black",
+                border: "1px solid black",
+                color: "#333",
+                fontFamily: "mono",
+                fontSize: "14px",
+                padding: "10px",
+                borderRadius: "7px",
+                marginBottom: "10px",
+                width: "300px",
+              }}
+              className={formErrors.gonullu_numara ? "error" : ""}
+            />
+            {formErrors.gonullu_numara && (
+              <span
+                style={{
+                  fontSize: "12px",
+                  color: "red",
+                }}
+                className="error-message"
+              >
+                Bu alan boş bırakılamaz
+              </span>
+            )}
+
+            <label htmlFor="gonullu_sehir">Çalışmak İstediğiniz İl*</label>
+            <input
+              type="text"
+              id="gonullu_sehir"
+              name="gonullu_sehir"
+              value={formData.gonullu_sehir}
               onChange={handleChange}
               style={{
                 border: "1px solid black",
@@ -189,9 +206,9 @@ const SahaFormPage = () => {
                 marginBottom: "10px",
                 width: "300px ",
               }}
-              className={formErrors.city ? "error" : ""}
+              className={formErrors.gonullu_sehir ? "error" : ""}
             />
-            {formErrors.city && (
+            {formErrors.gonullu_sehir && (
               <span
                 style={{
                   fontSize: "12px",
@@ -203,14 +220,14 @@ const SahaFormPage = () => {
               </span>
             )}
 
-            <label htmlFor="relationship">
+            <label htmlFor="gonullu_baslagıc">
               Çalışmak İstediğiniz tarih başlangıcı*{" "}
             </label>
             <input
               type="text"
-              id="relationship"
-              name="relationship"
-              value={formData.relationship}
+              id="gonullu_baslagıc"
+              name="gonullu_baslagıc"
+              value={formData.gonullu_baslagıc}
               onChange={handleChange}
               style={{
                 border: "1px solid black",
@@ -223,14 +240,14 @@ const SahaFormPage = () => {
                 width: "300px",
               }}
             />
-            <label htmlFor="relationship">
+            <label htmlFor="gonullu_bitis">
               Çalışmak istediğiniz tarih bitişi*{" "}
             </label>
             <input
               type="text"
-              id="relationship"
-              name="relationship"
-              value={formData.relationship}
+              id="gonullu_bitis"
+              name="gonullu_bitis"
+              value={formData.gonullu_bitis}
               onChange={handleChange}
               style={{
                 border: "1px solid black",
@@ -244,14 +261,14 @@ const SahaFormPage = () => {
               }}
             />
 
-            <label htmlFor="applicationReason">
+            <label htmlFor="gonullu_motivasyon">
               Kısaca sahada gönüllü çalışma motivasyonunuz*
             </label>
             <input
               type="text"
-              id="applicationReason"
-              name="applicationReason"
-              value={formData.applicationReason}
+              id="gonullu_motivasyon"
+              name="gonullu_motivasyon"
+              value={formData.gonullu_motivasyon}
               onChange={handleChange}
               style={{
                 border: "1px solid black",
@@ -263,9 +280,9 @@ const SahaFormPage = () => {
                 marginBottom: "10px",
                 width: "300px",
               }}
-              className={formErrors.applicationReason ? "error" : ""}
+              className={formErrors.gonullu_motivasyon ? "error" : ""}
             />
-            {formErrors.applicationReason && (
+            {formErrors.gonullu_motivasyon && (
               <span
                 style={{
                   fontSize: "12px",
@@ -280,22 +297,35 @@ const SahaFormPage = () => {
             <div className="flex">
               <p>KVKK Metnini Okudum Onaylıyorum:</p>
 
-              <label>
+              <label className="ml-2 mt-2">
                 <input
-                  type="radio"
-                  name="option"
-                  value="Onaylıyorum"
-                  checked={formData.option === "Onaylıyorum"}
+                  type="checkbox"
+                  name="kvkkConfirmation"
                   onChange={handleChange}
+                  value={!formData.kvkkConfirmation}
                   style={{
+                    display: "flex",
+                    alignItems: "center",
                     marginBottom: "3px",
                     height: "16px",
                     width: "22px",
                     marginBottom: "10px",
                   }}
+                  className={formErrors.kvkkConfirmation ? "error" : ""}
                 />
               </label>
             </div>
+            {formErrors.kvkkConfirmation && (
+              <span
+                style={{
+                  fontSize: "12px",
+                  color: "red",
+                }}
+                className="error-message"
+              >
+                Kvkk Metinin Kabul Ediniz
+              </span>
+            )}
 
             <button
               type="submit"

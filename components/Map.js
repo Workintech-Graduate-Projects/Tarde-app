@@ -3,27 +3,27 @@ import mapboxgl from "mapbox-gl";
 import { useEffect, useState } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useRouter } from "next/router";
-import { dummyData } from "./dummy-data";
-import Header from "./Header";
+
 import axios from "axios";
-import maps from "@/pages/maps";
-import { RedirectType } from "next/dist/client/components/redirect";
 import EtkinlikCard from "./Etkinlik-card";
 
-dummyData;
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZXNraXNhcmtpc2kiLCJhIjoiY2xocmhxNjdrMHF5ZzNlbnZ2dDNobzhvbiJ9.SuA_p6UCk5NACNs1kz31eQ";
 
 function Maps() {
+  const [isOpen, setIsOpen] = useState([]);
   const router = useRouter();
   const [toggle, setToggle] = useState(false);
   const [data, setData] = useState([]);
   const [markerData, setMarkerData] = useState([]);
   //const [hede, setHede] = useState();
+  const [isVisible, setIsVisible] = useState(false);
+
   const [konum, setKonum] = useState([
     {
       type: "Feature",
       properties: {
+        no: 1,
         sehir: "Gaziantep",
         telefon1: "02337768478",
         telefon2: "03748204828",
@@ -64,6 +64,10 @@ function Maps() {
         el.style.width = `${size}px`;
         el.style.height = `${size}px`;
 
+        function handleClick() {
+          console.log("tıklandı");
+        }
+
         const popup = new mapboxgl.Popup({ offset: 25 });
         popup.setHTML(
           `
@@ -72,7 +76,9 @@ function Maps() {
               <a href:tel:${marker.properties.telefon1} id="mapTel">${marker.properties.telefon1}</a></br>
               <a href:"tel:${marker.properties.telefon2}" id="mapTel">${marker.properties.telefon2}</a></br>
               <h7 id="mapNote">7 GÜN 24 SAAT</h7></br>
-              <a href="http://localhost:3000/table" id="mapButton">Detaylar</a></div>`
+              <a href="http://localhost:3000/card" id="mapButton">Detaylar</a>
+
+              `
         ),
           new mapboxgl.Marker({
             element: el,
@@ -85,6 +91,7 @@ function Maps() {
             .addTo(map);
       }
     }
+
     /*    const bounds = [
       [36.05, 40.82],
       [43.22, 36.1],
@@ -140,13 +147,6 @@ function Maps() {
         return tasari;
       })
       .then((tasari) => {
-        function calculateResult(a) {
-          for (let i = 0; i < a.length; i++) {
-            if (a[i] == tasari.properties.id) return a[i];
-          }
-        }
-        const myResult = calculateResult(tasari.properties.sehir);
-
         return {
           type: "FeatureCollection",
           features: [
@@ -154,7 +154,7 @@ function Maps() {
               type: "Feature",
               properties: {
                 no: tasari.properties.no[0],
-                sehir: myResult,
+                sehir: tasari.properties.sehir[0],
                 telefon1: tasari.properties.telefon1[0],
                 telefon2: tasari.properties.telefon2[0],
               },
@@ -166,7 +166,8 @@ function Maps() {
             {
               type: "Feature",
               properties: {
-                sehir: myResult,
+                no: tasari.properties.no[1],
+                sehir: tasari.properties.sehir[1],
                 telefon1: tasari.properties.telefon1[1],
                 telefon2: tasari.properties.telefon2[1],
               },
@@ -178,7 +179,8 @@ function Maps() {
             {
               type: "Feature",
               properties: {
-                sehir: myResult,
+                no: tasari.properties.no[2],
+                sehir: tasari.properties.sehir[2],
                 telefon1: tasari.properties.telefon1[2],
                 telefon2: tasari.properties.telefon2[2],
               },
@@ -190,7 +192,8 @@ function Maps() {
             {
               type: "Feature",
               properties: {
-                sehir: myResult,
+                no: tasari.properties.no[3],
+                sehir: tasari.properties.sehir[3],
                 telefon1: tasari.properties.telefon1[3],
                 telefon2: tasari.properties.telefon2[3],
               },
@@ -202,7 +205,8 @@ function Maps() {
             {
               type: "Feature",
               properties: {
-                sehir: myResult,
+                no: tasari.properties.no[4],
+                sehir: tasari.properties.sehir[4],
                 telefon1: tasari.properties.telefon1[4],
                 telefon2: tasari.properties.telefon2[4],
               },
@@ -214,7 +218,8 @@ function Maps() {
             {
               type: "Feature",
               properties: {
-                sehir: myResult,
+                no: tasari.properties.no[5],
+                sehir: tasari.properties.sehir[5],
                 telefon1: tasari.properties.telefon1[5],
                 telefon2: tasari.properties.telefon2[5],
               },
@@ -226,7 +231,8 @@ function Maps() {
             {
               type: "Feature",
               properties: {
-                sehir: myResult,
+                no: tasari.properties.no[6],
+                sehir: tasari.properties.sehir[6],
                 telefon1: tasari.properties.telefon1[6],
                 telefon2: tasari.properties.telefon2[6],
               },
@@ -238,7 +244,8 @@ function Maps() {
             {
               type: "Feature",
               properties: {
-                sehir: myResult,
+                no: tasari.properties.no[7],
+                sehir: tasari.properties.sehir[7],
                 telefon1: tasari.properties.telefon1[7],
                 telefon2: tasari.properties.telefon2[7],
               },
@@ -252,12 +259,12 @@ function Maps() {
       })
       .then((geojson) => {
         setMarkerData(geojson);
-      });
+      })
+      .then((tasari) => {});
   }, []);
 
   return (
     <>
-      {/* <Header /> */}
       <div id="map" className="rounded-xl  h-[60vh] md:h-[90vh] w-[100%]"></div>
     </>
   );

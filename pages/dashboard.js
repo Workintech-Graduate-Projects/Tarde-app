@@ -3,11 +3,15 @@ import { useRouter } from "next/router";
 import Tables_Merkez from "@/components/Tables_Merkez";
 import { useDispatch, useSelector } from "react-redux";
 import { getSehirAPI } from "@/redux/actions";
+import Gonulluler from "@/components/Gonulluler";
+import EtkinlikCard from "@/components/Etkinlik-card";
+import Danisan from "@/components/Danisan";
 
 function dashboard() {
   const [isValid, setIsValid] = useState(false);
   const [selectedSehir, setSelectedSehir] = useState("1");
   const [selectedtab, setSelectedtab] = useState("merkez");
+  const [siteMap, setSiteMap] = useState("about");
   const sehir = useSelector((state) => state.sehir);
   const apiMerkez = useSelector((state) => state.merkez);
   const dispatch = useDispatch();
@@ -76,25 +80,27 @@ function dashboard() {
                   </button>
                 </div>
                 <div className="flex hover:bg-[rgba(248,203,79,0.50)] py-2 md:px-6 rounded-xl">
-                  <img src="./img/button/Group.svg" />
+                  <img src="./img/button/Group-36.svg" />
                   <button
                     onClick={() => {
-                      setSiteMap("contact");
+                      setSiteMap("danisanlar");
                     }}
                     className="xl:ml-[5px] font-[400] tracking-widest"
                   >
-                    İletişim
+                    Danışanlar
                   </button>
                 </div>
               </div>
             </header>
             <main className="flex justify-center items-center flex-col  ">
+              { siteMap =="about" ? 
+              <>
               <div className="flex justify-around bg-[#000C5C] xl:text-[16px] text-[12px] mt-2 xl:mt-8 w-[70%] md:w-[95%]">
                 <select
                   className="bg-[#000C5C] text-white text-center "
                   
                   onClick={(event) => {
-                    onTable(event.target.value); onCity(1);
+                    onTable(event.target.value);
                   }}
                   name="table"
                 >
@@ -134,7 +140,7 @@ function dashboard() {
                       </option>
                     ))}
                   </select>
-                ) : (
+                ) :  (
                   <select
                   value={selectedSehir}
                     className="w-[170px] bg-[#000C5C] text-white"
@@ -152,11 +158,26 @@ function dashboard() {
                   </select>
                 )}
               </div>
-              <Tables_Merkez
+               
+                <Tables_Merkez
                 apiMerkez={apiMerkez}
                 selectedId={selectedSehir}
                 selectedTable={selectedtab}
-              />
+              /> 
+              </>
+                
+  
+              : siteMap =="danisanlar" ? (
+                <>
+                  <Danisan/>
+                </>
+                
+
+                ): 
+              <>
+              <Gonulluler/>
+              </>
+              }
             </main>
           </div>
         </div>

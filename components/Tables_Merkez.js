@@ -45,6 +45,7 @@ export const CreateNewAccountModal = ({
     onSubmit(values);
     onClose();
   };
+
   return (
     <Dialog open={open}>
       {selectedTable == "merkez" ? (
@@ -218,8 +219,19 @@ export const CreateNewAccountModal = ({
                     setValues({ ...values, [e.target.name]: e.target.value })
                   }
                 />
+                <label htmlFor="etkinlik">Etkinlik Tarihi</label>
+                <input
+                  className="border border-solid"
+                  type="date"
+                  id="etkinlik"
+                  name="etkinlik"
+                  defaultValue="2023-07-22"
+                  min="2023-01-01"
+                />
+
                 <label htmlFor="personel_id">Personel Adı</label>
                 <select
+                  className="border border-solid"
                   name="personel_id"
                   key="personel_id"
                   onChange={(e) =>
@@ -234,7 +246,7 @@ export const CreateNewAccountModal = ({
                 </select>
                 <label htmlFor="quantity">Danışan Sayısı:</label>
                 <input
-                className="border border-solid"
+                  className="border border-solid"
                   type="number"
                   onChange={(e) =>
                     setValues({ ...values, [e.target.name]: e.target.value })
@@ -411,13 +423,13 @@ function Tables_Merkez(props) {
     setColumns(newColumns);
 
     // console.log(newColumns);
-  }, [selectedId, selectedTable]);
+  }, [selectedTable, selectedId, veriler]);
 
   const handleSaveRowEdits = async ({ exitEditingMode, row, values }) => {
     const { merkez_id, personel_id, sehir_id, arac_sayisi_id, ...nValues } =
       values;
-      const {merkez_adi,...mValues}= nValues
-      console.log(values);
+    const { merkez_adi, ...mValues } = nValues;
+    console.log(values);
     selectedTable == "isbirligi"
       ? await axios
           .put(
@@ -436,17 +448,13 @@ function Tables_Merkez(props) {
           })
           .catch((error) => console.log(error))
       : selectedTable == "hizmet"
-      ? 
-       await axios
-          .put(
-            `http://localhost:9000/api/table/admin/hizmet/`,
-            mValues
-          )
+      ? await axios
+          .put(`http://localhost:9000/api/table/admin/hizmet/`, mValues)
           .then((res) => {
             return console.log(res.data);
           })
-          .catch((error) => console.log(error)) :
-          await axios
+          .catch((error) => console.log(error))
+      : await axios
           .put(
             `http://localhost:9000/api/table/admin/${selectedTable}/${row.original.merkez_id}`,
             nValues
@@ -495,8 +503,7 @@ function Tables_Merkez(props) {
         .catch((error) => console.log(error));
 
       dispatch(getMerkezAPI(selectedId, selectedTable));
-    }
-    else if (selectedTable === "hizmet") {
+    } else if (selectedTable === "hizmet") {
       await axios
         .delete(
           `http://localhost:9000/api/table/admin/hizmet/${row.original.hizmet_id}`
@@ -507,8 +514,7 @@ function Tables_Merkez(props) {
         .catch((error) => console.log(error));
 
       dispatch(getMerkezAPI(selectedId, selectedTable));
-    }
-     else if (selectedTable === "aracsayisi") {
+    } else if (selectedTable === "aracsayisi") {
       await axios
         .delete(
           `http://localhost:9000/api/table/admin/aracsayisi/${row.original.arac_sayisi_id}`
@@ -551,8 +557,8 @@ function Tables_Merkez(props) {
           enableBottomToolbar={true}
           enableColumnResizing
           enableColumnVirtualization
+          enableEditing={selectedTable != "gonullu"}
           enableGlobalFilterModes
-          enableEditing={true}
           editingMode="modal" //default
           muiTableHeadCellColumnActionsButtonProps={{
             sx: {
