@@ -1,4 +1,4 @@
-import { SEHIR,A_MERKEZ_EDİT,A_MERKEZ_GET,TOGGLE,MERKEZ,A_PERSONEL,ETKINLIK_GET } from "./actions";
+import { SEHIR,A_MERKEZ_EDİT,A_MERKEZ_GET,TOGGLE,MERKEZ,A_PERSONEL,ETKINLIK_GET,GONULLU,DANISAN } from "./actions";
 const initialState = {
     user: null,
     info: [],
@@ -8,7 +8,9 @@ const initialState = {
     merkez:[],
     etkinlik:[],
     Personel:null,
-    adminMerkez:null
+    adminMerkez:null,
+    gonullu:[],
+    danisan:[]
   };
   
   export function mainReducer(state = initialState, action) {
@@ -34,6 +36,13 @@ const initialState = {
     case A_MERKEZ_GET:
         return{
           ...state, adminMerkez: action.payload}
+    case GONULLU:
+        return{
+          ...state, gonullu: action.payload}
+        
+    case DANISAN:
+        return{
+          ...state, danisan: action.payload}
         
     case ETKINLIK_GET:
         return{
