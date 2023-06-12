@@ -6,7 +6,6 @@ import {
   MERKEZ,
   A_PERSONEL,
   ETKINLIK_GET,
-  ARAC,
 } from "./actions";
 const initialState = {
   user: null,
@@ -18,7 +17,6 @@ const initialState = {
   etkinlik: [],
   Personel: null,
   adminMerkez: null,
-  arac: [],
 };
 
 export function mainReducer(state = initialState, action) {
@@ -38,11 +36,6 @@ export function mainReducer(state = initialState, action) {
       return {
         ...state,
         merkez: action.payload,
-      };
-    case ARAC:
-      return {
-        ...state,
-        arac: action.payload,
       };
     case A_PERSONEL:
       return {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getSehirAPI, MERKEZ, ARAC, aracSayisiApi } from "@/redux/actions";
+import { getSehirAPI } from "@/redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 
@@ -28,7 +28,6 @@ const Card = ({ id }) => {
   }, [id]);
   const sehir = useSelector((state) => state.sehir);
   const merkez = useSelector((state) => state.merkez);
-  const arac = useSelector((state) => state.arac);
   const dispatch = useDispatch();
   const [card, setcard] = useState({
     sehir_id: 1,
@@ -52,13 +51,13 @@ const Card = ({ id }) => {
 
   useEffect(() => {
     dispatch(getSehirAPI());
-    dispatch(aracSayisiApi());
+
     const sehirler = sehir.map((item) => item.sehir_adi);
     const id = sehir.map((item) => item.sehir_id);
     // const merkezler = merkez.map((item) => item.merkez_adi);
-    const gezici = arac.map((item) => item.gezicikaravan_sayisi);
+    /*     const gezici = arac.map((item) => item.gezicikaravan_sayisi);
     const binek = arac.map((item) => item.binekarac_sayisi);
-    console.log(gezici, binek, "binek dispatch");
+    console.log(gezici, binek, "binek dispatch"); */
     const merkezler = merkez.map((merkez_adi, sehir_id) => (
       <li key={sehir_id}>{merkez_adi}</li>
     ));
