@@ -1,22 +1,27 @@
+import axios from "axios";
 import React, { useState } from "react";
 
 const FormPage = () => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    phoneNumber: "",
-    city: "",
-    relationship: "",
-    applicationReason: "",
+    danisan_adi: "",
+    danisan_soyadi: "",
+    danisan_numara: "",
+    danisan_sehir: "",
+    danisan_yakinlik: "Ben",
     supportPerson: "",
-    kvkkConfirmation: false,
+    danisan_basvuru_nedeni:"",
+
   });
+  const [akraba,setAkraba]=useState("Ben")
+  const [kvkk,setKvkk]=useState(false)
   const [formErrors, setFormErrors] = useState({
-    firstName: false,
-    lastName: false,
-    phoneNumber: false,
-    city: false,
-    applicationReason: false,
+    danisan_adi: false,
+    danisan_soyadi: false,
+    danisan_numara: false,
+    danisan_sehir: false,
+    danisan_yakinlik: false,
+    danisan_basvuru_nedeni: false,
+    kvkk:false
   });
 
   const handleChange = (e) => {
@@ -26,34 +31,35 @@ const FormPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const errors = {};
     let hasErrors = false;
 
-    if (formData.firstName.trim() === "") {
-      errors.firstName = true;
+    if (formData.danisan_adi.trim() === "") {
+      errors.danisan_adi = true;
       hasErrors = true;
     }
 
-    if (formData.lastName.trim() === "") {
-      errors.lastName = true;
+    if (formData.danisan_soyadi.trim() === "") {
+      errors.danisan_soyadi = true;
       hasErrors = true;
     }
 
-    if (formData.phoneNumber.trim() === "") {
-      errors.phoneNumber = true;
+    if (formData.danisan_numara.trim() === "") {
+      errors.danisan_numara = true;
       hasErrors = true;
     }
 
-    if (formData.city.trim() === "") {
-      errors.city = true;
+    if (formData.danisan_sehir.trim() === "") {
+      errors.danisan_sehir = true;
       hasErrors = true;
     }
 
-    if (formData.applicationReason.trim() === "") {
-      errors.applicationReason = true;
+    if (formData.danisan_basvuru_nedeni.trim() === "") {
+      errors.danisan_basvuru_nedeni = true;
       hasErrors = true;
     }
 
@@ -61,7 +67,20 @@ const FormPage = () => {
       setFormErrors(errors);
       return;
     }
-    console.log(formData);
+   
+    const {supportPerson,...nFormData}=formData;
+   
+    if(kvkk==true){
+      await axios
+      .post(`http://localhost:9000/api/table/admin/danisan/`,nFormData)
+      .then((res) => {
+        return console.log(res.data);
+      })
+      .catch((error) => console.log(error));
+    }
+    else
+    {errors.kvkk = true; hasErrors = true;
+    }
   };
 
   return (
@@ -77,12 +96,12 @@ const FormPage = () => {
 
         <div className="flex flex-col justify-center items-center">
           <form onSubmit={handleSubmit} className="flex flex-col ">
-            <label htmlFor="firstName">Adınız*</label>
+            <label htmlFor="danisan_adi">Adınız*</label>
             <input
               type="text"
-              id="firstName"
-              name="firstName"
-              value={formData.firstName}
+              id="danisan_adi"
+              name="danisan_adi"
+              value={formData.danisan_adi}
               onChange={handleChange}
               style={{
                 border: "1px solid black",
@@ -94,9 +113,9 @@ const FormPage = () => {
                 width: "300px",
                 marginBottom: "10px",
               }}
-              className={formErrors.firstName ? "error" : ""}
+              className={formErrors.danisan_adi ? "error" : ""}
             />
-            {formErrors.firstName && (
+            {formErrors.danisan_adi && (
               <span
                 style={{
                   fontSize: "12px",
@@ -108,12 +127,12 @@ const FormPage = () => {
               </span>
             )}
 
-            <label htmlFor="lastName">Soyadınız*</label>
+            <label htmlFor="danisan_soyadi">Soyadınız*</label>
             <input
               type="text"
-              id="lastName"
-              name="lastName"
-              value={formData.lastName}
+              id="danisan_soyadi"
+              name="danisan_soyadi"
+              value={formData.danisan_soyadi}
               onChange={handleChange}
               style={{
                 border: "1px solid black",
@@ -125,9 +144,9 @@ const FormPage = () => {
                 borderRadius: "7px",
                 marginBottom: "10px",
               }}
-              className={formErrors.lastName ? "error" : ""}
+              className={formErrors.danisan_soyadi ? "error" : ""}
             />
-            {formErrors.lastName && (
+            {formErrors.danisan_soyadi && (
               <span
                 style={{
                   fontSize: "12px",
@@ -139,12 +158,12 @@ const FormPage = () => {
               </span>
             )}
 
-            <label htmlFor="phoneNumber">İletişim Numaranız*</label>
+            <label htmlFor="danisan_numara">İletişim Numaranız*</label>
             <input
               type="text"
-              id="phoneNumber"
-              name="phoneNumber"
-              value={formData.phoneNumber}
+              id="danisan_numara"
+              name="danisan_numara"
+              value={formData.danisan_numara}
               onChange={handleChange}
               style={{
                 border: "1px solid black",
@@ -156,9 +175,9 @@ const FormPage = () => {
                 borderRadius: "7px",
                 marginBottom: "10px",
               }}
-              className={formErrors.phoneNumber ? "error" : ""}
+              className={formErrors.danisan_numara ? "error" : ""}
             />
-            {formErrors.phoneNumber && (
+            {formErrors.danisan_numara && (
               <span
                 style={{
                   fontSize: "12px",
@@ -170,12 +189,12 @@ const FormPage = () => {
               </span>
             )}
 
-            <label htmlFor="city">Yaşadığınız İl*</label>
+            <label htmlFor="danisan_sehir">Yaşadığınız İl*</label>
             <input
               type="text"
-              id="city"
-              name="city"
-              value={formData.city}
+              id="danisan_sehir"
+              name="danisan_sehir"
+              value={formData.danisan_sehir}
               onChange={handleChange}
               style={{
                 border: "1px solid black",
@@ -187,9 +206,9 @@ const FormPage = () => {
                 borderRadius: "7px",
                 marginBottom: "10px",
               }}
-              className={formErrors.city ? "error" : ""}
+              className={formErrors.danisan_sehir ? "error" : ""}
             />
-            {formErrors.city && (
+            {formErrors.danisan_sehir && (
               <span
                 style={{
                   fontSize: "12px",
@@ -207,8 +226,11 @@ const FormPage = () => {
                   type="radio"
                   name="supportPerson"
                   value="Ben"
-                  checked={formData.supportPerson === "Ben"}
-                  onChange={handleChange}
+                  checked={akraba === "Ben"}
+                  onChange={()=>{setAkraba("Ben");setFormData({
+                    ...formData,
+                    danisan_yakinlik:"Ben",
+                  })}}
                   style={{
                     marginBottom: "3px",
                     height: "16px",
@@ -218,14 +240,14 @@ const FormPage = () => {
                 />
                 Ben
               </label>
-
+    
               <label>
                 <input
                   type="radio"
                   name="supportPerson"
                   value="Yakınım"
-                  checked={formData.supportPerson === "Yakınım"}
-                  onChange={handleChange}
+                  checked={akraba === "Yakınım"}
+           onChange={()=>setAkraba("Yakınım")}
                   style={{
                     marginBottom: "3px",
                     height: "16px",
@@ -236,12 +258,15 @@ const FormPage = () => {
                 Yakınım
               </label>
             </div>
-            <label htmlFor="relationship">Yakınlık Dereceniz</label>
+            {akraba == "Yakınım" && (
+
+    <>
+            <label htmlFor="danisan_yakinlik">Yakınlık Dereceniz</label>
             <input
               type="text"
-              id="relationship"
-              name="relationship"
-              value={formData.relationship}
+              id="danisan_yakinlik"
+              name="danisan_yakinlik"
+              value={formData.danisan_yakinlik}
               onChange={handleChange}
               style={{
                 border: "1px solid black",
@@ -252,14 +277,17 @@ const FormPage = () => {
                 borderRadius: "7px",
                 marginBottom: "10px",
               }}
-            />
+              /> 
+              </>)
+            }
+            
 
-            <label htmlFor="applicationReason">Başvuru Nedeniniz*</label>
+            <label htmlFor="danisan_basvuru_nedeni">Başvuru Nedeniniz*</label>
             <input
               type="text"
-              id="applicationReason"
-              name="applicationReason"
-              value={formData.applicationReason}
+              id="danisan_basvuru_nedeni"
+              name="danisan_basvuru_nedeni"
+              value={formData.danisan_basvuru_nedeni}
               onChange={handleChange}
               style={{
                 border: "1px solid black",
@@ -270,9 +298,9 @@ const FormPage = () => {
                 borderRadius: "7px",
                 marginBottom: "10px",
               }}
-              className={formErrors.applicationReason ? "error" : ""}
+              className={formErrors.danisan_basvuru_nedeni ? "error" : ""}
             />
-            {formErrors.applicationReason && (
+            {formErrors.danisan_basvuru_nedeni && (
               <span
                 style={{
                   fontSize: "12px",
@@ -289,11 +317,11 @@ const FormPage = () => {
 
               <label>
                 <input
-                  type="radio"
-                  name="option"
-                  value="Onaylıyorum"
-                  checked={formData.option === "Onaylıyorum"}
-                  onChange={handleChange}
+                  type="checkbox"
+                  name="kvkk"
+                
+                  checked={kvkk}
+                  onChange={()=>setKvkk(!kvkk )}
                   style={{
                     marginBottom: "3px",
                     height: "16px",
@@ -301,6 +329,17 @@ const FormPage = () => {
                     marginBottom: "10px",
                   }}
                 />
+              {  formErrors.kvkk && (
+              <span
+                style={{
+                  fontSize: "12px",
+                  color: "red",
+                }}
+                className="error-message"
+              >
+                Bu alan boş bırakılamaz
+              </span>
+            )}
               </label>
             </div>
 
