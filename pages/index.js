@@ -1,13 +1,5 @@
 import { Inter } from "next/font/google";
 import { useEffect, useState } from "react";
-<<<<<<< HEAD
-
-=======
->>>>>>> 77c8937ff255dbbb24b730583e58ceb757ae7d7a
-
-import ReactDOM from "react-dom";
-import { useRouter } from "next/router";
-
 import Footer from "@/components/Footer";
 import React from "react";
 import Maps from "@/components/Map";
@@ -17,10 +9,6 @@ import MobilFooter from "@/components/MobilFooter";
 import FormPage from "@/components/Form";
 
 /* import ListeGorunumu from "@/components/ListeGorunumu"; */
-
-import { etkinlikAPI } from "@/redux/actions";
-import { useDispatch } from "react-redux";
-
 import { etkinlikAPI } from "@/redux/actions";
 import { useDispatch } from "react-redux";
 import SahaFormPage from "@/components/SahaForm";
@@ -43,14 +31,8 @@ export default function Home() {
             {siteMap === "main" ? (
               <div className=" bg-[url('/img/mapZone-bg.svg')] bg-cover  w-[20%] md:w-[80%] flex ml-[20px] landingWrap">
                 <>
-                  <Maps />
-                  <div className="absolute left-[72%] xl:left-[75%] top-[70%] xl:top-[60%] 2xl:top-[50%] ">
-                    <img
-                      className="max-w-[150px] xl:max-w-[220px] 2xl:max-w-[260px]  bg-[rgba(246,190,49,0.30)]  rounded-3xl md:w-[270px] troubleMaker"
-                      src="img/Volunteer-map.svg"
-                      onClick={() => setSiteMap("SahaForm")}
-                    />
-                  </div>
+                  <Maps setSiteMap={setSiteMap}/>
+                  
                 </>
               </div>
             ) : siteMap === "help" ? (

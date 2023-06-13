@@ -6,14 +6,16 @@ import { useRouter } from "next/router";
 
 import axios from "axios";
 import EtkinlikCard from "./Etkinlik-card";
+import Card from "./Card";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZXNraXNhcmtpc2kiLCJhIjoiY2xocmhxNjdrMHF5ZzNlbnZ2dDNobzhvbiJ9.SuA_p6UCk5NACNs1kz31eQ";
 
-function Maps() {
-  const [isOpen, setIsOpen] = useState([]);
+function Maps({ setSiteMap }) {
+  const [click, setClick] = useState("");
   const router = useRouter();
   const [toggle, setToggle] = useState(false);
+  const [cardToggle, setCardToggle] = useState(false);
   const [data, setData] = useState([]);
   const [markerData, setMarkerData] = useState([]);
   //const [hede, setHede] = useState();
@@ -64,31 +66,85 @@ function Maps() {
         el.style.width = `${size}px`;
         el.style.height = `${size}px`;
 
-        function handleClick() {
-          console.log("tıklandı");
-        }
+        const handleClick = () => {
+          console.log(cardToggle);
+        };
+
+
+
+        const button = document.createElement("button");
+        button.innerText = "Detaylar";
+        button.className = "card-button";
+        const merkez_baslik = document.createElement("h2");
+        merkez_baslik.innerText = "MERKEZ TELEFONLARI";
+        merkez_baslik.className = "card-header";
+        const merkez_tel_1 = document.createElement("p");
+        merkez_tel_1.innerText = `${marker.properties.telefon1}`;
+        merkez_tel_1.className = "card-tel-1";
+        const merkez_tel_2 = document.createElement("p");
+        merkez_tel_2.innerText = `${marker.properties.telefon2}`;
+        merkez_tel_2.className = "card-tel-2";
+        const calisma_saat = document.createElement("p");
+        calisma_saat.innerText = `7 Gün 24 Saat`;
+        calisma_saat.className = "card-calisma";
+        const icon = document.createElement("img");
+        icon.src = "./img/button/tel-icon.png";
+        icon.innerText = "favorite";
+        icon.className="img-icon-1"
+        const iconsecond = document.createElement("img");
+        iconsecond.src = "./img/button/tel-icon.png";
+        iconsecond.innerText = "favorsite";
+        iconsecond.className="img-icon-2"
+      
+
+     
+        button.addEventListener("click", function () {
+          setClick(marker.properties.no);
+        });
+
+      
+        const buttonContainer = document.createElement("div");
+        const buttonInner = document.createElement("div");
+        buttonInner.className="tel-1-div"
+        const buttonInnerSecond = document.createElement("div");
+        buttonInnerSecond.className="tel-2-div"
+        buttonContainer.appendChild(merkez_baslik);
+        
+        buttonContainer.appendChild(buttonInner);
+        buttonInner.appendChild(icon);
+        buttonInner.appendChild(merkez_tel_1);
+        buttonContainer.appendChild(buttonInnerSecond);
+        buttonInnerSecond.appendChild(iconsecond);
+        buttonInnerSecond.appendChild(merkez_tel_2);
+       
+        buttonContainer.appendChild(calisma_saat);
+        buttonContainer.appendChild(button);
+        buttonContainer.className = "card-pad";
 
         const popup = new mapboxgl.Popup({ offset: 25 });
-        popup.setHTML(
-          `
-          <div id="mapDiv"> 
-          <h7 id="mapBaslik">MERKEZ TELEFON NUMARALARI</h7></br>
-              <a href:tel:${marker.properties.telefon1} id="mapTel">${marker.properties.telefon1}</a></br>
-              <a href:"tel:${marker.properties.telefon2}" id="mapTel">${marker.properties.telefon2}</a></br>
-              <h7 id="mapNote">7 GÜN 24 SAAT</h7></br>
-              <a href="http://localhost:3000/card" id="mapButton">Detaylar</a>
+        // popup.setHTML(
 
-              `
-        ),
-          new mapboxgl.Marker({
-            element: el,
-            // Point markers toward the nearest horizon
-            rotationAlignment: "horizon",
-            offset: [0, -size / 2],
-          })
-            .setLngLat(marker.geometry.coordinates)
-            .setPopup(popup)
-            .addTo(map);
+        //   `
+        //   <div id="mapDiv">
+        //   <h7 id="mapBaslik">MERKEZ TELEFON NUMARALARI</h7></br>
+        //       <a href:tel:${marker.properties.telefon1} id="mapTel">${marker.properties.telefon1}</a></br>
+        //       <a href:"tel:${marker.properties.telefon2}" id="mapTel">${marker.properties.telefon2}</a></br>
+        //       <h7 id="mapNote">7 GÜN 24 SAAT</h7></br>
+        //       <button onClick="setClick('${marker.properties.telefon2}')" id="mapButton">Detaylar</button>
+        //       <a href:"tel:${marker.properties.no}" id="mapTel">${marker.properties.no}</a></br>
+        //       `
+
+        // ),
+        popup.setDOMContent(buttonContainer);
+        new mapboxgl.Marker({
+          element: el,
+          // Point markers toward the nearest horizon
+          rotationAlignment: "horizon",
+          offset: [0, -size / 2],
+        })
+          .setLngLat(marker.geometry.coordinates)
+          .setPopup(popup)
+          .addTo(map);
       }
     }
 
@@ -265,7 +321,23 @@ function Maps() {
 
   return (
     <>
-      <div id="map" className="rounded-xl  h-[60vh] md:h-[90vh] w-[100%]"></div>
+      <div
+        id="map"
+        className="rounded-xl  h-[60vh] md:h-[90vh] w-[100%] relative"
+      ></div>
+      {click != "" ? (
+        <div className="absolute bottom-20 right-20  flex items-center justify-center">
+          <Card className="absolute " setClick={setClick} click={click} />
+        </div>
+      ) : (
+        <div className="absolute left-[72%] xl:left-[75%] top-[70%] xl:top-[60%] 2xl:top-[50%] ">
+          <img
+            className="max-w-[150px] xl:max-w-[220px] 2xl:max-w-[260px]  bg-[rgba(246,190,49,0.30)]  rounded-3xl md:w-[270px] troubleMaker"
+            src="img/Volunteer-map.svg"
+            onClick={() => setSiteMap("SahaForm")}
+          />
+        </div>
+      )}
     </>
   );
 }
