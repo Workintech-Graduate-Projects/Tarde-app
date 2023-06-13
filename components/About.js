@@ -5,7 +5,7 @@ function About() {
   return (
     <div className="flex mt-9 justify-between md:flex-row flex-col-reverse place-self-center  ">
       <div className="flex flex-col w-[60%] ">
-        <h1 className="text-[#030E5E]  font-extrabold text-[75px]  ">
+        <h1 className="text-[#030E5E]  font-extrabold text-[60px] md:text-[85px] text-center ">
           hakkımızda
         </h1>
         <p className="text-[34px] text-left text-[#4A4A4A]  mt-3 ml-[66px] font-thin">
@@ -23,9 +23,16 @@ function About() {
         </p>
         <EtkinlikCard />
       </div>
+
       <div className="flex flex-col  mr-[30px] ml-32 ">
-        <img className="min-w-[200px]  " src="/img/about/cry.png"></img>
-        <img className="min-w-[200px] " src="/img/about/thinking.png"></img>
+        <img
+          className="min-w-[200px] hidden md:block "
+          src="/img/about/cry.png"
+        ></img>
+        <img
+          className="min-w-[200px] hidden md:block"
+          src="/img/about/thinking.png"
+        ></img>
       </div>
     </div>
   );

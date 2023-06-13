@@ -1,5 +1,7 @@
 import { Inter } from "next/font/google";
 import { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
+import { useRouter } from "next/router";
 import Footer from "@/components/Footer";
 import React from "react";
 import Maps from "@/components/Map";
@@ -7,12 +9,12 @@ import About from "@/components/About";
 import Contact from "@/components/Contact";
 import MobilFooter from "@/components/MobilFooter";
 import FormPage from "@/components/Form";
-
-/* import ListeGorunumu from "@/components/ListeGorunumu"; */
+import SahaFormPage from "@/components/SahaForm";
+//import MobilFooter from "@/pages/MobilFooter";
+import ListeGorunumu from "@/components/listegorunumu"; */
 import { etkinlikAPI } from "@/redux/actions";
 import { useDispatch } from "react-redux";
 import SahaFormPage from "@/components/SahaForm";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -57,8 +59,8 @@ export default function Home() {
           </div>
         </div>
       </main>
-      <MobilFooter />
-      {/*   <ListeGorunumu /> */}
+      {/*       <MobilFooter /> */}
+      {/*       <listegorunumu /> */}
     </>
   );
 }
