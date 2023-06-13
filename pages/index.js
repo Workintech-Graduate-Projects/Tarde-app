@@ -10,15 +10,11 @@ import Contact from "@/components/Contact";
 import MobilFooter from "@/components/MobilFooter";
 import FormPage from "@/components/Form";
 import SahaFormPage from "@/components/SahaForm";
-
-/* 
-import MobilFooter from "@/pages/MobilFooter";
+//import MobilFooter from "@/pages/MobilFooter";
 import ListeGorunumu from "@/components/listegorunumu"; */
-
 import { etkinlikAPI } from "@/redux/actions";
 import { useDispatch } from "react-redux";
 import SahaFormPage from "@/components/SahaForm";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -37,14 +33,8 @@ export default function Home() {
             {siteMap === "main" ? (
               <div className=" bg-[url('/img/mapZone-bg.svg')] bg-cover  w-[20%] md:w-[80%] flex ml-[20px] landingWrap">
                 <>
-                  <Maps />
-                  <div className="absolute left-[72%] xl:left-[75%] top-[70%] xl:top-[60%] 2xl:top-[50%] ">
-                    <img
-                      className="max-w-[150px] xl:max-w-[220px] 2xl:max-w-[260px]  bg-[rgba(246,190,49,0.30)]  rounded-3xl md:w-[270px] troubleMaker"
-                      src="img/Volunteer-map.svg"
-                      onClick={() => setSiteMap("SahaForm")}
-                    />
-                  </div>
+                  <Maps setSiteMap={setSiteMap}/>
+                  
                 </>
               </div>
             ) : siteMap === "help" ? (

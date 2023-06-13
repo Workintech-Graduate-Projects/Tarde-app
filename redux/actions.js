@@ -8,6 +8,7 @@ export const MERKEZ = "MERKEZ";
 export const TOGGLE = "TOGGLE";
 export const GONULLU = "GONULLU";
 export const DANISAN = "DANISAN";
+export const CLICK = "CLICK";
 
 export const handleSehir = (item) => ({
   type: SEHIR,
@@ -19,6 +20,9 @@ export const editMerkez = (item) => ({
 });
 export const toggleHeader = () => ({
   type: TOGGLE,
+});
+export const clickCard = (item) => ({
+  type: CLICK, payload: item,
 });
 
 export const editMerkezAPI = (item) => (dispatch) => {

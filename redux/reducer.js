@@ -7,6 +7,8 @@ import {
   MERKEZ,
   A_PERSONEL,
   ETKINLIK_GET,
+  GONULLU,
+  DANISAN,CLICK
 } from "./actions";
 
 const initialState = {
@@ -19,15 +21,13 @@ const initialState = {
   etkinlik: [],
   Personel: null,
   adminMerkez: null,
+  gonullu:[],
+  danisan:[],
+  click:"",
 };
 
 export function mainReducer(state = initialState, action) {
   switch (action.type) {
-
-  
-  export function mainReducer(state = initialState, action) {
-   switch (action.type) {
-
     case TOGGLE:
       console.log(state.toggle);
       return {
@@ -56,9 +56,6 @@ export function mainReducer(state = initialState, action) {
         ...state,
         adminMerkez: action.payload,
       };
-
-        return{
-          ...state, adminMerkez: action.payload}
     case GONULLU:
         return{
           ...state, gonullu: action.payload}
@@ -66,6 +63,10 @@ export function mainReducer(state = initialState, action) {
     case DANISAN:
         return{
           ...state, danisan: action.payload}
+        
+    case CLICK:
+        return{
+          ...state, click: action.payload}
         
 
     case ETKINLIK_GET:

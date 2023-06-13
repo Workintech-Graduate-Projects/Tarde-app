@@ -6,7 +6,7 @@ import { legacy_createStore as createStore, applyMiddleware } from "redux";
 import { mainReducer } from "@/redux/reducer";
 import thunk from "redux-thunk";
 import { useSSR } from '@nextui-org/react'
-
+import { StrictMode } from "react";
 export default function App({ Component, pageProps }) {
  
   const store = createStore(mainReducer, applyMiddleware(thunk));
@@ -14,13 +14,15 @@ export default function App({ Component, pageProps }) {
 
   return (
     isBrowser &&(
-
+      <StrictMode>
       <Provider store={store}>
         <NextUIProvider>
             <Component {...pageProps} />
         </NextUIProvider>
       </Provider>
+      </StrictMode>
         )
+
 
   );
 }

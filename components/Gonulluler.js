@@ -5,16 +5,7 @@ import { getGonullu } from "@/redux/actions";
 
 import {
     Box,
-    Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogTitle,
     IconButton,
-    MenuItem,
-    Stack,
-    TextField,
-    Typography,
     Tooltip,
   } from "@mui/material";
   import { Delete, Edit } from '@mui/icons-material';

@@ -196,3 +196,81 @@ body {
 /*Burası gizli direkt. gizliliği kaldırıp sadece haritayı gizleyeceksin */
 
 /* ardından  */
+
+.card-button{
+  padding: 10px;
+}
+
+div .mapboxgl-popup-content{
+  background-color: #3C4058;
+  color: white;
+  border-radius: 10px;
+  display: flex;
+ padding: 30px;
+ justify-content: center;
+ 
+}
+.card-tel-1{
+  font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 24px;
+color:#FFFFFF;
+text-decoration-line: underline;
+}
+.card-tel-2{
+  font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 24px;
+color:#FFFFFF;
+text-decoration-line: underline;
+}
+.card-calisma{
+  font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 12px;
+line-height: 14px;
+color:#DEDEDE;
+}
+.card-header{
+letter-spacing: -0.05em;
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+}
+.tel-1-div{
+display: flex;
+direction: row;
+
+  justify-items: center;
+
+}
+.tel-1-div img{
+  width: 16px;
+  height: 16px;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  margin-top: 4px;
+
+}
+.tel-2-div{
+display: flex;
+direction: row;
+
+  justify-items: center;
+
+}
+.tel-2-div img{
+  width: 16px;
+  height: 16px;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  margin-top: 4px;
+
+}
+
