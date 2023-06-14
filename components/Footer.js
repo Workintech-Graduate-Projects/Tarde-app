@@ -1,11 +1,10 @@
-import { Icon } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
 function Footer(props) {
-  const { setSiteMap } = props;
+  const { setSiteMap ,siteMap} = props;
 
   const sendEmail = () => {
     window.location.href = "mailto:tarde.2018@gmail.com";
@@ -19,18 +18,19 @@ function Footer(props) {
   };
 
   return (
-    <div className=" text-[#000C5C] flex-col text-[14px] w-[270px] flex ">
-      <div className="migratedHamburger">
-        <div className="w-[235px] p-5">
+    <div className=" text-[#000C5C] flex-col  text-[14px] md:w-[270px] flex ">
+      <div >
+        <div className=" flex justify-around px-5">
           <Image
             src="./img/affan-logo.svg"
+          className="w-[150px] h-[150px]  lg:w-[184px] lg:h-[184px]"
             width={300}
             height={300}
             alt="Picture of the author"
           />
 
           <div
-            className={`hamburger ${isOpen ? "openHamburger" : ""}`}
+            className={`hamburger ${isOpen ? "openHamburger" : ""} `}
             onClick={handleClick}
           >
             <div className="hamburgerOne"></div>
@@ -40,9 +40,9 @@ function Footer(props) {
         </div>
 
         <div
-          className={`mr-5 mt-[26px] landinghide ${isOpen ? "open" : ""}   `}
+          className={`mr-5  landinghide ${isOpen ? "open" : ""}   `}
         >
-          <div className="hidden md:flex hover:bg-[rgba(248,203,79,0.50)] py-2 px-6  rounded-xl">
+          <div className="hidden lg:flex hover:bg-[rgba(248,203,79,0.50)] py-2 px-6  rounded-xl">
             <img src="./img/sharp-home.svg" className="w-5 h-6" />
             <button
               onClick={() => {
@@ -99,7 +99,8 @@ function Footer(props) {
           </div>
         </div>
       </div>
-      <div className={`w-[270px] mt-[10px]  ${isOpen ? "closed" : ""} `}>
+    
+      <div className={`w-[270px] mt-[10px] hidden xl:block  ${isOpen ? "closed" : ""} `}>
         {" "}
         <p className="block md:hidden text-center pb-4">
           Affan, Travma ve Afet Ruh Sağlığı Çalışmaları Derneği (TARDE)
