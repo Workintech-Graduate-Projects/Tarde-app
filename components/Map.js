@@ -62,15 +62,13 @@ function Maps({ setSiteMap }) {
         // Create a DOM element for each marker.
         const el = document.createElement("div");
         el.className = "marker";
-        const size = 50;
+        const size = 40;
         el.style.width = `${size}px`;
         el.style.height = `${size}px`;
 
         const handleClick = () => {
           console.log(cardToggle);
         };
-
-
 
         const button = document.createElement("button");
         button.innerText = "Detaylar";
@@ -90,33 +88,30 @@ function Maps({ setSiteMap }) {
         const icon = document.createElement("img");
         icon.src = "./img/button/tel-icon.png";
         icon.innerText = "favorite";
-        icon.className="img-icon-1"
+        icon.className = "img-icon-1";
         const iconsecond = document.createElement("img");
         iconsecond.src = "./img/button/tel-icon.png";
         iconsecond.innerText = "favorsite";
-        iconsecond.className="img-icon-2"
-      
+        iconsecond.className = "img-icon-2";
 
-     
         button.addEventListener("click", function () {
           setClick(marker.properties.no);
         });
 
-      
         const buttonContainer = document.createElement("div");
         const buttonInner = document.createElement("div");
-        buttonInner.className="tel-1-div"
+        buttonInner.className = "tel-1-div";
         const buttonInnerSecond = document.createElement("div");
-        buttonInnerSecond.className="tel-2-div"
+        buttonInnerSecond.className = "tel-2-div";
         buttonContainer.appendChild(merkez_baslik);
-        
+
         buttonContainer.appendChild(buttonInner);
         buttonInner.appendChild(icon);
         buttonInner.appendChild(merkez_tel_1);
         buttonContainer.appendChild(buttonInnerSecond);
         buttonInnerSecond.appendChild(iconsecond);
         buttonInnerSecond.appendChild(merkez_tel_2);
-       
+
         buttonContainer.appendChild(calisma_saat);
         buttonContainer.appendChild(button);
         buttonContainer.className = "card-pad";
@@ -160,7 +155,6 @@ function Maps({ setSiteMap }) {
       .then(function (response) {
         // handle success
         setData(response.data);
-        console.log(response.data);
         const a = response.data;
         return a;
       })
@@ -321,23 +315,24 @@ function Maps({ setSiteMap }) {
 
   return (
     <>
-      <div
-        id="map"
-        className="rounded-xl  h-[60vh] md:h-[90vh] w-[100%] relative"
-      ></div>
+      <div id="map" className=" flex justify-center h-[55vh] md:h-[72vh]  lg:h-[80vh] w-[100%] relative"></div>
       {click != "" ? (
-        <div className="absolute bottom-20 right-20  flex items-center justify-center">
+        <div className="absolute bottom-[15%] right-[10%] scale-75 md:scale-100 flex items-center justify-center">
           <Card className="absolute " setClick={setClick} click={click} />
         </div>
       ) : (
-        <div className="absolute left-[72%] xl:left-[75%] top-[70%] xl:top-[60%] 2xl:top-[50%] ">
+        <div className="hidden bottom-[30%] md:absolute right-[10%] ">
           <img
-            className="max-w-[150px] xl:max-w-[220px] 2xl:max-w-[260px]  bg-[rgba(246,190,49,0.30)]  rounded-3xl md:w-[270px] troubleMaker"
+            className="max-w-[150px] xl:max-w-[220px] 2xl:max-w-[260px]  bg-[rgba(246,190,49,0.30)]  rounded-3xl md:w-[270px] "
             src="img/Volunteer-map.svg"
             onClick={() => setSiteMap("SahaForm")}
           />
         </div>
       )}
+       {/*
+      <div className="absolute  bottom-[15%] right-[40%] ">
+        <EtkinlikCard />
+      </div> */}
     </>
   );
 }

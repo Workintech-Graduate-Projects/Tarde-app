@@ -29,7 +29,7 @@ const SahaFormPage = () => {
     });
   };
 
-  const handleSubmit =async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const errors = {};
@@ -59,9 +59,7 @@ const SahaFormPage = () => {
       errors.gonullu_motivasyon = true;
       hasErrors = true;
     }
-    if (
-      formData.kvkkConfirmation == false
-    ) {
+    if (formData.kvkkConfirmation == false) {
       errors.kvkkConfirmation = true;
       hasErrors = true;
     }
@@ -70,19 +68,18 @@ const SahaFormPage = () => {
       setFormErrors(errors);
       return;
     }
-    const {kvkkConfirmation,supportPerson,...nFormData}=formData;
-console.log(nFormData)
-   await axios
-   .post(`http://localhost:9000/api/table/admin/gonullu/`,nFormData)
-   .then((res) => {
-     return console.log(res.data);
-   })
-   .catch((error) => console.log(error));
-
+    const { kvkkConfirmation, supportPerson, ...nFormData } = formData;
+    console.log(nFormData);
+    await axios
+      .post(`http://localhost:9000/api/table/admin/gonullu/`, nFormData)
+      .then((res) => {
+        return console.log(res.data);
+      })
+      .catch((error) => console.log(error));
   };
   return (
-    <div className="flex justify-self-center ">
-      <div className="pt-16 rounded-lg ">
+    <div className="flex justify-center  rounded-[55px] h-[100%] xl:bg-[rgba(251,240,212,0.20)]">
+      <div className="lg:pt-2 pl-4 rounded-lg ">
         <h1 className="text-[#030E5E] font-extrabold text-5xl pt-8 mb-8 mr-12">
           {" "}
           Sahada Destek Vermek için Gönüllü Ol
@@ -93,7 +90,13 @@ console.log(nFormData)
 
         <div className="flex flex-col justify-center items-center">
           <form onSubmit={handleSubmit} className="flex flex-col ">
-            <label htmlFor="gonullu_adi">Adınız*</label>
+            <label  style={{
+                fontFamily: "roboto",
+                fontSize: "14px",
+                fontWeight: "bold",
+                color: "#4A4A4A",
+                marginBottom: "7px",
+              }} htmlFor="gonullu_adi">Adınız *</label>
             <input
               type="text"
               id="gonullu_adi"
@@ -101,14 +104,14 @@ console.log(nFormData)
               value={formData.gonullu_adi}
               onChange={handleChange}
               style={{
-                border: "1px solid black",
+                border: "1px solid rgba(0, 0, 0, 0.2)",
                 color: "#333",
                 fontFamily: "mono",
                 fontSize: "14px",
                 padding: "10px",
                 borderRadius: "7px",
-                width: "300px",
-                marginBottom: "10px",
+             
+                marginBottom: "14px",
               }}
               className={formErrors.gonullu_adi ? "error" : ""}
             />
@@ -124,7 +127,13 @@ console.log(nFormData)
               </span>
             )}
 
-            <label htmlFor="gonullu_soyadi">Soyadınız*</label>
+            <label   style={{
+                fontFamily: "roboto",
+                fontSize: "14px",
+                fontWeight: "bold",
+                color: "#4A4A4A",
+                marginBottom: "7px",
+              }} htmlFor="gonullu_soyadi">Soyadınız *</label>
             <input
               type="text"
               id="gonullu_soyadi"
@@ -132,15 +141,13 @@ console.log(nFormData)
               value={formData.gonullu_soyadi}
               onChange={handleChange}
               style={{
-                border: "1px solid black",
-                border: "1px solid black",
+                border: "1px solid rgba(0, 0, 0, 0.2)",
                 color: "#333",
                 fontFamily: "mono",
                 fontSize: "14px",
                 padding: "10px",
                 borderRadius: "7px",
-                marginBottom: "10px",
-                width: "300px",
+                marginBottom: "14px",
               }}
               className={formErrors.gonullu_soyadi ? "error" : ""}
             />
@@ -156,7 +163,13 @@ console.log(nFormData)
               </span>
             )}
 
-            <label htmlFor="gonullu_numara">İletişim Numaranız*</label>
+            <label  style={{
+                fontFamily: "roboto",
+                fontSize: "14px",
+                fontWeight: "bold",
+                color: "#4A4A4A",
+                marginBottom: "7px",
+              }} htmlFor="gonullu_numara">İletişim Numaranız *</label>
             <input
               type="text"
               id="gonullu_numara"
@@ -164,15 +177,13 @@ console.log(nFormData)
               value={formData.gonullu_numara}
               onChange={handleChange}
               style={{
-                border: "1px solid black",
-                border: "1px solid black",
+                border: "1px solid rgba(0, 0, 0, 0.2)",
                 color: "#333",
                 fontFamily: "mono",
                 fontSize: "14px",
                 padding: "10px",
                 borderRadius: "7px",
-                marginBottom: "10px",
-                width: "300px",
+                marginBottom: "14px",
               }}
               className={formErrors.gonullu_numara ? "error" : ""}
             />
@@ -188,7 +199,13 @@ console.log(nFormData)
               </span>
             )}
 
-            <label htmlFor="gonullu_sehir">Çalışmak İstediğiniz İl*</label>
+            <label style={{
+                fontFamily: "roboto",
+                fontSize: "14px",
+                fontWeight: "bold",
+                color: "#4A4A4A",
+                marginBottom: "7px",
+              }} htmlFor="gonullu_sehir">Çalışmak İstediğiniz İl *</label>
             <input
               type="text"
               id="gonullu_sehir"
@@ -196,15 +213,13 @@ console.log(nFormData)
               value={formData.gonullu_sehir}
               onChange={handleChange}
               style={{
-                border: "1px solid black",
-
+                border: "1px solid rgba(0, 0, 0, 0.2)",
                 color: "#333",
                 fontFamily: "mono",
                 fontSize: "14px",
                 padding: "10px",
                 borderRadius: "7px",
-                marginBottom: "10px",
-                width: "300px ",
+                marginBottom: "14px",
               }}
               className={formErrors.gonullu_sehir ? "error" : ""}
             />
@@ -220,49 +235,65 @@ console.log(nFormData)
               </span>
             )}
 
-            <label htmlFor="gonullu_baslagıc">
-              Çalışmak İstediğiniz tarih başlangıcı*{" "}
+            <label style={{
+                fontFamily: "roboto",
+                fontSize: "14px",
+                fontWeight: "bold",
+                color: "#4A4A4A",
+                marginBottom: "7px",
+              }} htmlFor="gonullu_baslagıc">
+              Çalışmak İstediğiniz tarih başlangıcı *{" "}
             </label>
             <input
-              type="text"
+              type="date"
               id="gonullu_baslagıc"
               name="gonullu_baslagıc"
               value={formData.gonullu_baslagıc}
               onChange={handleChange}
               style={{
-                border: "1px solid black",
+                border: "1px solid rgba(0, 0, 0, 0.2)",
                 color: "#333",
                 fontFamily: "mono",
                 fontSize: "14px",
                 padding: "10px",
                 borderRadius: "7px",
-                marginBottom: "10px",
-                width: "300px",
+                marginBottom: "14px",
               }}
             />
-            <label htmlFor="gonullu_bitis">
-              Çalışmak istediğiniz tarih bitişi*{" "}
+            <label  style={{
+                fontFamily: "roboto",
+                fontSize: "14px",
+                fontWeight: "bold",
+                color: "#4A4A4A",
+                marginBottom: "7px",
+              }} htmlFor="gonullu_bitis">
+              Çalışmak istediğiniz tarih bitişi *{" "}
             </label>
             <input
-              type="text"
+              type="date"
               id="gonullu_bitis"
               name="gonullu_bitis"
               value={formData.gonullu_bitis}
               onChange={handleChange}
               style={{
-                border: "1px solid black",
+                border: "1px solid rgba(0, 0, 0, 0.2)",
                 color: "#333",
                 fontFamily: "mono",
                 fontSize: "14px",
                 padding: "10px",
                 borderRadius: "7px",
-                marginBottom: "10px",
-                width: "300px",
+                marginBottom: "14px",
               }}
             />
 
-            <label htmlFor="gonullu_motivasyon">
-              Kısaca sahada gönüllü çalışma motivasyonunuz*
+            <label style={{
+                fontFamily: "roboto",
+                fontSize: "14px",
+                fontWeight: "bold",
+                color: "#4A4A4A",
+                marginBottom: "7px",
+              }} htmlFor="gonullu_motivasyon">
+              Kısaca sahada gönüllü çalışma motivasyonunuz *
             </label>
             <input
               type="text"
@@ -271,14 +302,14 @@ console.log(nFormData)
               value={formData.gonullu_motivasyon}
               onChange={handleChange}
               style={{
-                border: "1px solid black",
+                border: "1px solid rgba(0, 0, 0, 0.2)",
                 color: "#333",
                 fontFamily: "mono",
                 fontSize: "14px",
                 padding: "25px",
                 borderRadius: "7px",
                 marginBottom: "10px",
-                width: "300px",
+                marginTop: "10px",
               }}
               className={formErrors.gonullu_motivasyon ? "error" : ""}
             />
@@ -294,46 +325,48 @@ console.log(nFormData)
               </span>
             )}
 
-            <div className="flex">
-              <p>KVKK Metnini Okudum Onaylıyorum:</p>
+            <div className="flex flex-row mt-2">
+             
 
-              <label className="ml-2 mt-2">
+              <label className="mt-1">
                 <input
                   type="checkbox"
                   name="kvkkConfirmation"
                   onChange={handleChange}
                   value={!formData.kvkkConfirmation}
                   style={{
-                    display: "flex",
-                    alignItems: "center",
                     marginBottom: "3px",
                     height: "16px",
                     width: "22px",
+                    
                     marginBottom: "10px",
+                    borderRadius: "25px",
                   }}
                   className={formErrors.kvkkConfirmation ? "error" : ""}
                 />
+              <p className=" text-[14px] text-[#4A4A4A] font-normal">KVKK Metnini Okudum Onaylıyorum:</p>
               </label>
-            </div>
             {formErrors.kvkkConfirmation && (
               <span
-                style={{
-                  fontSize: "12px",
-                  color: "red",
-                }}
-                className="error-message"
+              style={{
+                fontSize: "12px",
+                color: "red",
+              }}
+              className="error-message"
               >
                 Kvkk Metinin Kabul Ediniz
               </span>
             )}
+            </div>
+<div>
 
             <button
               type="submit"
-              className="bg-[#F8CB4E] block mt-[15px] h-12 w-22 
-              rounded-lg"
-            >
-              Başvurumu Gönder
+              className="bg-[#F8CB4E] rounded-lg font-black  px-4 py-3 mt-[15px] text-[rgba(0,12,92,1)]"
+              >
+              BAŞVURUMU GÖNDER
             </button>
+              </div>
           </form>
         </div>
       </div>

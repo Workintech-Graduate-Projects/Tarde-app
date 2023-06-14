@@ -1,4 +1,4 @@
-import Mobilfooter from "@/pages/MobilFooter";
+
 import { useRouter } from "next/router";
 
 import React from "react";
@@ -34,13 +34,13 @@ export default function listegorunumu() {
         {" "}
         <button className=" py-2 px-4 mr-2 mb-4 hover:bg-[rgba(248,203,78,0.50)] ml-4 w-24 h-8  rounded-[10px] flex items-center  ">
           <span>
-            <img src="./img/list1.png" className="inline-flex " />
+            <img src="./img/list1.svg" className="inline-flex " />
           </span>
           <span className="ml-1">Liste</span>
         </button>
         <button className="py-2 px-4 mb-4 hover:bg-[rgba(248,203,78,0.50)] w-24 ml-4 h-8 rounded-[10px] flex items-center ">
           <span>
-            <img src="./img/map.png" className="inline-flex " />
+            <img src="./img/map-1.svg" className="inline-flex " />
           </span>
           <span className="ml-1">Harita</span>
         </button>

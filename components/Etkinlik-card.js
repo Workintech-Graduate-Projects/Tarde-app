@@ -19,9 +19,9 @@ function EtkinlikCard() {
    
 
   return (
-    <div className=' bg-white drop-shadow rounded-[10px] w-[350px] h-[180px] flex p-[30px]'>
-      <img className='mr-[30px]' src='./img/tard-logo.png'></img>
-      <div className='flex flex-col text-[#000C5C]'>
+    <div className=' bg-white drop-shadow rounded-[10px] md:w-[350px] md:h-[180px] flex-col md:flex-row flex p-[30px]'>
+      <img className='md:mr-[30px]' src='./img/tard-logo.png'></img>
+      <div className='flex flex-col text-[#000C5C] mt-4 md:mt-0'>
             <h2 className='text-[14px] font-normal'>28 MART'TAN İTİBAREN</h2>
             <div className='flex items-center'>
                 <img className='w-[13px] mr-1 h-[13px]' src='./img/person.png'></img>
