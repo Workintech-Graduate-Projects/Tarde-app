@@ -71,7 +71,7 @@ const SahaFormPage = () => {
     const { kvkkConfirmation, supportPerson, ...nFormData } = formData;
     console.log(nFormData);
     await axios
-      .post(`http://localhost:9000/api/table/admin/gonullu/`, nFormData)
+      .post(`https://tade-be.herokuapp.com/api/table/admin/gonullu/`, nFormData)
       .then((res) => {
         return console.log(res.data);
       })
@@ -84,19 +84,24 @@ const SahaFormPage = () => {
           {" "}
           Sahada Destek Vermek için Gönüllü Ol
         </h1>
-        <div className="block md:hidden ">
+        <div className="flex justify-center md:hidden ">
           <img className="" src="/img/Group.svg"></img>
         </div>
 
         <div className="flex flex-col justify-center items-center">
           <form onSubmit={handleSubmit} className="flex flex-col ">
-            <label  style={{
+            <label
+              style={{
                 fontFamily: "roboto",
                 fontSize: "14px",
                 fontWeight: "bold",
                 color: "#4A4A4A",
                 marginBottom: "7px",
-              }} htmlFor="gonullu_adi">Adınız *</label>
+              }}
+              htmlFor="gonullu_adi"
+            >
+              Adınız *
+            </label>
             <input
               type="text"
               id="gonullu_adi"
@@ -110,7 +115,7 @@ const SahaFormPage = () => {
                 fontSize: "14px",
                 padding: "10px",
                 borderRadius: "7px",
-             
+
                 marginBottom: "14px",
               }}
               className={formErrors.gonullu_adi ? "error" : ""}
@@ -127,13 +132,18 @@ const SahaFormPage = () => {
               </span>
             )}
 
-            <label   style={{
+            <label
+              style={{
                 fontFamily: "roboto",
                 fontSize: "14px",
                 fontWeight: "bold",
                 color: "#4A4A4A",
                 marginBottom: "7px",
-              }} htmlFor="gonullu_soyadi">Soyadınız *</label>
+              }}
+              htmlFor="gonullu_soyadi"
+            >
+              Soyadınız *
+            </label>
             <input
               type="text"
               id="gonullu_soyadi"
@@ -163,13 +173,18 @@ const SahaFormPage = () => {
               </span>
             )}
 
-            <label  style={{
+            <label
+              style={{
                 fontFamily: "roboto",
                 fontSize: "14px",
                 fontWeight: "bold",
                 color: "#4A4A4A",
                 marginBottom: "7px",
-              }} htmlFor="gonullu_numara">İletişim Numaranız *</label>
+              }}
+              htmlFor="gonullu_numara"
+            >
+              İletişim Numaranız *
+            </label>
             <input
               type="text"
               id="gonullu_numara"
@@ -199,13 +214,18 @@ const SahaFormPage = () => {
               </span>
             )}
 
-            <label style={{
+            <label
+              style={{
                 fontFamily: "roboto",
                 fontSize: "14px",
                 fontWeight: "bold",
                 color: "#4A4A4A",
                 marginBottom: "7px",
-              }} htmlFor="gonullu_sehir">Çalışmak İstediğiniz İl *</label>
+              }}
+              htmlFor="gonullu_sehir"
+            >
+              Çalışmak İstediğiniz İl *
+            </label>
             <input
               type="text"
               id="gonullu_sehir"
@@ -235,13 +255,16 @@ const SahaFormPage = () => {
               </span>
             )}
 
-            <label style={{
+            <label
+              style={{
                 fontFamily: "roboto",
                 fontSize: "14px",
                 fontWeight: "bold",
                 color: "#4A4A4A",
                 marginBottom: "7px",
-              }} htmlFor="gonullu_baslagıc">
+              }}
+              htmlFor="gonullu_baslagıc"
+            >
               Çalışmak İstediğiniz tarih başlangıcı *{" "}
             </label>
             <input
@@ -260,13 +283,16 @@ const SahaFormPage = () => {
                 marginBottom: "14px",
               }}
             />
-            <label  style={{
+            <label
+              style={{
                 fontFamily: "roboto",
                 fontSize: "14px",
                 fontWeight: "bold",
                 color: "#4A4A4A",
                 marginBottom: "7px",
-              }} htmlFor="gonullu_bitis">
+              }}
+              htmlFor="gonullu_bitis"
+            >
               Çalışmak istediğiniz tarih bitişi *{" "}
             </label>
             <input
@@ -286,13 +312,16 @@ const SahaFormPage = () => {
               }}
             />
 
-            <label style={{
+            <label
+              style={{
                 fontFamily: "roboto",
                 fontSize: "14px",
                 fontWeight: "bold",
                 color: "#4A4A4A",
                 marginBottom: "7px",
-              }} htmlFor="gonullu_motivasyon">
+              }}
+              htmlFor="gonullu_motivasyon"
+            >
               Kısaca sahada gönüllü çalışma motivasyonunuz *
             </label>
             <input
@@ -326,8 +355,6 @@ const SahaFormPage = () => {
             )}
 
             <div className="flex flex-row mt-2">
-             
-
               <label className="mt-1">
                 <input
                   type="checkbox"
@@ -338,39 +365,40 @@ const SahaFormPage = () => {
                     marginBottom: "3px",
                     height: "16px",
                     width: "22px",
-                    
+
                     marginBottom: "10px",
                     borderRadius: "25px",
                   }}
                   className={formErrors.kvkkConfirmation ? "error" : ""}
                 />
-              <p className=" text-[14px] text-[#4A4A4A] font-normal">KVKK Metnini Okudum Onaylıyorum:</p>
+                <p className=" text-[14px] text-[#4A4A4A] font-normal">
+                  KVKK Metnini Okudum Onaylıyorum:
+                </p>
               </label>
-            {formErrors.kvkkConfirmation && (
-              <span
-              style={{
-                fontSize: "12px",
-                color: "red",
-              }}
-              className="error-message"
-              >
-                Kvkk Metinin Kabul Ediniz
-              </span>
-            )}
+              {formErrors.kvkkConfirmation && (
+                <span
+                  style={{
+                    fontSize: "12px",
+                    color: "red",
+                  }}
+                  className="error-message"
+                >
+                  Kvkk Metinin Kabul Ediniz
+                </span>
+              )}
             </div>
-<div>
-
-            <button
-              type="submit"
-              className="bg-[#F8CB4E] rounded-lg font-black  px-4 py-3 mt-[15px] text-[rgba(0,12,92,1)]"
+            <div>
+              <button
+                type="submit"
+                className="bg-[#F8CB4E] rounded-lg font-black  px-4 py-3 mt-[15px] text-[rgba(0,12,92,1)]"
               >
-              BAŞVURUMU GÖNDER
-            </button>
-              </div>
+                BAŞVURUMU GÖNDER
+              </button>
+            </div>
           </form>
         </div>
       </div>
-      <div className=" justify-self-center">
+      <div className="md:flex flex-col hidden justify-self-center">
         <img className="w-80 h-80 pt-32" src="/img/katman_1.svg"></img>
         <img className="w-80 h-80 pt-32" src="/img/Group 1.svg"></img>
       </div>

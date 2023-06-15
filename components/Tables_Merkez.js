@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "react-phone-input-2/lib/style.css";
-
 import MaterialReactTable from "material-react-table";
 import { Box, Button, IconButton, Typography, Tooltip } from "@mui/material";
 import { Delete, Edit } from "@mui/icons-material";
@@ -58,7 +56,7 @@ function Tables_Merkez(props) {
     selectedTable == "isbirligi"
       ? await axios
           .put(
-            `http://localhost:9000/api/table/admin/${selectedTable}`,
+            `https://tade-be.herokuapp.com/api/table/admin/${selectedTable}`,
             nValues
           )
           .then((res) => {
@@ -67,21 +65,21 @@ function Tables_Merkez(props) {
           .catch((error) => console.log(error))
       : selectedTable == "aracsayisi"
       ? await axios
-          .put(`http://localhost:9000/api/table/admin/aracsayisi/`, nValues)
+          .put(`https://tade-be.herokuapp.com/api/table/admin/aracsayisi/`, nValues)
           .then((res) => {
             return console.log(res.data);
           })
           .catch((error) => console.log(error))
       : selectedTable == "hizmet"
       ? await axios
-          .put(`http://localhost:9000/api/table/admin/hizmet/`, mValues)
+          .put(`https://tade-be.herokuapp.com/api/table/admin/hizmet/`, mValues)
           .then((res) => {
             return console.log(res.data);
           })
           .catch((error) => console.log(error))
       : await axios
           .put(
-            `http://localhost:9000/api/table/admin/${selectedTable}/${row.original.merkez_id}`,
+            `https://tade-be.herokuapp.com/api/table/admin/${selectedTable}/${row.original.merkez_id}`,
             nValues
           )
           .then((res) => {
@@ -95,7 +93,7 @@ function Tables_Merkez(props) {
   const handleCreateNewRow = async (values) => {
     console.log(values);
     await axios
-      .post(`http://localhost:9000/api/table/admin/${selectedTable}`, values)
+      .post(`https://tade-be.herokuapp.com/api/table/admin/${selectedTable}`, values)
       .then((res) => {
         return console.log(res.data);
       })
@@ -110,7 +108,7 @@ function Tables_Merkez(props) {
     if (selectedTable === "merkezpersonel") {
       await axios
         .delete(
-          `http://localhost:9000/api/table/admin/${selectedTable}/${row.original.merkez_id}/${row.original.personel_id}`
+          `https://tade-be.herokuapp.com/api/table/admin/${selectedTable}/${row.original.merkez_id}/${row.original.personel_id}`
         )
         .then((res) => {
           return console.log(res.data, "Merkezden Personel Silindi");
@@ -120,7 +118,7 @@ function Tables_Merkez(props) {
     } else if (selectedTable === "isbirligi") {
       await axios
         .delete(
-          `http://localhost:9000/api/table/admin/isbirligi/${row.original.Merkez_is_birligi_id}`
+          `https://tade-be.herokuapp.com/api/table/admin/isbirligi/${row.original.Merkez_is_birligi_id}`
         )
         .then((res) => {
           return console.log(res.data, "İşbirliği kesildi Silindi");
@@ -131,7 +129,7 @@ function Tables_Merkez(props) {
     } else if (selectedTable === "hizmet") {
       await axios
         .delete(
-          `http://localhost:9000/api/table/admin/hizmet/${row.original.hizmet_id}`
+          `https://tade-be.herokuapp.com/api/table/admin/hizmet/${row.original.hizmet_id}`
         )
         .then((res) => {
           return console.log(res.data, "Hizmet Silindi");
@@ -142,7 +140,7 @@ function Tables_Merkez(props) {
     } else if (selectedTable === "aracsayisi") {
       await axios
         .delete(
-          `http://localhost:9000/api/table/admin/aracsayisi/${row.original.arac_sayisi_id}`
+          `https://tade-be.herokuapp.com/api/table/admin/aracsayisi/${row.original.arac_sayisi_id}`
         )
         .then((res) => {
           return console.log(res.data, "Araç envanteri Silindi");
@@ -153,7 +151,7 @@ function Tables_Merkez(props) {
     } else if (selectedTable === "merkez") {
       await axios
         .delete(
-          `http://localhost:9000/api/table/admin/merkez/${row.original.merkez_id}`
+          `https://tade-be.herokuapp.com/api/table/admin/merkez/${row.original.merkez_id}`
         )
         .then((res) => {
           return console.log(res.data, "Merkez Silindi");
@@ -173,7 +171,8 @@ function Tables_Merkez(props) {
   };
 
   return (
-    <div className="w-[95%] m-auto">
+    <div className="w-[95%]  m-auto">
+      <button onClick={() => setCreateModalOpen(true)} >Ekle</button>
       {columns.length > 2 ? (
         <MaterialReactTable
           columns={columns}

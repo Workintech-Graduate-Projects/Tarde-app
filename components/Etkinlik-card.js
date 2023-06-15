@@ -5,16 +5,21 @@ import { useDispatch, useSelector } from 'react-redux'
 
 function EtkinlikCard() {
  
-    const etkinlikler = useSelector((state) => state.etkinlik);
+    
     const [kisi,setKisi]=useState(0);
     const [etkinlik,setEtkinlikler]=useState(0);
     const dispatch = useDispatch();
-    let count=0;
-  
-    useEffect(() => {
+    
+    const etkinlikler = useSelector((state) => state.etkinlik);
+
+    useEffect(() => { 
+      const update= ()=>{
+        let count=0;
         etkinlikler.map((item)=> count+=Number(item.danisan_sayisi))
         setEtkinlikler(etkinlikler.length)
         setKisi(count);
+      }
+      update(); 
     }, [])
    
 

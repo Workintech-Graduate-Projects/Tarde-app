@@ -9,6 +9,7 @@ export const TOGGLE = "TOGGLE";
 export const GONULLU = "GONULLU";
 export const DANISAN = "DANISAN";
 export const CLICK = "CLICK";
+export const SITEMAP = "SITEMAP";
 
 export const handleSehir = (item) => ({
   type: SEHIR,
@@ -24,6 +25,9 @@ export const toggleHeader = () => ({
 export const clickCard = (item) => ({
   type: CLICK, payload: item,
 });
+export const setSiteMap = (item) => ({
+  type: SITEMAP, payload: item,
+});
 
 export const editMerkezAPI = (item) => (dispatch) => {
   axios
@@ -37,47 +41,47 @@ export const editMerkezAPI = (item) => (dispatch) => {
 };
 export const getMerkezAPI = (id, table) => async (dispatch) => {
   await axios
-    .get(`http://localhost:9000/api/table/admin/${table}/${id}`)
+    .get(`https://tade-be.herokuapp.com/api/table/admin/${table}/${id}`)
     .then((res) => {
       return dispatch({ type: A_MERKEZ_GET, payload: res.data });
     }).catch((error) => console.log(error));
 };
 export const personelAPI = () => async (dispatch) => {
   await axios
-    .get(`http://localhost:9000/api/table/admin/personel`)
+    .get(`https://tade-be.herokuapp.com/api/table/admin/personel`)
     .then((res) => {
       return dispatch({ type: A_PERSONEL, payload: res.data });
     }).catch((error) => console.log(error));
 };
 export const etkinlikAPI = () => async (dispatch) => {
   await axios
-    .get(`http://localhost:9000/api/table/admin/hizmet`)
+    .get(`https://tade-be.herokuapp.com/api/table/admin/hizmet`)
     .then((res) => {
       return dispatch({ type: ETKINLIK_GET, payload: res.data });
     }).catch((error) => console.log(error));
 };
 export const getSehirAPI = () => async (dispatch) => {
   await axios
-    .get(`http://localhost:9000/api/table/admin/sehir`)
+    .get(`https://tade-be.herokuapp.com/api/table/admin/sehir`)
     .then((res) => {
       return dispatch({ type: SEHIR, payload: res.data });
     }).catch((error) => console.log(error));
   await axios
-    .get(`http://localhost:9000/api/table/admin/merkez`)
+    .get(`https://tade-be.herokuapp.com/api/table/admin/merkez`)
     .then((res) => {
       return dispatch({ type: MERKEZ, payload: res.data });
     }).catch((error) => console.log(error));
 };
 export const getGonullu = () => async (dispatch) => {
   await axios
-    .get(`http://localhost:9000/api/table/admin/gonullu`)
+    .get(`https://tade-be.herokuapp.com/api/table/admin/gonullu`)
     .then((res) => {
       return dispatch({ type: GONULLU, payload: res.data });
     })
   .catch((error) => console.log(error));}
 export const getDanisan = () => async (dispatch) => {
   await axios
-    .get(`http://localhost:9000/api/table/admin/danisan`)
+    .get(`https://tade-be.herokuapp.com/api/table/admin/danisan`)
     .then((res) => {
       return dispatch({ type: DANISAN, payload: res.data });
     })

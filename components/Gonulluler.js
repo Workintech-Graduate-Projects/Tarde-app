@@ -50,7 +50,7 @@ const Gonulluler = () => {
 
     await axios
           .put(
-            `http://localhost:9000/api/table/admin/gonullu/${row.original.gonullu_id}`,
+            `https://tade-be.herokuapp.com/api/table/admin/gonullu/${row.original.gonullu_id}`,
             values
           )
           .then((res) => {
@@ -66,7 +66,7 @@ const Gonulluler = () => {
    console.log(row.original)
       await axios
         .delete(
-          `http://localhost:9000/api/table/admin/gonullu/${row.original.gonullu_id}`
+          `https://tade-be.herokuapp.com/api/table/admin/gonullu/${row.original.gonullu_id}`
         )
         .then((res) => {
           return console.log(res.data, "Merkezden Personel Silindi");
