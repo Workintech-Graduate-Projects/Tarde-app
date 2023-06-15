@@ -21,7 +21,7 @@ export default function Home() {
     <div className="flex bg-[rgba(251,240,212,0.20)] min-h-screen bg-fixed justify-center items-center md:bg-[url('/img/Desktop-Landing.svg')] flex-col">
       <main className="hidden md:flex  resMain " id="mainRes">
         <div className="md:bg-[#D9E8E7] w-fit  rounded-[55px] md:mt-[5px] p-5  md:mb-[5px] resBgDiv ">
-          <div className=" md:bg-white w-fit xl:max-h-[1000px]  min-w-[700px] max-w-[1170px] xl:p-[20px] rounded-[55px] lg:flex-row flex flex-col ">
+          <div className=" md:bg-white w-fit xl:max-h-[1000px]  min-w-[700px] max-w-[1370px] xl:p-[20px] rounded-[55px] lg:flex-row flex flex-col ">
             <Footer setSiteMap={setSiteMap} siteMap={siteMap} />
             {siteMap === "main" ? (
               <div className=" bg-[url('/img/mapZone-bg.svg')] bg-cover   flex xl:ml-[20px] items-center justify-center">
