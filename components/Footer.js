@@ -18,10 +18,11 @@ function Footer(props) {
   };
 
   return (
-    <div className=" text-[#000C5C] flex-col  text-[14px] md:w-[270px] flex ">
+    <div className=" text-[#000C5C] pt-5 md:pt-0 flex-col text-[14px] xl:w-[270px] flex ">
       <div >
-        <div className=" flex justify-around px-5">
+        <div className=" flex justify-between px-5">
           <Image
+          onClick={()=>setSiteMap("main")}
             src="./img/affan-logo.svg"
           className="w-[150px] h-[150px]  lg:w-[184px] lg:h-[184px]"
             width={300}
@@ -42,7 +43,7 @@ function Footer(props) {
         <div
           className={`mr-5  landinghide ${isOpen ? "open" : ""}   `}
         >
-          <div className="hidden lg:flex hover:bg-[rgba(248,203,79,0.50)] py-2 px-6  rounded-xl">
+          <div className="flex hover:bg-[rgba(248,203,79,0.50)] py-2 px-6  rounded-xl">
             <img src="./img/sharp-home.svg" className="w-5 h-6" />
             <button
               onClick={() => {
@@ -55,16 +56,14 @@ function Footer(props) {
           </div>
           <div className="flex md:hidden  hover:bg-[rgba(248,203,79,0.50)] py-2 px-6  rounded-xl">
             <img src="./img/button/map-1.svg" />
-            <Link href="/listegorunumu">
               <button
                 onClick={() => {
-                  setSiteMap("listegorunumu");
+                  setSiteMap("maps");
                 }}
                 className="ml-[5px] font-[400] tracking-widest"
               >
                 Harita
               </button>
-            </Link>
           </div>
 
           <div className="flex hover:bg-[rgba(248,203,79,0.50)] py-2 px-6  rounded-xl">
@@ -100,7 +99,7 @@ function Footer(props) {
         </div>
       </div>
     
-      <div className={`w-[270px] mt-[10px] hidden xl:block  ${isOpen ? "closed" : ""} `}>
+      <div className={`w-[270px] mt-[10px] hidden lg:block  ${isOpen ? "closed" : ""} `}>
         {" "}
         <p className="block md:hidden text-center pb-4">
           Affan, Travma ve Afet Ruh Sağlığı Çalışmaları Derneği (TARDE)

@@ -8,7 +8,8 @@ import {
   A_PERSONEL,
   ETKINLIK_GET,
   GONULLU,
-  DANISAN,CLICK
+  DANISAN,CLICK,
+  SITEMAP
 } from "./actions";
 
 const initialState = {
@@ -24,6 +25,7 @@ const initialState = {
   gonullu:[],
   danisan:[],
   click:"",
+  siteMap:"main"
 };
 
 export function mainReducer(state = initialState, action) {
@@ -48,6 +50,11 @@ export function mainReducer(state = initialState, action) {
       return {
         ...state,
         Personel: action.payload,
+      };
+    case SITEMAP:
+      return {
+        ...state,
+        siteMap: action.payload,
       };
 
     case A_MERKEZ_GET:

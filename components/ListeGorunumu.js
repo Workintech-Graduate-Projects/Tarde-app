@@ -16,11 +16,11 @@ export default function ListeGorunumu() {
   const formattedCities = cities.map((city) => city.toUpperCase());
   return (
     <div className="block md:hidden">
-      <img
+      {/* <img
         className="min-w-[200px]"
         src="./img/affan-logo.svg"
         alt="Affan Logo"
-      />
+      /> */}
 
       <div className="block md:hidden  ">
         {" "}

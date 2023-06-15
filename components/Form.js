@@ -70,7 +70,7 @@ const FormPage = () => {
 
     if (kvkk == true) {
       await axios
-        .post(`http://localhost:9000/api/table/admin/danisan/`, nFormData)
+        .post(`https://tade-be.herokuapp.com/api/table/admin/danisan/`, nFormData)
         .then((res) => {
           return console.log(res.data);
         })

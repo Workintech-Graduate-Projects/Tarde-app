@@ -3,10 +3,10 @@ import mapboxgl from "mapbox-gl";
 import { useEffect, useState } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useRouter } from "next/router";
-
 import axios from "axios";
 import EtkinlikCard from "./Etkinlik-card";
 import Card from "./Card";
+import ListeGorunumu from "./ListeGorunumu";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZXNraXNhcmtpc2kiLCJhIjoiY2xocmhxNjdrMHF5ZzNlbnZ2dDNobzhvbiJ9.SuA_p6UCk5NACNs1kz31eQ";
@@ -151,7 +151,7 @@ function Maps({ setSiteMap }) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:9000/api/table/admin/sehir")
+      .get("https://tade-be.herokuapp.com/api/table/admin/sehir")
       .then(function (response) {
         // handle success
         setData(response.data);
@@ -315,13 +315,13 @@ function Maps({ setSiteMap }) {
 
   return (
     <>
-      <div id="map" className=" flex justify-center h-[55vh] md:h-[72vh]  lg:h-[80vh] w-[100%] relative"></div>
+      <div id="map" className="  justify-center h-[85vh] md:h-[60vh] flex  lg:min-h-full w-[90vw] sm:min-w-[700px]  lg:w-[50vw] relative "></div>
       {click != "" ? (
-        <div className="absolute bottom-[15%] right-[10%] scale-75 md:scale-100 flex items-center justify-center">
+        <div className="absolute bottom-[22%] md:bottom-[12%] lg:left-[60%] left-[10vh] md:left-[55%]  scale-[55%] md:scale-[65%] lg:scale-100 flex items-center justify-center">
           <Card className="absolute " setClick={setClick} click={click} />
         </div>
       ) : (
-        <div className="hidden bottom-[30%] md:absolute right-[10%] ">
+        <div className=" scale-75 md:scale-90  bottom-[27%] sm:bottom-[15%] lg:bottom-[12%] absolute right-[5%] md:right-[12%] lg:right-[17%] ">
           <img
             className="max-w-[150px] xl:max-w-[220px] 2xl:max-w-[260px]  bg-[rgba(246,190,49,0.30)]  rounded-3xl md:w-[270px] "
             src="img/Volunteer-map.svg"
@@ -329,10 +329,11 @@ function Maps({ setSiteMap }) {
           />
         </div>
       )}
-       {/*
-      <div className="absolute  bottom-[15%] right-[40%] ">
+      
+      <div className="absolute scale-50 lg:scale-75 bottom-[23%] md:bottom-[12%] right-[60%] lg:right-[40%] md:right-[55%] ">
         <EtkinlikCard />
-      </div> */}
+      </div>
+    
     </>
   );
 }

@@ -35,9 +35,7 @@ body {
 .mapboxgl-ctrl-bottom-right {
   transform: translate(0px, 30px);
 }
-#__next {
-  height: 100vh;
-}
+
 .mapboxgl-ctrl-logo {
   transform: translate(0px, 30px);
 }
@@ -129,9 +127,9 @@ body {
   border-radius: 16px;
 }
 #map {
-  border-radius: 6px;
-
-  border: 3px solid rgb(55, 185, 211);
+  border-radius: 55px;
+  border: 3px solid  #647DC7;
+ 
 }
 .carousel div {
   display: flex;
@@ -170,18 +168,18 @@ body {
     background-position: center;
     background-size: cover;
   }
-  .resBgDiv {
-    width: 100vw;
-  }
+ 
 
 
   .landinghide {
     display: none;
   }
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 1024px) {
   .hamburger {
     display: flex;
+    margin-right: 30px;
+    margin-top: 30px;
   }
 }
 @media only screen and (min-width: 1024px) {
@@ -286,4 +284,3 @@ direction: row;
   margin-top: 4px;
 
 }
-
