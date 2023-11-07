@@ -71,7 +71,7 @@ const SahaFormPage = () => {
     const { kvkkConfirmation, supportPerson, ...nFormData } = formData;
     console.log(nFormData);
     await axios
-      .post(`https://tade-be.herokuapp.com/api/table/admin/gonullu/`, nFormData)
+      .post(`https://tarde-be-vgfs.onrender.com/api/table/admin/gonullu/`, nFormData)
       .then((res) => {
         return console.log(res.data);
       })

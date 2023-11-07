@@ -77,7 +77,7 @@ const Merkez = ({ id }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://tade-be.herokuapp.com/api/table/sehir/${id}`
+          `https://tarde-be-vgfs.onrender.com/api/table/sehir/${id}`
         );
         console.log("id-resçdata oncesi merkez", id);
         console.log(response.data);
@@ -93,7 +93,7 @@ const Merkez = ({ id }) => {
   /*    useEffect(() => {
       const fetData = async () => {
         axios
-          .get("https://tade-be.herokuapp.com/api/table/coordinate/1")
+          .get("https://tarde-be-vgfs.onrender.com/api/table/coordinate/1")
           .then((res) => {
             console.log(res.data[0]);
             setRecords(res.data);

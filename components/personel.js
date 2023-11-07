@@ -108,7 +108,7 @@ const personel = ({ id }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://tade-be.herokuapp.com/api/table/sehir/${id}`
+          `https://tarde-be-vgfs.onrender.com/api/table/sehir/${id}`
         );
         console.log("id res-data oncesi personel", id);
         setData(response.data);

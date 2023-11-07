@@ -151,7 +151,7 @@ function Maps({ setSiteMap }) {
 
   useEffect(() => {
     axios
-      .get("https://tade-be.herokuapp.com/api/table/admin/sehir")
+      .get("https://tarde-be-vgfs.onrender.com/api/table/admin/sehir")
       .then(function (response) {
         // handle success
         setData(response.data);

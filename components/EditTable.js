@@ -11,7 +11,7 @@ const handleSaveRowEdits = async ({ exitEditingMode, row, values,selectedTable }
     selectedTable == "isbirligi"
       ? await axios
           .put(
-            `https://tade-be.herokuapp.com/api/table/admin/${selectedTable}`,
+            `https://tarde-be-vgfs.onrender.com/api/table/admin/${selectedTable}`,
             nValues
           )
           .then((res) => {
@@ -20,21 +20,21 @@ const handleSaveRowEdits = async ({ exitEditingMode, row, values,selectedTable }
           .catch((error) => console.log(error))
       : selectedTable == "aracsayisi"
       ? await axios
-          .put(`https://tade-be.herokuapp.com/api/table/admin/aracsayisi/`, nValues)
+          .put(`https://tarde-be-vgfs.onrender.com/api/table/admin/aracsayisi/`, nValues)
           .then((res) => {
             return console.log(res.data);
           })
           .catch((error) => console.log(error))
       : selectedTable == "hizmet"
       ? await axios
-          .put(`https://tade-be.herokuapp.com/api/table/admin/hizmet/`, mValues)
+          .put(`https://tarde-be-vgfs.onrender.com/api/table/admin/hizmet/`, mValues)
           .then((res) => {
             return console.log(res.data);
           })
           .catch((error) => console.log(error))
       : await axios
           .put(
-            `https://tade-be.herokuapp.com/api/table/admin/${selectedTable}/${row.original.merkez_id}`,
+            `https://tarde-be-vgfs.onrender.com/api/table/admin/${selectedTable}/${row.original.merkez_id}`,
             nValues
           )
           .then((res) => {

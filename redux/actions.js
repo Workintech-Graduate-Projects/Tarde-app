@@ -31,7 +31,7 @@ export const setSiteMap = (item) => ({
 
 export const editMerkezAPI = (item) => (dispatch) => {
   axios
-    .post("https://tade-be.herokuapp.com/api/table/", item)
+    .post("https://tarde-be-vgfs.onrender.com/api/table/", item)
     .then((res) => {
       if (res.status === 200) {
         dispatch(editMerkez(res.data.json));
@@ -41,47 +41,47 @@ export const editMerkezAPI = (item) => (dispatch) => {
 };
 export const getMerkezAPI = (id, table) => async (dispatch) => {
   await axios
-    .get(`https://tade-be.herokuapp.com/api/table/admin/${table}/${id}`)
+    .get(`https://tarde-be-vgfs.onrender.com/api/table/admin/${table}/${id}`)
     .then((res) => {
       return dispatch({ type: A_MERKEZ_GET, payload: res.data });
     }).catch((error) => console.log(error));
 };
 export const personelAPI = () => async (dispatch) => {
   await axios
-    .get(`https://tade-be.herokuapp.com/api/table/admin/personel`)
+    .get(`https://tarde-be-vgfs.onrender.com/api/table/admin/personel`)
     .then((res) => {
       return dispatch({ type: A_PERSONEL, payload: res.data });
     }).catch((error) => console.log(error));
 };
 export const etkinlikAPI = () => async (dispatch) => {
   await axios
-    .get(`https://tade-be.herokuapp.com/api/table/admin/hizmet`)
+    .get(`https://tarde-be-vgfs.onrender.com/api/table/admin/hizmet`)
     .then((res) => {
       return dispatch({ type: ETKINLIK_GET, payload: res.data });
     }).catch((error) => console.log(error));
 };
 export const getSehirAPI = () => async (dispatch) => {
   await axios
-    .get(`https://tade-be.herokuapp.com/api/table/admin/sehir`)
+    .get(`https://tarde-be-vgfs.onrender.com/api/table/admin/sehir`)
     .then((res) => {
       return dispatch({ type: SEHIR, payload: res.data });
     }).catch((error) => console.log(error));
   await axios
-    .get(`https://tade-be.herokuapp.com/api/table/admin/merkez`)
+    .get(`https://tarde-be-vgfs.onrender.com/api/table/admin/merkez`)
     .then((res) => {
       return dispatch({ type: MERKEZ, payload: res.data });
     }).catch((error) => console.log(error));
 };
 export const getGonullu = () => async (dispatch) => {
   await axios
-    .get(`https://tade-be.herokuapp.com/api/table/admin/gonullu`)
+    .get(`https://tarde-be-vgfs.onrender.com/api/table/admin/gonullu`)
     .then((res) => {
       return dispatch({ type: GONULLU, payload: res.data });
     })
   .catch((error) => console.log(error));}
 export const getDanisan = () => async (dispatch) => {
   await axios
-    .get(`https://tade-be.herokuapp.com/api/table/admin/danisan`)
+    .get(`https://tarde-be-vgfs.onrender.com/api/table/admin/danisan`)
     .then((res) => {
       return dispatch({ type: DANISAN, payload: res.data });
     })

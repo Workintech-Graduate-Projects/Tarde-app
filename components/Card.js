@@ -24,7 +24,7 @@ const Card = ({ click ,setClick}) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://tade-be.herokuapp.com/api/table/admin/aracsayisi/sehir/${click}`
+          `https://tarde-be-vgfs.onrender.com/api/table/admin/aracsayisi/sehir/${click}`
         );
         setData(response.data);
         let count=0;
@@ -43,7 +43,7 @@ const Card = ({ click ,setClick}) => {
     const fetchMerkez = async () => {
       try {
         const response = await axios.get(
-          `https://tade-be.herokuapp.com/api/table/admin/merkez`
+          `https://tarde-be-vgfs.onrender.com/api/table/admin/merkez`
         );
         setDataMerkez(
           response.data.filter((item) => item.sehir_id == Number(click))
@@ -61,7 +61,7 @@ const Card = ({ click ,setClick}) => {
     const fetchDataSehir = async () => {
       try {
         const response = await axios.get(
-          `https://tade-be.herokuapp.com/api/table/admin/isbirligi/${click}`
+          `https://tarde-be-vgfs.onrender.com/api/table/admin/isbirligi/${click}`
         );
         setDataSehir(response.data);
       } catch (error) {
